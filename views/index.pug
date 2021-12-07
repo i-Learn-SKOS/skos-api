@@ -1,0 +1,767 @@
+extends layout
+
+block content
+  h1= title
+
+  :markdown-it(linkify langPrefix='highlight-')
+    This is the home page of a test project that demonstrates an API (application programming interface)
+    that allows interrogation of metadata applicable to learning content and shows by means of an example how this interrogation can be used in a practical example.
+
+    This project was initially created within the [i-Learn project](https://www.i-learn.vlaanderen/).
+
+  p.
+    API users can go testing via #[a(href=`${swaggerRoute}`) the swagger page] immediately.
+
+  :markdown-it(linkify langPrefix='highlight-')
+    Patient readers find below
+    - some metadata basics,
+    - some SKOS knowledge,
+    - how the metadata is implemented using SKOS
+    - a graphical summary
+    - and finally what this API provides.
+
+    ## The metadata in a nutshell
+
+    ### Curricula
+    The metadata divides curricula in two major parts: one part is relevant for **lager onderwijs** (*primary school*), another part is relevant for **secundair onderwijs** (*secundary school*).
+
+    In principle, the structure of the curriculum metadata is **hierarchical**.
+    - Terms at a higher level can be 'parents' of zero, one or more terms at a lower level.
+    - Terms at a lower level can be 'children' of zero, one or more terms at a higer level.
+
+    For the curriculum **lager onderwijs**, the hierarchy is as follows:
+    - The first, highest level of the hierarchy consists of **leergebieden** (*learning areas*).
+    - The second level of the hierarchy consists of **subdomeinen** (*subdomains*).
+    - The third level of the hierarchy consists of **thema's** (*themes*).
+
+    For the curriculum **secundair onderwijs**, the hierarchy is as follows:
+    - The first, highest level of the hierarchy consists of **studiedomeinen** (*study domains*) and **sleutelcompetenties** (*key competences*).
+    - The second level of the hierarchy consists of **bouwstenen** (*building blocks*), **wetenschapsdomeinen** (*fields of science*) and **beroepskwalificaties** (*professional qualifications*).
+
+    Terms in a hierarchy can also be linked to other terms in that hierarchy, to express a non-hierarchical connection.
+
+    ### Vakken and trefwoorden
+    The metadata also contains (non-hierarchical) terms. These too can be linked to the curricula mentioned above.
+    - A first group of such terms are the **vakken** (*learning subjects*).
+    - A second group of such terms are the **trefwoorden** (*keywords*).
+
+    ### Onderwijsniveaus
+    - A separate group of (hierachical) terms are the **onderwijsniveaus** (*educational levels*). These too can be linked to the curricula mentioned above.
+
+    ### Onderwijsdoelen
+    - A separate group of (non-hierarchical) terms are the **onderwijsdoelen** (*educational goals*). These too can be linked to the curricula and onderwijsniveaus mentioned above.
+
+    ### Icons
+    - An auxiliary datasets links icons (and their content URL) to some of the terms in the above list (currently sleutelcompetenties, studiedomeinen, leergebieden, and onderwijsniveaus).
+
+  p.
+    The #[a(href="#graphical-summary") graphical summary below] gives an overview, but is preferably visited after getting some SKOS knowledge first.
+
+  :markdown-it(linkify langPrefix='highlight-')
+    ## Representing the metadata using SKOS
+
+    ### About SKOS and RDF
+    The metadata is represented using [SKOS](https://www.w3.org/2009/08/skos-reference/skos.html),
+    a popular [RDF](https://www.w3.org/RDF/) vocabulary,
+    making the data suited for usage in linked data applications.
+
+    An advantage of using RDF (SKOS in particular) is that every term is unambiguously defined by a
+    [Uniform Resource Identfier (URI)](https://www.ietf.org/rfc/rfc2396.txt), rather than by some possibly ambiguous textual annotation (label).
+    Linked data applications refer to a term using its URI. Terms are machine readable.
+    An example URI: http://ilearn.ilabt.imec.be/vocab/curr1/c-lichamelijk-geestelijk-en-emotioneel-welzijn.
+
+    An overview of all SKOS terms van be found in the [SKOS Schema Overview](https://www.w3.org/2009/08/skos-reference/skos.html).
+
+    ### Mapping
+    Below we'll use the following prefixes
+
+    | Prefix   | Expanded                                   | base URI for                                                                       |
+    | -------- | ------------------------------------------ | ---------------------------------------------------------------------------------- |
+    | skos:    | http://www.w3.org/2004/02/skos/core#       | Vocabulary items in the SKOS vocabulary                                            |
+    | schema:  | http://schema.org/                         | Vocabulary items in the Schema.org vocabulary                                      |
+    | foaf:    | http://xmlns.com/foaf/0.1/                 | Vocabulary items in the Friend of a Friend vocabulary                              |
+    | elem:    | http://ilearn.ilabt.imec.be/vocab/elem/    | Collections in our metadata model                                                  |
+    | curr1:   | http://ilearn.ilabt.imec.be/vocab/curr1/   | Concepts in the hierarchical structure of our metadata model (secundair onderwijs) |
+    | vak1:    | http://ilearn.ilabt.imec.be/vocab/vak1/    | Vakken in our metadata model (secundair onderwijs)                                 |
+    | tref1:   | http://ilearn.ilabt.imec.be/vocab/tref1/   | Trefwoorden in our metadata model (secundair onderwijs)                            |
+    | curr2:   | http://ilearn.ilabt.imec.be/vocab/curr2/   | Concepts in the hierarchical structure of our metadata model (lager onderwijs)     |
+    | tref2:   | http://ilearn.ilabt.imec.be/vocab/tref2/   | Trefwoorden in our metadata model (lager onderwijs)                                |
+    | ondniv:  | http://ilearn.ilabt.imec.be/vocab/ondniv/  | Onderwijsniveaus in our metadata model                                             |
+    | onddoel: | http://ilearn.ilabt.imec.be/vocab/onddoel/ | Onderwijsdoelen in our metadata model                                              |
+    | ilearn:  | http://semweb.mmlab.be/ns/ilearn#          | Non-SKOS vocabulary terms applicable to this project                               |
+
+    An example: skos:Concept is a shorthand for http://www.w3.org/2004/02/skos/core#Concept.
+
+    ### Labels
+    Each term has exactly one **skos:prefLabel** in Dutch. It's the primary name assigned to it.
+
+    All terms have as many **skos:altLabel**s in Dutch as secondary names were assigned to it.
+
+    ### Collections
+    The SKOS term **skos:Collection** is meant for grouping concepts.
+    The following **skos:Collection**s are defined in the **elem:** namespace:
+    - **lager onderwijs**
+    - **leergebieden**
+    - **subdomeinen**
+    - **thema's**
+    - **secundair onderwijs**
+    - **studiedomeinen**
+    - **sleutelcompetenties**
+    - **bouwstenen**
+    - **wetenschapsdomeinen**
+    - **beroepskwalificaties**
+    - **trefwoorden**
+    - **vakken**
+    - **onderwijsniveaus**
+    - **onderwijsdoelen**
+
+    All concepts in our metadata are assigned to the relevant collection(s) using the **skos:member** relation.
+
+    ### Concepts
+    Terms defined as **skos:Concept**s in the **curr1:** namespace:
+    - are all member of the collection
+      - **secundair onderwijs**
+    - are member of one of the following collections:
+      - **studiedomeinen**
+      - **sleutelcompetenties**
+      - **bouwstenen**
+      - **wetenschapsdomeinen**
+      - **beroepskwalificaties**
+
+    Terms defined as **skos:Concept**s in the **vak1:** namespace:
+    - are all member of the collections
+      - **secundair onderwijs**
+      - **vakken**
+
+    Terms defined as **skos:Concept**s in the **tref1:** namespace:
+    - are all member of the collections
+      - **secundair onderwijs**
+      - **trefwoorden**
+
+    Terms defined as **skos:Concept**s in the **curr2:** namespace:
+    - are all member of the collection
+      - **lager onderwijs**
+    - are member of one of the following collections:
+      - **leergebieden**
+      - **subdomeinen**
+      - **thema's**
+
+    Terms defined as **skos:Concept**s in the **tref2:** namespace:
+    - are all member of the collections
+      - **lager onderwijs**
+
+    Terms defined as **skos:Concept**s in the **ondniv:** namespace:
+    - are all member of the collection
+      - **onderwijsniveaus**
+
+    Terms defined as **skos:Concept**s in the **onddoel:** namespace:
+    - are all member of the collection
+      - **onderwijsdoelen**
+
+    ### Linking concepts with SKOS relations
+
+    Below we use following shorthands for some concepts:
+    | shorthand | meaning |
+    | --------- | ------- |
+    | `h<x>` | a concept located in a hierarchy (*) |
+    | `v` | a concept member of **vakken** |
+    | `t` | a concept member of **trefwoorden** |
+    | `d` | a concept member of **onderwijsdoelen** |
+    | `x`, `y` | any concept member |
+    (*) if <x> is a number, it indicates the level in the hierarchy (1 = highest level)
+
+    #### Hierarchical links
+
+    Each concept is linked to the applicable concept(s) *exactly one level lower* in the hierarchy by means of the **skos:narrower** relation:
+    - `h1 skos:narrower h2`
+    - `h2 skos:narrower h3`
+
+    Each concept is linked to the applicable concept(s) *exactly one level higher* in the hierarchy by means of the **skos:broader** relation:
+    - `h2 skos:broader h1`
+    - `h3 skos:broader h2`
+
+    Each concept is linked to the applicable concept(s) *one or more levels lower* in the hierarchy by means of the **skos:narrowerTransitive** relation:
+    - `h1 skos:narrowerTransitive h2`
+    - `h2 skos:narrowerTransitive h3`
+    - `h1 skos:narrowerTransitive h3`
+
+    Each concept is linked to the applicable concept(s) *one or more levels higher* in the hierarchy by means of the **skos:broaderTransitive** relation:
+    - `h2 skos:broaderTransitive h1`
+    - `h3 skos:broaderTransitive h2`
+    - `h3 skos:broaderTransitive h1`
+
+    #### Non-hierarchical links
+
+    To link concepts in a non-hierarchical way, the **skos:related** relation is used. We use it to link members of **vakken**, **trefwoorden** and
+    **onderwijsdoelen** to hierarchical terms and to link hierarchical terms between themselves:
+    - `v skos:related ha`
+    - `t skos:related hb`
+    - `d skos:related hb`
+    - `x skos:related y`
+
+    Note that **skos:related** is a symmetrical relation. In our metadata model, the relation is always implemented in both directions. So, given the examples above,
+    the next will also be present:
+    - `ha skos:related v`
+    - `hb skos:related t`
+    - `hb skos:related d`
+    - `y skos:related x`
+
+  h3(id="graphical-summary") Graphical summary of linking concepts with SKOS relations
+
+  h4 Lager onderwijs
+
+  img(src="images/lo1.jpg" alt="lager onderwijs collection memberships" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 1*
+
+    Figure 1: all collections and some example concepts for **lager onderwijs**.
+    - The collections are located in the left part of the figure.
+    - Some example concepts are located in the right part of the figure.
+    - All concepts are member of the collection **lager onderwijs**:
+      - `lager-onderwijs skos:member leergebied1` etc.
+    - Each concept is member of its corresponding collection:
+      - `leergebieden skos:member leergebied1` etc.
+
+  img(src="images/lo2.jpg" alt="lager onderwijs relations" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 2*
+
+    Figure 2: some example concepts for **lager onderwijs** and their relations.
+    - Concepts in the hierarchy:
+      - at the highest hierarchical level: **leergebied1** and **leergebied2**
+      - at the second hierarchical level: **subdomein1**
+      - at the third hierarchical level: **thema1**
+    - One non - hierarchical concept is shown: **trefwoord1**
+    - The hierarchy is expressed:
+      - `leergebied1 skos:narrower subdomein1`
+      - `leergebied1 skos:narrowerTransitive subdomein1`
+      - `subdomein1 skos:broader leergebied1`
+      - `subdomein1 skos:broaderTransitive leergebied1`
+      - `subdomein1 skos:narrower thema1`
+      - `subdomein1 skos:narrowerTransitive thema1`
+      - `thema1 skos:broader subdomein1`
+      - `thema1 skos:broaderTransitive subdomein1`
+      - `leergebied1 skos:narrowerTransitive thema1`
+      - `thema1 skos:broaderTransitive leergebied1`
+    - **thema1** and **leergebied2** are related:
+      - `thema1 skos:related leergebied2`
+      - `leergebied2 skos:related thema1`
+    - **thema1** and **trefwoord1** are related:
+      - `thema1 skos:related trefwoord1`
+      - `trefwoord1 skos:related thema1`
+
+  h4 Secundair onderwijs
+
+  img(src="images/so1.jpg" alt="secundair onderwijs collection memberships" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 3*
+
+    Figure 3: all collections and some example concepts for **secundair onderwijs**.
+    - The collections are located in the left part of the figure.
+    - Some example concepts are located in the right part of the figure.
+    - All concepts are member of the collection **secundair onderwijs**:
+      - `secundair-onderwijs skos:member sleutelcompetentie1` etc.
+    - Each concept is member of its corresponding collection:
+      - `sleutelcompetentie1 skos:member sleutelcompetenties` etc.
+
+  img(src="images/so2.jpg" alt="secundair onderwijs relations" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 4*
+
+    Figure 4: some example concepts for **secundair onderwijs** and their relations.
+
+    - Concepts in the hierarchy:
+      - at the highest hierarchical level: **sleutelcompetentie1** (could also have been a *studiedomein*)
+      - at the second hierarchical level: **bouwsteen1** (could also have been a *wetenschapsdomein* or a *beroepskwalificatie*)
+    - Two non - hierarchical concepts are shown: **vak1** and **trefwoord1**
+    - The hierarchy is expressed:
+      - `sleutelcompetentie1 skos:narrower bouwsteen1`
+      - `sleutelcompetentie1 skos:narrowerTransitive bouwsteen1`
+      - `bouwsteen1 skos:broader sleutelcompetentie1`
+      - `bouwsteen1 skos:broaderTransitive sleutelcompetentie1`
+    - **bouwsteen1** and **trefwoord1** are related:
+      - `bouwsteen1 skos:related trefwoord1`
+      - `trefwoord1 skos:related bouwsteen1`
+    - **bouwsteen1** and **vak1** are related:
+      - `bouwsteen1 skos:related vak1`
+      - `vak1 skos:related bouwsteen1`
+
+  h4 Onderwijsdoelen
+
+  img(src="images/od.jpg" alt="onderwijsdoelen" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 5*
+
+    Figure 5: Examples of **onderwijsdoelen** and how they can be linked to different lager onderwijs and secundair onderwijs concepts.
+    - Onderwijsdoelen are all member of the collection **onderwijsdoelen**:
+      - `onderwijsdoelen skos:member onderwijsdoel1` etc.
+    - Some example concepts are located in the right part of the figure.
+      - They're all member of the expected collections:
+        - `leergebieden skos:member leergebied100`; `lager-onderwijs skos:member leergebied100`
+        - `subdomeinen skos:member subdomein110`; `lager-onderwijs skos:member subdomein110`
+        - `themas skos:member thema120`; `lager-onderwijs skos:member thema120`
+        - `sleutelcompetenties skos:member sleutelcompetentie200`; `secundair-onderwijs skos:member sleutelcompetentie200`
+        - `bouwstenen skos:member bouwsteen210`; `secundair-onderwijs skos:member bouwsteen210`
+        - `wetenschapsdomeinen skos:member wetenschapsdomein300`; `secundair-onderwijs skos:member wetenschapsdomein300`
+      - They're hierarchically positioned as expected:
+        - `subdomein110 skos:broader leergebied100`
+        - `thema120 skos:broader subdomein110`
+        - `bouwsteen210 skos:broader sleutelcompetentie200`
+      - Onderwijsdoelen can be linked to different lager onderwijs and secundair onderwijs concepts by means of `skos:related`.
+        This relation is always present in both directions; below we'll only write it in one direction.
+      - For lager onderwijs:
+        - An onderwijsdoel is linked to one leergebied
+          - `onderwijsdoel1 skos:related leergebied100`
+        - An onderwijsdoel *can be linked* to one subdomein
+          - `onderwijsdoel1 skos:related subdomein110`
+        - An onderwijsdoel *can be linked* to one thema
+          - `onderwijsdoel1 skos:related thema120`
+      - For secundair onderwijs:
+        - An onderwijsdoel is linked either to one sleutelcompetentie or to one wetenschapsdomein
+          - `onderwijsdoel2 skos:related sleutelcompetentie200`
+          - `onderwijsdoel3 skos:related wetenschapsdomein300`
+        - An onderwijsdoel linked to a sleutelcompetentie *can be linked* to one hierarchically lower bouwsteen
+          - `onderwijsdoel2 skos:related bouwsteen210`
+        - An onderwijsdoel linked to a wetenschapsdomein *cannot be linked* to a hierarchically lower concept,
+          because in the current dataset there is no hierarchical level below wetenschapsdomeinen in secundair onderwijs.
+
+  h4 Onderwijsniveaus
+
+  img(src="images/od-on.jpg" alt="onderwijsdoelen to onderwijsniveaus" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 6*
+
+    Figure 6: Example of an **onderwijsniveau** hierarchy, showing how an **onderwijsdoel** can be linked to an **onderwijsniveau** concept.
+    - The onderwijsniveau concepts are member of their collection:
+      - `onderwijsniveaus skos:member onderwijsniveaus1`
+      - `onderwijsniveaus skos:member onderwijsniveaus2`
+      - `onderwijsniveaus skos:member onderwijsniveaus3`
+    - The onderwijsniveau concepts are in a hierarchical structure:
+      - `onderwijsniveau1 skos:narrower onderwijsniveau2`
+      - `onderwijsniveau1 skos:narrowerTransitive onderwijsniveau2`
+      - `onderwijsniveau2 skos:broader onderwijsniveau1`
+      - `onderwijsniveau2 skos:broaderTransitive onderwijsniveau1`
+      - `onderwijsniveau2 skos:narrower onderwijsniveau3`
+      - `onderwijsniveau2 skos:narrowerTransitive onderwijsniveau3`
+      - `onderwijsniveau3 skos:broader onderwijsniveau2`
+      - `onderwijsniveau3 skos:broaderTransitive onderwijsniveau2`
+      - `onderwijsniveau1 skos:narrowerTransitive onderwijsniveau3`
+      - `onderwijsniveau3 skos:broaderTransitive onderwijsniveau1`
+    - An onderwijsdoel is related to a specific onderwijsniveau:
+      - `onderwijdoelX skos:related onderwijsniveau2`
+      - `onderwijsniveau2 skos:related onderwijdoelX`
+
+    ### Linking concepts with other vocabularies (non-SKOS)
+
+    #### Onderwijsniveau to curriculum
+
+    Below we use following shorthands for some concepts:
+
+    | shorthand | meaning |
+    | --------- | ------- |
+    | `o<x>` | a SKOS concept, member of **onderwijsniveaus** (*) |
+    | `c` | a SKOS collection |
+    (*) if <x> is a number, it indicates the level in the hierarchy (1 = highest level)
+
+    **Onderwijsniveau concept**s can be linked directly to **curriculum collection**s, by means of the ilearn:hasCurriculum relation:
+    - `o ilearn:hasCurriculum c`
+
+    - If an *onderwijsniveau concept* is not linked directly to any *curriculum collection*, it can be linked indirectly, via a **hierarchically higher onderwijsniveau concept**:
+      - `o3 skos:broaderTransitive o1`
+      - `o1 ilearn:hasCurriculum c`
+
+    **Onderwijsniveau concept**s can be assigned to a specific **typical age range** (a litteral range, expressed in years):
+    - `o ilearn:typicalAgeRange "16-17"`
+
+    #### Image links
+
+    An additional dataset at http://ilearn.ilabt.imec.be/iconen links terms to icons.
+    They are linked according to following structure:
+
+    - `x foaf:logo y`
+    - `y schema:contentUrl z`
+
+    Using the GraphQL-LD endpoint, one can look up the logos via following query:
+
+    ```graphql
+    {
+    id(_:ID) # The ID of, e.g., the sleutelcompetentie you want the logo from
+    prefLabel @single
+    logo {
+      contentUrl
+    }
+    ```
+
+    ## The API
+
+  p.
+    The sections that follow can be experienced interactively via #[a(href=`${swaggerRoute}`) the swagger page].
+    That swagger page is also the reference documentation for the API.
+    Please be aware that due to the swagger implementation, rendering a lengthy result in your browser may take a very long time (minutes!).
+    When calling the API from an application, keep in mind that all URL-provided parameters have to be URL encoded,
+    as can be seen in the <strong>Request URL</strong> field after execution of an example call.
+
+  :markdown-it(linkify langPrefix='highlight-')
+
+    ### Interrogating the SKOS data - the GraphQL-LD endpoint
+    The endpoint **/graphqlld** is a versatile endpoint, providing full query access to the SKOS data.
+
+    Users need to understand the basics of the [GraphQL query language](https://graphql.org/learn/)
+    and [how it can be used to query linked data](https://github.com/rubensworks/graphql-ld.js),
+    with [these details on queries you can write](https://github.com/rubensworks/graphql-to-sparql.js).
+    The [Comunica framework](https://comunica.github.io/comunica/) is used in this platform to provide this functionality.
+
+    Knowledge of [JSON-LD](https://www.w3.org/TR/json-ld11/) is helpful, but not explicitly required, because the user
+    does not need to provide a JSON-LD context; we're using a built-in context, covering the entire vocabulary used in our SKOS data.
+
+    A first input to this endpoint, **query**, is the *GrapQL-LD query*: a string. This is an example query, requesting information about
+    a specific concept:
+    ```
+    {
+      TYPE(_:Concept)
+      id(_:ID) @single
+      prefLabel @single
+      altLabel @optional
+      definition @single @optional
+    }
+    ```
+
+    In this example, **ID** is a parameter. Its value must be supplied in the second input of this endpoint, **parameters**,
+    a simple [JSON](https://www.json.org/json-en.html) key-value structure. For the example, this JSON would do
+    (we provide one of the available URIs that identify a specific concept):
+    ```
+    {
+      "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/s-industrieel-onderhoud-en-ontwerp"
+    }
+    ```
+
+    The endpoint returns a JSON-LD structure.
+    - The **"@context"** entry expresses general statements, that apply to all corresponding elements in the *@graph* entry below it, and gives
+    the properties their semantic meaning. In fact, this returned context is our built-in context descirbed above.
+    - The **"@graph"** entry contains the effective information, as if it were plain JSON:
+    easy to consume by a program and yet human readable and structured as requested in the input's GrapQL-LD query.
+
+    This way, we return information in a popular format, while keeping the semantic information in the payload.
+
+    *Please note that, when trying out this endpoint using the swagger page, the example input parameters are shown as a single line,
+    while the actual parameters can contain newlines (as shown above). This is a limitation of the swagger presentation.
+    For convenience, find below (inside the elements named "value") a replica of all example queries available on that swagger page.*
+
+    ```
+    collections:
+      summary: "1. Query for all collections"
+      value: |
+      {
+        TYPE(_:Collection)
+        id @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+      }
+    collection:
+      summary: "2. Query for one specific collection (and its members)"
+      value: |
+      {
+        TYPE(_:Collection)
+        id(_:ID) @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        member @optional {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+        }
+      }
+    concepts:
+      summary: "3. Query for all concepts"
+      value: |
+      {
+        TYPE(_:Concept)
+        id @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+      }
+    concept:
+      summary: "4. Query for one specific concept (and its connections)"
+      value: |
+      {
+        TYPE(_:Concept)
+        id(_:ID) @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        memberOf @optional {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+        }
+        broader @optional {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+        }
+        broaderTransitive @optional {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+        }
+        narrower @optional {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+        }
+        narrowerTransitive @optional {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+        }
+        related @optional {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+        }
+      }
+    overviewHierarchy:
+      summary: "5. Query for all top concepts member of a specific collection and their hierarchically lower concepts"
+      value: |
+      {
+        TYPE(_:Collection)
+        id(_:ID) @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        member {
+          id @single
+          topConceptOf @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+          narrower @optional {
+            id @single
+            prefLabel @single
+            altLabel @optional
+            definition @single @optional
+            narrower @optional {
+              id @single
+              prefLabel @single
+              altLabel @optional
+              definition @single @optional
+              narrower @optional {
+                id @single
+                prefLabel @single
+                altLabel @optional
+                definition @single @optional
+                narrower @optional {
+                  id @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  # 5th level narrower, let's stop here for the time being
+                  narrower @optional {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    overviewRelated:
+      summary: "6. Query for all concepts member of a specific collection and their related concepts"
+      value: |
+      {
+        TYPE(_:Collection)
+        id(_:ID) @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        member @optional {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+          related @optional {
+            id @single
+            memberOf @optional
+            prefLabel @single
+            altLabel @optional
+            definition @single @optional
+          }
+        }
+      }
+    onderwijsNiveauToCurriculaPart1:
+      summary: "7. Query to demonstrate relationship between a 'onderwijsniveaus' concept and 'curriculum' collections (part1: direct)"
+      value: |
+      {
+        id(_:ID) @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        hasCurriculum {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+        }
+      }
+    onderwijsNiveauToCurriculaPart2:
+      summary: "8. Query to demonstrate relationship between a 'onderwijsniveaus' concept and 'curriculum' collections (part2: through broaderTransitive concept(s))"
+      value: |
+      {
+        id(_:ID) @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        broaderTransitive {
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+          hasCurriculum {
+            id @single
+            prefLabel @single
+            altLabel @optional
+            definition @single @optional
+          }
+        }
+      }
+    onderwijsNiveauToTypicalAgeRange:
+      summary: "9. Query to demonstrate typical age range annotations on 'onderwijsniveaus' concepts"
+      value: |
+      {
+        id(_:ID) @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        typicalAgeRange @single
+      }
+    hierarchicalConnection:
+      summary: "10. Query to find hierarchical connections between higher concepts in a first collection and lower concepts (at any level) in a second collection"
+      value: |
+      {
+        TYPE(_:Collection)
+        id(_:ID1) @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        member {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+          narrowerTransitive {
+            memberOf(_:ID2)
+            id @single
+            prefLabel @single
+            altLabel @optional
+            definition @single @optional
+          }
+        }
+      }
+    logo:
+      summary: "11. Query to find logos (and their content URL) assigned to a given concept"
+      value: |
+      {
+        id(_:ID)
+        prefLabel @single
+        logo {
+          contentUrl
+        }
+      }
+    onderwijsdoelen:
+      summary: "12. Query to find onderwijsdoelen related to a given concept"
+      value: |
+      {
+        id(_:ID) @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        related {
+          memberOf(_:ONDERWIJSDOELEN)
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+        }
+      }
+    onderwijsdoelenReverse:
+      summary: "13. Query to find concepts related to a given onderwijsdoel"
+      value: |
+      {
+        id(_:ID) @single
+        memberOf(_:ONDERWIJSDOELEN)
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        related {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+          memberOf @optional
+        }
+      }
+    ```
+
+
+    ### Interrogating the SKOS data - the Specific endpoints
+    These endpoints are in fact easy to use specialisations of what can be done using the GraphQL-LD endpoint.
+    Possible users, not yet familiar with GraphQL-LD, can use them to quickly retrieve some typical information form the SKOS data.
+
+    The endpoints all return a JSON-LD structure, as described above for the GraphQL-LD endpoint.
+
+    The following endpoints provide resource-alike information.
+    - **/collections**: gives the list of collections (their URIs and labels)
+    - **/collections/{collection}**: detailed information about one collection (labels and members, with URI and labels).
+      Note that {collection} stands for "URL encoded URI of the collection".
+    - **/concepts**: gives the list of concepts (their URIs and labels)
+    - **/concepts/{concept}**: detailed information about one concept
+      (labels, connected concepts, collections the concept is a member of, all with URI and labels).
+      Note that {concept} stands for "URL encoded URI of the concept".
+
+    The following endpoints provide overview-alike information.
+    - **/overview/sleutelcompetenties**: gives the list of **sleutelcompetenties** (if they're top concepts) and their subordinate concepts (all with URI and labels)
+    - **/overview/studiedomeinen**: gives the list of **studiedomeinen** (if they're top concepts) and their subordinate concepts (all with URI and labels)
+    - **/overview/leergebieden**: gives the list of **leergebieden** (if they're top concepts) and their subordinate concepts (all with URI and labels)
+    - **/overview/onderwijsniveaus**: gives the list of **onderwijsniveaus** (if they're top concepts) and their subordinate concepts (all with URI and labels)
+    - **/overview/trefwoorden**: gives the list of **trefwoorden** and their related concepts (all with URI and labels)
+    - **/overview/vakken**: gives the list of **vakken** and their related concepts (all with URI and labels)
+    - **/overview/onderwijsdoelen**: gives the list of **onderwijsdoelen** and their related concepts(all with URI and labels)
+
+    ### Using the API - the Example endpoints
+    The endpoints that demonstrate example usage are not interesting in what they return as such, because these contents are
+    based on example data, hardcoded in the demo code. They are interesting when having their implementation code at hand, to see
+    how this code calls the endpoints described above.
+
+    #### Example endpoint /apps
+    This example starts from a (here hardcoded) set of "applications", all classified by means of one or more URIs of concepts in our metadata.
+
+    The intention of this endpoint is to see which of the known "applications" pass the filter that can be applied.
+
+    What the endpoint returns: a plain JSON structure, with contents depending on the parameters provided:
+    - Parameter **filter** is not used:
+      the entire set of "applications"
+    - Parameter **filter** = a concept URI; parameter **connections** is not used:
+      the subset of all "applications" classified with that concept URI
+    - Parameter **filter** = a concept URI; parameter **connections** = a comma separated list of the proposed types of connection:
+      the subset of all "applications" classified with that concept URI or with any of the concept URIs connected to that concept by means of any of the given types of connection.
+
+
+

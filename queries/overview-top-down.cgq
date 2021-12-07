@@ -1,0 +1,51 @@
+contexts/common-context.json
+===
+{
+  "ID": "%collection%"
+}
+===
+{
+  TYPE(_:Collection)
+  id(_:ID) @single
+  prefLabel @single
+  altLabel @optional
+  definition @single @optional
+  member {
+    id @single
+    topConceptOf @single
+    prefLabel @single
+    altLabel @optional
+    definition @single @optional
+    narrower @optional {
+      id @single
+      prefLabel @single
+      altLabel @optional
+      definition @single @optional
+      narrower @optional {
+        id @single
+        prefLabel @single
+        altLabel @optional
+        definition @single @optional
+        narrower @optional {
+          id @single
+          prefLabel @single
+          altLabel @optional
+          definition @single @optional
+          narrower @optional {
+            id @single
+            prefLabel @single
+            altLabel @optional
+            definition @single @optional
+            # 5th level narrower, let's stop here for the time being
+            narrower @optional {
+              id @single
+              prefLabel @single
+              altLabel @optional
+              definition @single @optional
+            }
+          }
+        }
+      }
+    }
+  }
+}

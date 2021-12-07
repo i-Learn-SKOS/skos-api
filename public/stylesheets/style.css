@@ -1,0 +1,265 @@
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'), url(/fonts/TitilliumWeb-Regular.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'), url(/fonts/TitilliumWeb-Italic.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Titillium Web Bold Italic'), local('TitilliumWeb-BoldItalic'), url(/fonts/TitilliumWeb-BoldItalic.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'), url(/fonts/TitilliumWeb-Bold.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+    --color-main: #0ead69;
+    --color-main-transparent: rgba(14, 173, 105, 0.85);
+    --color-main-light: #7bd2ad;
+    --color-main-dark: #0b7e4d;
+    --color-bg: white;
+}
+
+body {
+    padding-top: 4.5rem;
+    background-color: var(--color-bg);
+    font-family: "Titillium Web","Helvetica Neue",Arial,sans-serif;
+    font-size: 16px;
+}
+
+a {
+    color: var(--color-main);
+}
+
+a:hover {
+    color: var(--color-main-dark);
+}
+
+h1, h2, h3, h4 {
+    color: var(--color-main);
+    font-weight: bold;
+}
+
+main {
+    margin-top: 50px;
+}
+
+img {
+    border-radius: 50px 0 50px 0 !important;
+}
+
+/* Navbar */
+
+nav {
+    font-weight: bold;
+    background-color: white;
+    color: var(--color-main);
+}
+
+.navbar-collapse {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.navbar-toggler-icon {
+    background-color: var(--color-main);
+}
+
+.navbar-nav .nav-item .nav-link {
+    --nav-color: var(--color-main);
+    --nav-background: white;
+    border-radius: 20px 0 20px 0;
+    font-size: 20px;
+    margin-right: 5px;
+    color: var(--nav-color);
+    background-color: var(--nav-background);
+}
+
+.navbar-nav .nav-item .nav-link.home {
+    --nav-background: var(--color-main);
+    --nav-color: white;
+    border: 2px solid var(--nav-background);
+    margin-bottom: -4px;
+}
+
+.navbar-nav .nav-item:hover .nav-link {
+    background-color: var(--nav-color);
+    color: var(--nav-background);
+ }
+
+.navbar-nav .nav-item .dropdown-toggle {
+    border-radius: 20px 0 0 0;
+ }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+
+ .dropdown-menu {
+    border: 2px solid var(--color-main);
+    padding: 0;
+    font-weight: bold;
+    border-radius: 0 0 20px 0;
+    overflow: hidden;
+ }
+
+ .dropdown-item {
+    font-weight: bold;
+    color: var(--color-main);
+ }
+
+.dropdown-item:hover {
+    background-color: var(--color-main);
+    color: white;
+ }
+
+
+
+/* End navbar */
+
+.btn {
+    border-radius: 20px 0 20px 0 !important;
+}
+
+.btn-primary {
+    background-color: var(--color-main);
+    border-color: var(--color-main);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-main-dark);
+    border-color: var(--color-main-dark);
+}
+
+#breadcrumb {
+    margin-left: 2px;
+}
+
+.breadcrumb, #breadcrumb {
+    background-color: white;
+}
+
+.card {
+    border: none;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.row.section-title {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+html {
+    position: relative;
+    min-height: 98%;
+}
+.footer {
+    bottom: 0;
+    height: 40px; /* Set the fixed height of the footer here */
+    line-height: 40px; /* Vertically center the text there */
+    background-color: var(--color-main);
+    color: white;
+    border-radius: 20px 0 20px 0 !important;
+}
+
+.footer a {
+    color: white;
+}
+/* End footer */
+
+.section-cards {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    margin-left: 2px;
+}
+
+/* Publications */
+.publication {
+    padding-left: 18px;
+}
+
+/* Home */
+#projects {
+    padding-bottom: 40px;
+}
+
+.jumbotron {
+    background-image: url('../img/jumbotron-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    border-radius: 50px 0 50px 0 !important;
+}
+
+.jumbotron h1, .jumbotron p {
+    background-color: var(--color-main-transparent);
+    padding-left: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.jumbotron h1 {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.jumbotron p a {
+    font-weight: bold;
+    color: white;
+}
+
+/* Tutorials and news*/
+.row.tutorial, .row.news-article {
+    margin-bottom: 20px;
+}
+
+.row.tutorials, .rows.news-articles {
+    margin-left: 50px;
+}
+
+.row.tutorial p.card-title {
+    padding-right: 5px;
+}
+
+/* Team */
+img.member {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Tables */
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}

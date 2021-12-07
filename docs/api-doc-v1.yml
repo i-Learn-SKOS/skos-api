@@ -1,0 +1,830 @@
+openapi: '3.0.3'
+servers:
+  - url: '/skos-api/v1'
+info:
+  title: 'An i-Learn SKOS API.'
+  version: '0.1.0'
+paths:
+  '/apps':
+    get:
+      description: "Get applications"
+      tags:
+        - Example endpoints
+      parameters:
+        - name: 'filter'
+          in: 'query'
+          required: false
+          allowEmptyValue: false
+          schema:
+            type: string
+          description: "If present, restrict output to applications classified with at least one of the concepts specified by their URI in this parameter"
+          examples:
+            absent:
+              summary: "Parameter not used"
+              value: ""
+            single:
+              summary: "Single URI; will yield test_app_1"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr1/c-sociaal-relationele-vorming"
+            multiple:
+              summary: "Multiple URIs; will yield test_app_2 and test_app_3"
+              value: "http://ilearn.ilabt.imec.be/vocab/vak1/merchandising,http://ilearn.ilabt.imec.be/vocab/tref1/bodem"
+            sleutelcompetentie:
+              summary: "A sleutelcompetentie URI; will yield test_app_4 (or more, depending on parameter `connections`)"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr1/c-lichamelijk-geestelijk-en-emotioneel-welzijn"
+            bouwsteen:
+              summary: "A bouwsteen URI; will yield test_app_5 (or more, depending on parameter `connections`)"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr1/s-mentaal-welbevinden"
+            vak:
+              summary: "A vak URI; will yield test_app_6 (or more, depending on parameter `connections`)"
+              value: "http://ilearn.ilabt.imec.be/vocab/vak1/gedragswetenschappen"
+            trefwoord:
+              summary: "A trefwoord URI; will yield test_app_7 (or more, depending on parameter `connections`)"
+              value: "http://ilearn.ilabt.imec.be/vocab/tref1/mediawijsheid"
+            sleutelcompetentieAndVak:
+              summary: "A sleutelcompetentie URI and a vak URI; will yield test_app_4 and test_app_6(or more, depending on parameter `connections`)"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr1/c-lichamelijk-geestelijk-en-emotioneel-welzijn,http://ilearn.ilabt.imec.be/vocab/vak1/gedragswetenschappen"
+            single1:
+              summary: "Single Uri; will yield test_app_8 (or more, depending on parameter `connections`: try 'narrower', 'narrowerTransitive')"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr2/l-wetenschap-en-techniek"
+            single2:
+              summary: "Single Uri; will yield test_app_10 (or more, depending on parameter `connections`: try 'related', 'broader', 'broaderTransitive'))"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr2/t-techniek-en-samenleving"
+        - name: 'connections'
+          in: 'query'
+          required: false
+          allowEmptyValue: false
+          schema:
+            type: string
+          description: >
+            If present, extend concepts given in the `filter` parameter with those connected to them by means of any of the given relations.
+            Possible values for this parameter are any combination of:
+            `related`, `broader`, `broaderTransitive`, `narrower`, `narrowerTransitive`, `any`.
+          examples:
+            absent:
+              summary: "Parameter not used"
+              value: ""
+            related:
+              summary: "related"
+              value: "related"
+            broader:
+              summary: "broader"
+              value: "broader"
+            broaderTransitive:
+              summary: "broaderTransitive"
+              value: "broaderTransitive"
+            narrower:
+              summary: "narrower"
+              value: "narrower"
+            narrowerTransitive:
+              summary: "narrowerTransitive"
+              value: "narrowerTransitive"
+            combination:
+              summary: "broaderTransitive or narrowerTransitive"
+              value: "broaderTransitive, narrowerTransitive"
+            all:
+              summary: "any"
+              value: "any"
+      responses:
+        '200':
+          description: "The applications"
+          content:
+            application/json: {}
+  '/collections':
+    get:
+      description: "Get collections"
+      tags:
+        - Specific endpoints
+      responses:
+        '200':
+          description: "The collections"
+          content:
+            application/json: {}
+  '/collections/{collection}':
+    get:
+      description: "Get collection details"
+      tags:
+        - Specific endpoints
+      parameters:
+        - name: 'collection'
+          in: 'path'
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+          description: "URI of the collection"
+          examples:
+            beroepskwalificaties:
+              summary: "Beroepskwalificaties URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/beroepskwalificaties"
+            bouwstenen:
+              summary: "Bouwstenen URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/bouwstenen"
+            lager-onderwijs:
+              summary: "Lager onderwijs URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/lager-onderwijs"
+            leergebieden:
+              summary: "Leergebieden URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/leergebieden"
+            onderwijsdoelen:
+              summary: "Onderwijsdoelen URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/onddoel"
+            onderwijsniveaus:
+              summary: "Onderwijsniveaus URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv"
+            secundair-onderwijs:
+              summary: "Secundair onderwijs URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/secundair-onderwijs"
+            sleutelcompetenties:
+              summary: "Sleutelcompetenties URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/sleutelcompetenties"
+            studiedomeinen:
+              summary: "Studiedomeinen URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/studiedomeinen"
+            subdomeinen:
+              summary: "Subdomeinen URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/subdomeinen"
+            themas:
+              summary: "Thema's URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/themas"
+            trefwoorden:
+              summary: "Trefwoorden URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/trefwoorden"
+            vakken:
+              summary: "Vakken URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/vakken"
+            wetenschapsdomeinen:
+              summary: "Wetenschapsdomeinen URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/wetenschapsdomeinen"
+      responses:
+        '200':
+          description: "The collection details"
+          content:
+            application/json: {}
+  '/concepts':
+    get:
+      description: "Get concepts"
+      tags:
+        - Specific endpoints
+      responses:
+        '200':
+          description: "The concepts"
+          content:
+            application/json: {}
+  '/concepts/{concept}':
+    get:
+      description: "Get concept details"
+      tags:
+        - Specific endpoints
+      parameters:
+        - name: 'concept'
+          in: 'path'
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+          description: "URI of the concept"
+          examples:
+            beroepskwalificatie:
+              summary: "A beroepskwalificatie URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr1/s-industrieel-onderhoud-en-ontwerp"
+            bouwsteen:
+              summary: "A bouwsteen URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr1/s-bronnenkritiek"
+            leergebied:
+              summary: "A leergebied URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr2/l-mens-en-maatschappij"
+            onderwijsniveau:
+              summary: "A onderwijsniveau URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager-lj1"
+            onderwijsdoel:
+              summary: "A onderwijsdoel URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-frans-1"
+            sleutelcompetentie:
+              summary: "A sleutelcompetentie URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr1/c-lichamelijk-geestelijk-en-emotioneel-welzijn"
+            studiedomein:
+              summary: "A studiedomein URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr1/d-zorg-en-welzijn"
+            subdomein:
+              summary: "A subdomein URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr2/s-maatschappij"
+            thema:
+              summary: "A thema URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr2/t-algemene-vaardigheden-tijd"
+            trefwoorden:
+              summary: "A trefwoord URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/tref1/software"
+            vak:
+              summary: "A vak URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/vak1/exploratie"
+            wetenschapsdomein:
+              summary: "A wetenschapsdomein URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/curr1/s-filosofie"
+      responses:
+        '200':
+          description: "The concept details"
+          content:
+            application/json: {}
+  '/overview/sleutelcompetenties':
+    get:
+      description: "Get a hierarchical overview of 'sleutelcompetenties' and their hierarchically lower concepts"
+      tags:
+        - Specific endpoints
+      responses:
+        '200':
+          description: "The 'sleutelcompetenties' (only top concepts of their scheme) and their hierarchically lower concepts'"
+          content:
+            application/json: {}
+  '/overview/studiedomeinen':
+    get:
+      description: "Get a hierarchical overview of 'studiedomeinen' and their hierarchically lower concepts'"
+      tags:
+        - Specific endpoints
+      responses:
+        '200':
+          description: "The 'studiedomeinen' (only top concepts of their scheme) and their hierarchically lower concepts'"
+          content:
+            application/json: {}
+  '/overview/leergebieden':
+    get:
+      description: "Get a hierarchical overview of 'leergebieden' and their hierarchically lower concepts'"
+      tags:
+        - Specific endpoints
+      responses:
+        '200':
+          description: "The 'leergebieden' (only top concepts of their scheme) and their hierarchically lower concepts'"
+          content:
+            application/json: {}
+  '/overview/onderwijsniveaus':
+    get:
+      description: "Get a hierarchical overview of 'onderwijsniveaus' and their hierarchically lower concepts'"
+      tags:
+        - Specific endpoints
+      responses:
+        '200':
+          description: "The 'onderwijsniveaus' (only top concepts of their scheme) and their hierarchically lower concepts'"
+          content:
+            application/json: {}
+  '/overview/trefwoorden':
+    get:
+      description: "Get 'trefwoorden' and their related concepts"
+      tags:
+        - Specific endpoints
+      responses:
+        '200':
+          description: "The 'trefwoorden' and their related concepts"
+          content:
+            application/json: {}
+  '/overview/vakken':
+    get:
+      description: "Get 'vakken' and their related concepts"
+      tags:
+        - Specific endpoints
+      responses:
+        '200':
+          description: "The 'vakken' and their related concepts"
+          content:
+            application/json: {}
+  '/overview/onderwijsdoelen':
+    get:
+      description: "Get 'onderwijsdoelen' and their related concepts"
+      tags:
+        - Specific endpoints
+      responses:
+        '200':
+          description: "The 'onderwijsdoelen' and their related concepts"
+          content:
+            application/json: {}
+  '/graphqlld':
+    get:
+      description: "Get SKOS contents by issuing a GraphQL-LD query"
+      tags:
+        - GraphQL-LD endpoint
+      parameters:
+        - name: 'query'
+          in: 'query'
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+          description: "The GraphQL-LD query string"
+          examples:
+            collections:
+              summary: "1. Query for all collections"
+              value: |
+                {
+                  TYPE(_:Collection)
+                  id @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                }
+            collection:
+              summary: "2. Query for one specific collection (and its members)"
+              value: |
+                {
+                  TYPE(_:Collection)
+                  id(_:ID) @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  member @optional {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                  }
+                }
+            concepts:
+              summary: "3. Query for all concepts"
+              value: |
+                {
+                  TYPE(_:Concept)
+                  id @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                }
+            concept:
+              summary: "4. Query for one specific concept (and its connections)"
+              value: |
+                {
+                  TYPE(_:Concept)
+                  id(_:ID) @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  memberOf @optional {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                  }
+                  broader @optional {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                  }
+                  broaderTransitive @optional {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                  }
+                  narrower @optional {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                  }
+                  narrowerTransitive @optional {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                  }
+                  related @optional {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                  }
+                }
+            overviewHierarchy:
+              summary: "5. Query for all top concepts member of a specific collection and their hierarchically lower concepts"
+              value: |
+                {
+                  TYPE(_:Collection)
+                  id(_:ID) @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  member {
+                    id @single
+                    topConceptOf @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                    narrower @optional {
+                      id @single
+                      prefLabel @single
+                      altLabel @optional
+                      definition @single @optional
+                      narrower @optional {
+                        id @single
+                        prefLabel @single
+                        altLabel @optional
+                        definition @single @optional
+                        narrower @optional {
+                          id @single
+                          prefLabel @single
+                          altLabel @optional
+                          definition @single @optional
+                          narrower @optional {
+                            id @single
+                            prefLabel @single
+                            altLabel @optional
+                            definition @single @optional
+                            # 5th level narrower, let's stop here for the time being
+                            narrower @optional {
+                              id @single
+                              prefLabel @single
+                              altLabel @optional
+                              definition @single @optional
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            overviewRelated:
+              summary: "6. Query for all concepts member of a specific collection and their related concepts"
+              value: |
+                {
+                  TYPE(_:Collection)
+                  id(_:ID) @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  member @optional {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                    related @optional {
+                      id @single
+                      memberOf @optional
+                      prefLabel @single
+                      altLabel @optional
+                      definition @single @optional
+                    }
+                  }
+                }
+            onderwijsNiveauToCurriculaPart1:
+              summary: "7. Query to demonstrate relationship between a 'onderwijsniveaus' concept and 'curriculum' collections (part1: direct)"
+              value: |
+                {
+                  id(_:ID) @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  hasCurriculum {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                  }
+                }
+            onderwijsNiveauToCurriculaPart2:
+              summary: "8. Query to demonstrate relationship between a 'onderwijsniveaus' concept and 'curriculum' collections (part2: through broaderTransitive concept(s))"
+              value: |
+                {
+                  id(_:ID) @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  broaderTransitive {
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                    hasCurriculum {
+                      id @single
+                      prefLabel @single
+                      altLabel @optional
+                      definition @single @optional
+                    }
+                  }
+                }
+            onderwijsNiveauToTypicalAgeRange:
+              summary: "9. Query to demonstrate typical age range annotations on 'onderwijsniveaus' concepts"
+              value: |
+                {
+                  id(_:ID) @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  typicalAgeRange @single
+                }
+            hierarchicalConnection:
+              summary: "10. Query to find hierarchical connections between higher concepts in a first collection and lower concepts (at any level) in a second collection"
+              value: |
+                {
+                  TYPE(_:Collection)
+                  id(_:ID1) @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  member {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                    narrowerTransitive {
+                      memberOf(_:ID2)
+                      id @single
+                      prefLabel @single
+                      altLabel @optional
+                      definition @single @optional
+                    }
+                  }
+                }
+            logo:
+              summary: "11. Query to find logos (and their content URL) assigned to a given concept"
+              value: |
+                {
+                  id(_:ID)
+                  prefLabel @single
+                  logo {
+                    contentUrl
+                  }
+                }
+            onderwijsdoelen:
+              summary: "12. Query to find onderwijsdoelen related to a given concept"
+              value: |
+                {
+                  id(_:ID) @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  related {
+                    memberOf(_:ONDERWIJSDOELEN)
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                  }
+                }
+            onderwijsdoelenReverse:
+              summary: "13. Query to find concepts related to a given onderwijsdoel"
+              value: |
+                {
+                  id(_:ID) @single
+                  memberOf(_:ONDERWIJSDOELEN)
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  related {
+                    id @single
+                    prefLabel @single
+                    altLabel @optional
+                    definition @single @optional
+                    memberOf @optional
+                  }
+                }
+            empty:
+              summary: "(empty)"
+              value: ""
+        - name: 'parameters'
+          in: 'query'
+          required: false
+          allowEmptyValue: false
+          schema:
+            type: string
+          description: >
+            If present, a JSON string containing key-value pairs.
+            Each key is a parameter in the GraphQL-LD query (usually written in upper case).
+            The parameter receives the corresponding value, that should be a single string.
+          examples:
+            collectionId1:
+              summary: "Coll1. ID: URI of one specific collection (beroepskwalificaties)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/beroepskwalificaties"
+                }
+            collectionId2:
+              summary: "Coll2. ID: URI of one specific collection (bouwstenen)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/bouwstenen"
+                }
+            collectionId3:
+              summary: "Coll3. ID: URI of one specific collection (lager onderwijs)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/lager-onderwijs"
+                }
+            collectionId4:
+              summary: "Coll4. ID: URI of one specific collection (leergebieden)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/leergebieden"
+                }
+            collectionId5:
+              summary: "Coll5. ID: URI of one specific collection (onderwijsdoelen)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/onddoel"
+                }
+            collectionId6:
+              summary: "Coll6. ID: URI of one specific collection (onderwijsniveaus)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv"
+                }
+            collectionId7:
+              summary: "Coll7. ID: URI of one specific collection (secundair onderwijs)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/secundair-onderwijs"
+                }
+            collectionId8:
+              summary: "Coll8. ID: URI of one specific collection (sleutelcompetenties)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/sleutelcompetenties"
+                }
+            collectionId9:
+              summary: "Coll9. ID: URI of one specific collection (studiedomeinen)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/studiedomeinen"
+                }
+            collectionId10:
+              summary: "Coll10. ID: URI of one specific collection (subdomeinen)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/subdomeinen"
+                }
+            collectionId11:
+              summary: "Coll11. ID: URI of one specific collection (thema's)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/themas"
+                }
+            collectionId12:
+              summary: "Coll12. ID: URI of one specific collection (trefwoorden)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/trefwoorden"
+                }
+            collectionId13:
+              summary: "Coll13. ID: URI of one specific collection (vakken)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/vakken"
+                }
+            collectionId14:
+              summary: "Coll14. ID: URI of one specific collection (wetenschapsdomeinen)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/wetenschapsdomeinen"
+                }
+            twoCollectionIds1:
+              summary: "Colls1. ID1, ID2: URIs of two specific collections (leergebieden, subdomeinen)"
+              value: |
+                {
+                  "ID1": "http://ilearn.ilabt.imec.be/vocab/elem/leergebieden",
+                  "ID2": "http://ilearn.ilabt.imec.be/vocab/elem/subdomeinen"
+                }
+            twoCollectionIds2:
+              summary: "Colls2. ID1, ID2: URIs of two specific collections (leergebieden, thema's)"
+              value: |
+                {
+                  "ID1": "http://ilearn.ilabt.imec.be/vocab/elem/leergebieden",
+                  "ID2": "http://ilearn.ilabt.imec.be/vocab/elem/themas"
+                }
+            conceptIdCurrS1:
+              summary: "CurrS1. ID: URI of one specific 'curriculum' concept (secundair, sleutelcompetentie andere talen)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/c-andere-talen"
+                }
+            conceptIdCurrS2:
+              summary: "CurrS2. ID: URI of one specific 'curriculum' concept (secundair, bouwsteen communicatie)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/s-communicatie"
+                }
+            conceptIdCurrS3:
+              summary: "CurrS3. ID: URI of one specific 'curriculum' concept (secundair, studiedomein land- en tuinbouw)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/d-land-en-tuinbouw"
+                }
+            conceptIdCurrS4:
+              summary: "CurrS4. ID: URI of one specific 'curriculum' concept (secundair, wetenschapsdomein aardwetenschappen)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/s-aardwetenschappen"
+                }
+            conceptIdCurrS5:
+              summary: "CurrS5. ID: URI of one specific 'curriculum' concept (secundair, beroepskwalificatie industrieel onderhoud en ontwerp)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/s-industrieel-onderhoud-en-ontwerp"
+                }
+            conceptIdCurrL1:
+              summary: "CurrL1. ID: URI of one specific 'curriculum' concept (lager, leergebied Frans)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr2/l-frans"
+                }
+            conceptIdCurrL2:
+              summary: "CurrL2. ID: URI of one specific 'curriculum' concept (lager, subdomein lezen (Frans))"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr2/s-fr-lezen"
+                }
+            conceptIdCurrL3:
+              summary: "CurrL3. ID: URI of one specific 'curriculum' concept (lager, thema politieke en juridische verschijnselen)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr2/t-politieke-en-juridische-verschijnselen"
+                }
+            conceptIdTrefS1:
+              summary: "TrefS1. ID: URI of a 'trefwoord' concept (secundair, software)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/tref1/software"
+                }
+            conceptIdTrefL1:
+              summary: "TrefL1. ID: URI of a 'trefwoord' concept (lager, aardbol)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/tref2/aardbol"
+                }
+            conceptIdVakS1:
+              summary: "VakS1. ID: URI of a 'vak' concept (secundair, exploratie)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/vak1/exploratie"
+                }
+            conceptIdNivS1:
+              summary: "NivS1. ID: URI of one specific 'onderwijsniveau' concept (secundair onderwijs > 1e graad)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/sec-gr3"
+                }
+            conceptIdNivS2:
+              summary: "NivS2. ID: URI of one specific 'onderwijsniveau' concept (secundair onderwijs > 1e graad > a-stroom)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/sec-gr3-doorstroom"
+                }
+            conceptIdNivL1:
+              summary: "NivL1. ID: URI of one specific 'onderwijsniveau' concept (basis onderwijs > lager)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager"
+                }
+            conceptIdNivL2:
+              summary: "NivL2. ID: URI of one specific 'onderwijsniveau' concept (basis onderwijs > lager > 1ste leerjaar)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager-lj1"
+                }
+            conceptIdDoelS1:
+              summary: "DoelS1. ID: URI of one specific 'onderwijsdoel' concept (secundair, graad 3, aardwetenschappen 10.1.1)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/sec-gr3-aardwetenschappen-10.1.1"
+                }
+            conceptIdDoelS2:
+              summary: "DoelS2. ID: URI of one specific 'onderwijsdoel' concept (secundair, graad 1, bstroom, nederlands 2.1)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/sec-gr1-bstroom-nederlands-2.1"
+                }
+            conceptIdDoelL1:
+              summary: "DoelL1. ID: URI of one specific 'onderwijsdoel' concept (basis, lager, frans 23)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-frans-23"
+                }
+            conceptIdDoelL2:
+              summary: "DoelL2. ID: URI of one specific 'onderwijsdoel' concept (basis, lager, frans 1)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-frans-1"
+                }
+            conceptIdDoelL3:
+              summary: "DoelL3. ID: URI of one specific 'onderwijsdoel' concept (basis, lager, mens en maatschappij 1.1)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-mens-en-maatschappij-1.1"
+                }
+            empty:
+              summary: "(empty)"
+              value: ""
+      responses:
+        '200':
+          description: "The GraphQL-LD query result"
+          content:
+            application/json: {}
+        '400':
+          description: "An error object concerning a bad request"
+          content:
+            application/json: {}
+        '500':
+          description: "An error object concerning a server related issu"
+          content:
+            application/json: {}
+tags:
+  - name: GraphQL-LD endpoint
+    description: Generic endpoint for querying the SKOS contents with GraphQL-LD queries. The most versatile way for a platform (e.g. the i-Learn platform) to query SKOS contents.
+  - name: Specific endpoints
+    description: Some specific endpoints for querying the SKOS contents. These endpoints offer less flexibility than the GraphQL-LD endpoint, but can be useful for users with no GraphQL-LD knowledge.
+  - name: Example endpoints
+    description: Endpoints that demonstrate how a platform could use the specific endpoints.

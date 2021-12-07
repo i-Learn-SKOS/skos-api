@@ -1,0 +1,49 @@
+contexts/common-context.json
+===
+{
+  "ID": "%concept%"
+}
+===
+{
+  TYPE(_:Concept)
+  id(_:ID) @single
+  prefLabel @single
+  altLabel @optional
+  definition @single @optional
+  memberOf @optional {
+    id @single
+    prefLabel @single
+    altLabel @optional
+    definition @single @optional
+  }
+  broader @optional {
+    id @single
+    prefLabel @single
+    altLabel @optional
+    definition @single @optional
+  }
+  broaderTransitive @optional {
+    id @single
+    prefLabel @single
+    altLabel @optional
+    definition @single @optional
+  }
+  narrower @optional {
+    id @single
+    prefLabel @single
+    altLabel @optional
+    definition @single @optional
+  }
+  narrowerTransitive @optional {
+    id @single
+    prefLabel @single
+    altLabel @optional
+    definition @single @optional
+  }
+  related @optional {
+    id @single
+    prefLabel @single
+    altLabel @optional
+    definition @single @optional
+  }
+}
