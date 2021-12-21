@@ -198,7 +198,7 @@ paths:
               value: "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager-lj1"
             onderwijsdoel:
               summary: "A onderwijsdoel URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-frans-1"
+              value: "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-1-133507717"
             sleutelcompetentie:
               summary: "A sleutelcompetentie URI"
               value: "http://ilearn.ilabt.imec.be/vocab/curr1/c-lichamelijk-geestelijk-en-emotioneel-welzijn"
@@ -776,34 +776,34 @@ paths:
                   "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager-lj1"
                 }
             conceptIdDoelS1:
-              summary: "DoelS1. ID: URI of one specific 'onderwijsdoel' concept (secundair, graad 3, aardwetenschappen 10.1.1)"
+              summary: "DoelS1. ID: URI of one specific 'onderwijsdoel' concept (secundair, aardwetenschappen, 10.1.1)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/sec-gr3-aardwetenschappen-10.1.1"
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/sec-10.1.1-3167029309"
                 }
             conceptIdDoelS2:
-              summary: "DoelS2. ID: URI of one specific 'onderwijsdoel' concept (secundair, graad 1, bstroom, nederlands 2.1)"
+              summary: "DoelS2. ID: URI of one specific 'onderwijsdoel' concept (secundair, communicatie (Nederlands), 2.1)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/sec-gr1-bstroom-nederlands-2.1"
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/sec-2.1-2845304355"
                 }
             conceptIdDoelL1:
-              summary: "DoelL1. ID: URI of one specific 'onderwijsdoel' concept (basis, lager, frans 23)"
+              summary: "DoelL1. ID: URI of one specific 'onderwijsdoel' concept (basis, lager, Frans, 23)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-frans-23"
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-23-4163456071"
                 }
             conceptIdDoelL2:
-              summary: "DoelL2. ID: URI of one specific 'onderwijsdoel' concept (basis, lager, frans 1)"
+              summary: "DoelL2. ID: URI of one specific 'onderwijsdoel' concept (basis, lager, luisteren (Frans), 1)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-frans-1"
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-1-133507717"
                 }
             conceptIdDoelL3:
-              summary: "DoelL3. ID: URI of one specific 'onderwijsdoel' concept (basis, lager, mens en maatschappij 1.1)"
+              summary: "DoelL3. ID: URI of one specific 'onderwijsdoel' concept (basis, lager, mens en maatschappij, 1.1)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-mens-en-maatschappij-1.1"
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-1.1-3459847755"
                 }
             empty:
               summary: "(empty)"
