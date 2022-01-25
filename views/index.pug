@@ -113,6 +113,11 @@ block content
     - **trefwoorden**
     - **vakken**
     - **onderwijsniveaus**
+      - **onderwijsniveaus-niveau**
+      - **onderwijsniveaus-subniveau**
+      - **onderwijsniveaus-graad**
+      - **onderwijsniveaus-finaliteit**
+      - **onderwijsniveaus-onderwijsvorm**
     - **onderwijsdoelen**
 
     All concepts in our metadata are assigned to the relevant collection(s) using the **skos:member** relation.
@@ -356,6 +361,13 @@ block content
     - An onderwijsdoel is related to a specific onderwijsniveau:
       - `onderwijdoelX skos:related onderwijsniveau2`
       - `onderwijsniveau2 skos:related onderwijdoelX`
+
+    - In practice, the onderwijsniveaus hierarchy counts five levels. Each level's concepts are member of their own collection, listed below from top (highest level) to bottom (lowest level):
+      - `onderwijsniveaus-niveau`
+      - `onderwijsniveaus-subniveau`
+      - `onderwijsniveaus-graad`
+      - `onderwijsniveaus-finaliteit`
+      - `onderwijsniveaus-onderwijsvorm`
 
     ### Linking concepts with other vocabularies (non-SKOS)
 

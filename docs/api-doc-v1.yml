@@ -131,6 +131,21 @@ paths:
             onderwijsniveaus:
               summary: "Onderwijsniveaus URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv"
+            onderwijsniveaus-niveau:
+              summary: "Onderwijsniveaus-niveau URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-niveau"
+            onderwijsniveaus-subniveau:
+              summary: "Onderwijsniveaus-subniveau URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-subniveau"
+            onderwijsniveaus-graad:
+              summary: "Onderwijsniveaus-graad URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-graad"
+            onderwijsniveaus-finaliteit:
+              summary: "Onderwijsniveaus-finaliteit URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-finaliteit"
+            onderwijsniveaus-onderwijsvorm:
+              summary: "Onderwijsniveaus-onderwijsvorm URI"
+              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-onderwijsvorm"
             secundair-onderwijs:
               summary: "Secundair onderwijs URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/secundair-onderwijs"
