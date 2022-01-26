@@ -28,7 +28,7 @@ router.get('/leergebieden', async (req, res, next) => {
     }
 });
 
-router.get('/onderwijsniveaus', async (req, res, next) => {
+router.get('/onderwijsstructuur', async (req, res, next) => {
     try {
         const body = await req.app.settings.ourSettings.queryService.queryByName('overview-top-down', {collection: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv"});
         res.send(body);

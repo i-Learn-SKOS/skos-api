@@ -128,23 +128,23 @@ paths:
             onderwijsdoelen:
               summary: "Onderwijsdoelen URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/onddoel"
-            onderwijsniveaus:
-              summary: "Onderwijsniveaus URI"
+            onderwijsstructuur:
+              summary: "Onderwijsstructuur URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv"
-            onderwijsniveaus-niveau:
-              summary: "Onderwijsniveaus-niveau URI"
+            onderwijsniveau:
+              summary: "Onderwijsniveau URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-niveau"
-            onderwijsniveaus-subniveau:
-              summary: "Onderwijsniveaus-subniveau URI"
+            onderwijssubniveau:
+              summary: "Onderwijssubniveau URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-subniveau"
-            onderwijsniveaus-graad:
-              summary: "Onderwijsniveaus-graad URI"
+            jaar-of-graad:
+              summary: "Jaar of graad URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-graad"
-            onderwijsniveaus-finaliteit:
-              summary: "Onderwijsniveaus-finaliteit URI"
+            stroom-of-finaliteit:
+              summary: "Stroom of finaliteit URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-finaliteit"
-            onderwijsniveaus-onderwijsvorm:
-              summary: "Onderwijsniveaus-onderwijsvorm URI"
+            onderwijsvorm:
+              summary: "Onderwijsvorm URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-onderwijsvorm"
             secundair-onderwijs:
               summary: "Secundair onderwijs URI"
@@ -208,8 +208,8 @@ paths:
             leergebied:
               summary: "A leergebied URI"
               value: "http://ilearn.ilabt.imec.be/vocab/curr2/l-mens-en-maatschappij"
-            onderwijsniveau:
-              summary: "A onderwijsniveau URI"
+            onderwijsstructuur:
+              summary: "A onderwijsstructuur URI"
               value: "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager-lj1"
             onderwijsdoel:
               summary: "A onderwijsdoel URI"
@@ -270,14 +270,14 @@ paths:
           description: "The 'leergebieden' (only top concepts of their scheme) and their hierarchically lower concepts'"
           content:
             application/json: {}
-  '/overview/onderwijsniveaus':
+  '/overview/onderwijsstructuur':
     get:
-      description: "Get a hierarchical overview of 'onderwijsniveaus' and their hierarchically lower concepts'"
+      description: "Get a hierarchical overview of 'onderwijsstructuur' (only top concepts of their scheme) and their hierarchically lower concepts'"
       tags:
         - Specific endpoints
       responses:
         '200':
-          description: "The 'onderwijsniveaus' (only top concepts of their scheme) and their hierarchically lower concepts'"
+          description: "The 'onderwijsstructuur' (only top concepts of their scheme) and their hierarchically lower concepts'"
           content:
             application/json: {}
   '/overview/trefwoorden':
@@ -477,8 +477,8 @@ paths:
                     }
                   }
                 }
-            onderwijsNiveauToCurriculaPart1:
-              summary: "7. Query to demonstrate relationship between a 'onderwijsniveaus' concept and 'curriculum' collections (part1: direct)"
+            onderwijsStructuurToCurriculaPart1:
+              summary: "7. Query to demonstrate relationship between a 'onderwijsstructuur' concept and 'curriculum' collections (part1: direct)"
               value: |
                 {
                   id(_:ID) @single
@@ -492,8 +492,8 @@ paths:
                     definition @single @optional
                   }
                 }
-            onderwijsNiveauToCurriculaPart2:
-              summary: "8. Query to demonstrate relationship between a 'onderwijsniveaus' concept and 'curriculum' collections (part2: through broaderTransitive concept(s))"
+            onderwijsStructuurToCurriculaPart2:
+              summary: "8. Query to demonstrate relationship between a 'onderwijsstructuur' concept and 'curriculum' collections (part2: through broaderTransitive concept(s))"
               value: |
                 {
                   id(_:ID) @single
@@ -512,8 +512,8 @@ paths:
                     }
                   }
                 }
-            onderwijsNiveauToTypicalAgeRange:
-              summary: "9. Query to demonstrate typical age range annotations on 'onderwijsniveaus' concepts"
+            onderwijsStructuurToTypicalAgeRange:
+              summary: "9. Query to demonstrate typical age range annotations on 'onderwijsstructuur' concepts"
               value: |
                 {
                   id(_:ID) @single
@@ -633,10 +633,40 @@ paths:
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/onddoel"
                 }
             collectionId6:
-              summary: "Coll6. ID: URI of one specific collection (onderwijsniveaus)"
+              summary: "Coll6. ID: URI of one specific collection (onderwijsstructuur)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv"
+                }
+            collectionId6-1:
+              summary: "Coll6-1. ID: URI of one specific collection (onderwijssniveau)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-niveau"
+                }
+            collectionId6-2:
+              summary: "Coll6-2. ID: URI of one specific collection (onderwijssubniveau)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-subniveau"
+                }
+            collectionId6-3:
+              summary: "Coll6-3. ID: URI of one specific collection (jaar of graad)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-graad"
+                }
+            collectionId6-4:
+              summary: "Coll6-4. ID: URI of one specific collection (stroom of finaliteit)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-finaliteit"
+                }
+            collectionId6-5:
+              summary: "Coll6-5. ID: URI of one specific collection (onderwijsvorm)"
+              value: |
+                {
+                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-onderwijsvorm"
                 }
             collectionId7:
               summary: "Coll7. ID: URI of one specific collection (secundair onderwijs)"
@@ -767,25 +797,25 @@ paths:
                   "ID": "http://ilearn.ilabt.imec.be/vocab/vak1/exploratie"
                 }
             conceptIdNivS1:
-              summary: "NivS1. ID: URI of one specific 'onderwijsniveau' concept (secundair onderwijs > 1e graad)"
+              summary: "NivS1. ID: URI of one specific 'onderwijsstructuur' concept (secundair onderwijs > 1e graad)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/sec-gr3"
                 }
             conceptIdNivS2:
-              summary: "NivS2. ID: URI of one specific 'onderwijsniveau' concept (secundair onderwijs > 1e graad > a-stroom)"
+              summary: "NivS2. ID: URI of one specific 'onderwijsstructuur' concept (secundair onderwijs > 1e graad > a-stroom)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/sec-gr3-doorstroom"
                 }
             conceptIdNivL1:
-              summary: "NivL1. ID: URI of one specific 'onderwijsniveau' concept (basis onderwijs > lager)"
+              summary: "NivL1. ID: URI of one specific 'onderwijsstructuur' concept (basis onderwijs > lager)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager"
                 }
             conceptIdNivL2:
-              summary: "NivL2. ID: URI of one specific 'onderwijsniveau' concept (basis onderwijs > lager > 1ste leerjaar)"
+              summary: "NivL2. ID: URI of one specific 'onderwijsstructuur' concept (basis onderwijs > lager > 1ste leerjaar)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager-lj1"

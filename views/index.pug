@@ -45,14 +45,14 @@ block content
     - A first group of such terms are the **vakken** (*learning subjects*).
     - A second group of such terms are the **trefwoorden** (*keywords*).
 
-    ### Onderwijsniveaus
-    - A separate group of (hierachical) terms are the **onderwijsniveaus** (*educational levels*). These too can be linked to the curricula mentioned above.
+    ### onderwijsstructuur
+    - A separate group of (hierachical) terms are the **onderwijsstructuur** (*educational structure*). These too can be linked to the curricula mentioned above.
 
     ### Onderwijsdoelen
-    - A separate group of (non-hierarchical) terms are the **onderwijsdoelen** (*educational goals*). These too can be linked to the curricula and onderwijsniveaus mentioned above.
+    - A separate group of (non-hierarchical) terms are the **onderwijsdoelen** (*educational goals*). These too can be linked to the curricula and onderwijsstructuur mentioned above.
 
     ### Icons
-    - An auxiliary datasets links icons (and their content URL) to some of the terms in the above list (currently sleutelcompetenties, studiedomeinen, leergebieden, and onderwijsniveaus).
+    - An auxiliary datasets links icons (and their content URL) to some of the terms in the above list (currently sleutelcompetenties, studiedomeinen, leergebieden, and onderwijsstructuur).
 
   p.
     The #[a(href="#graphical-summary") graphical summary below] gives an overview, but is preferably visited after getting some SKOS knowledge first.
@@ -86,7 +86,7 @@ block content
     | tref1:   | http://ilearn.ilabt.imec.be/vocab/tref1/   | Trefwoorden in our metadata model (secundair onderwijs)                            |
     | curr2:   | http://ilearn.ilabt.imec.be/vocab/curr2/   | Concepts in the hierarchical structure of our metadata model (lager onderwijs)     |
     | tref2:   | http://ilearn.ilabt.imec.be/vocab/tref2/   | Trefwoorden in our metadata model (lager onderwijs)                                |
-    | ondniv:  | http://ilearn.ilabt.imec.be/vocab/ondniv/  | Onderwijsniveaus in our metadata model                                             |
+    | ondniv:  | http://ilearn.ilabt.imec.be/vocab/ondniv/  | Onderwijsstructuur in our metadata model                                           |
     | onddoel: | http://ilearn.ilabt.imec.be/vocab/onddoel/ | Onderwijsdoelen in our metadata model                                              |
     | ilearn:  | http://semweb.mmlab.be/ns/ilearn#          | Non-SKOS vocabulary terms applicable to this project                               |
 
@@ -112,12 +112,12 @@ block content
     - **beroepskwalificaties**
     - **trefwoorden**
     - **vakken**
-    - **onderwijsniveaus**
-      - **onderwijsniveaus-niveau**
-      - **onderwijsniveaus-subniveau**
-      - **onderwijsniveaus-graad**
-      - **onderwijsniveaus-finaliteit**
-      - **onderwijsniveaus-onderwijsvorm**
+    - **onderwijsstructuur**
+    - **onderwijsniveau**
+    - **onderwijssubniveau**
+    - **jaar of graad**
+    - **stroom of finaliteit**
+    - **onderwijsvorm**
     - **onderwijsdoelen**
 
     All concepts in our metadata are assigned to the relevant collection(s) using the **skos:member** relation.
@@ -157,7 +157,13 @@ block content
 
     Terms defined as **skos:Concept**s in the **ondniv:** namespace:
     - are all member of the collection
-      - **onderwijsniveaus**
+      - **onderwijsstructuur**
+    - are member of one of the following collections (listed from highest to lowest level):
+      - **onderwijsniveau**
+      - **onderwijssubniveau**
+      - **jaar of graad**
+      - **stroom of finaliteit**
+      - **onderwijsvorm**
 
     Terms defined as **skos:Concept**s in the **onddoel:** namespace:
     - are all member of the collection
@@ -335,60 +341,59 @@ block content
         - An onderwijsdoel linked to a wetenschapsdomein *cannot be linked* to a hierarchically lower concept,
           because in the current dataset there is no hierarchical level below wetenschapsdomeinen in secundair onderwijs.
 
-  h4 Onderwijsniveaus
+  h4 Onderwijsstructuur
 
-  img(src="images/od-on.jpg" alt="onderwijsdoelen to onderwijsniveaus" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+  img(src="images/od-on.jpg" alt="onderwijsdoelen to onderwijsstructuur" style="width: 100%; border: 1px solid; border-radius: 0 !important")
 
   :markdown-it(linkify langPrefix='highlight-')
     *Figure 6*
 
-    Figure 6: Example of an **onderwijsniveau** hierarchy, showing how an **onderwijsdoel** can be linked to an **onderwijsniveau** concept.
-    - The onderwijsniveau concepts are member of their collection:
-      - `onderwijsniveaus skos:member onderwijsniveaus1`
-      - `onderwijsniveaus skos:member onderwijsniveaus2`
-      - `onderwijsniveaus skos:member onderwijsniveaus3`
-    - The onderwijsniveau concepts are in a hierarchical structure:
-      - `onderwijsniveau1 skos:narrower onderwijsniveau2`
-      - `onderwijsniveau1 skos:narrowerTransitive onderwijsniveau2`
-      - `onderwijsniveau2 skos:broader onderwijsniveau1`
-      - `onderwijsniveau2 skos:broaderTransitive onderwijsniveau1`
-      - `onderwijsniveau2 skos:narrower onderwijsniveau3`
-      - `onderwijsniveau2 skos:narrowerTransitive onderwijsniveau3`
-      - `onderwijsniveau3 skos:broader onderwijsniveau2`
-      - `onderwijsniveau3 skos:broaderTransitive onderwijsniveau2`
-      - `onderwijsniveau1 skos:narrowerTransitive onderwijsniveau3`
-      - `onderwijsniveau3 skos:broaderTransitive onderwijsniveau1`
-    - An onderwijsdoel is related to a specific onderwijsniveau:
-      - `onderwijdoelX skos:related onderwijsniveau2`
-      - `onderwijsniveau2 skos:related onderwijdoelX`
+    Figure 6: Example of an **onderwijsstructuur** hierarchy, showing how an **onderwijsdoel** can be linked to an **onderwijsstructuur** concept.
 
-    - In practice, the onderwijsniveaus hierarchy counts five levels. Each level's concepts are member of their own collection, listed below from top (highest level) to bottom (lowest level):
-      - `onderwijsniveaus-niveau`
-      - `onderwijsniveaus-subniveau`
-      - `onderwijsniveaus-graad`
-      - `onderwijsniveaus-finaliteit`
-      - `onderwijsniveaus-onderwijsvorm`
+    - The onderwijsstructuur concepts are member of the onderwijsstructuur main collection and one of its subcollections, for example:
+      - `onderwijsstructuur skos:member onderwijsstructuur1`
+      - `onderwijsstructuur skos:member onderwijsstructuur2`
+      - `onderwijsstructuur skos:member onderwijsstructuur3`
+      - `jaar-of-graad skos:member onderwijsstructuur1`
+      - `stroom-of-finaliteit skos:member onderwijsstructuur2`
+      - `onderwijsvorm skos:member onderwijsstructuur3`
+
+    - The onderwijsstructuur concepts are in a hierarchical structure:
+      - `onderwijsstructuur1 skos:narrower onderwijsstructuur2`
+      - `onderwijsstructuur1 skos:narrowerTransitive onderwijsstructuur2`
+      - `onderwijsstructuur2 skos:broader onderwijsstructuur1`
+      - `onderwijsstructuur2 skos:broaderTransitive onderwijsstructuur1`
+      - `onderwijsstructuur2 skos:narrower onderwijsstructuur3`
+      - `onderwijsstructuur2 skos:narrowerTransitive onderwijsstructuur3`
+      - `onderwijsstructuur3 skos:broader onderwijsstructuur2`
+      - `onderwijsstructuur3 skos:broaderTransitive onderwijsstructuur2`
+      - `onderwijsstructuur1 skos:narrowerTransitive onderwijsstructuur3`
+      - `onderwijsstructuur3 skos:broaderTransitive onderwijsstructuur1`
+
+    - An onderwijsdoel is related to a specific onderwijsstructuur concept:
+      - `onderwijdoelX skos:related onderwijsstructuur2`
+      - `onderwijsstructuur2 skos:related onderwijdoelX`
 
     ### Linking concepts with other vocabularies (non-SKOS)
 
-    #### Onderwijsniveau to curriculum
+    #### onderwijsstructuur to curriculum
 
     Below we use following shorthands for some concepts:
 
     | shorthand | meaning |
     | --------- | ------- |
-    | `o<x>` | a SKOS concept, member of **onderwijsniveaus** (*) |
+    | `o<x>` | a SKOS concept, member of **onderwijsstructuur** (*) |
     | `c` | a SKOS collection |
     (*) if <x> is a number, it indicates the level in the hierarchy (1 = highest level)
 
-    **Onderwijsniveau concept**s can be linked directly to **curriculum collection**s, by means of the ilearn:hasCurriculum relation:
+    **Onderwijsstructuur concept**s can be linked directly to **curriculum collection**s, by means of the ilearn:hasCurriculum relation:
     - `o ilearn:hasCurriculum c`
 
-    - If an *onderwijsniveau concept* is not linked directly to any *curriculum collection*, it can be linked indirectly, via a **hierarchically higher onderwijsniveau concept**:
+    - If an *onderwijsstructuur concept* is not linked directly to any *curriculum collection*, it can be linked indirectly, via a **hierarchically higher onderwijsstructuur concept**:
       - `o3 skos:broaderTransitive o1`
       - `o1 ilearn:hasCurriculum c`
 
-    **Onderwijsniveau concept**s can be assigned to a specific **typical age range** (a litteral range, expressed in years):
+    **Onderwijsstructuur concept**s can be assigned to a specific **typical age range** (a litteral range, expressed in years):
     - `o ilearn:typicalAgeRange "16-17"`
 
     #### Image links
@@ -619,8 +624,8 @@ block content
           }
         }
       }
-    onderwijsNiveauToCurriculaPart1:
-      summary: "7. Query to demonstrate relationship between a 'onderwijsniveaus' concept and 'curriculum' collections (part1: direct)"
+    onderwijsStructuurToCurriculaPart1:
+      summary: "7. Query to demonstrate relationship between a 'onderwijsstructuur' concept and 'curriculum' collections (part1: direct)"
       value: |
       {
         id(_:ID) @single
@@ -634,8 +639,8 @@ block content
           definition @single @optional
         }
       }
-    onderwijsNiveauToCurriculaPart2:
-      summary: "8. Query to demonstrate relationship between a 'onderwijsniveaus' concept and 'curriculum' collections (part2: through broaderTransitive concept(s))"
+    onderwijsStructuurToCurriculaPart2:
+      summary: "8. Query to demonstrate relationship between a 'onderwijsstructuur' concept and 'curriculum' collections (part2: through broaderTransitive concept(s))"
       value: |
       {
         id(_:ID) @single
@@ -654,8 +659,8 @@ block content
           }
         }
       }
-    onderwijsNiveauToTypicalAgeRange:
-      summary: "9. Query to demonstrate typical age range annotations on 'onderwijsniveaus' concepts"
+    onderwijsStructuurToTypicalAgeRange:
+      summary: "9. Query to demonstrate typical age range annotations on 'onderwijsstructuur' concepts"
       value: |
       {
         id(_:ID) @single
@@ -752,7 +757,7 @@ block content
     - **/overview/sleutelcompetenties**: gives the list of **sleutelcompetenties** (if they're top concepts) and their subordinate concepts (all with URI and labels)
     - **/overview/studiedomeinen**: gives the list of **studiedomeinen** (if they're top concepts) and their subordinate concepts (all with URI and labels)
     - **/overview/leergebieden**: gives the list of **leergebieden** (if they're top concepts) and their subordinate concepts (all with URI and labels)
-    - **/overview/onderwijsniveaus**: gives the list of **onderwijsniveaus** (if they're top concepts) and their subordinate concepts (all with URI and labels)
+    - **/overview/onderwijsstructuur**: gives the list of **onderwijsstructuur** (if they're top concepts) and their subordinate concepts (all with URI and labels)
     - **/overview/trefwoorden**: gives the list of **trefwoorden** and their related concepts (all with URI and labels)
     - **/overview/vakken**: gives the list of **vakken** and their related concepts (all with URI and labels)
     - **/overview/onderwijsdoelen**: gives the list of **onderwijsdoelen** and their related concepts(all with URI and labels)
