@@ -113,9 +113,6 @@ paths:
             type: string
           description: "URI of the collection"
           examples:
-            beroepskwalificaties:
-              summary: "Beroepskwalificaties URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/elem/beroepskwalificaties"
             bouwstenen:
               summary: "Bouwstenen URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/bouwstenen"
@@ -152,9 +149,6 @@ paths:
             sleutelcompetenties:
               summary: "Sleutelcompetenties URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/sleutelcompetenties"
-            studiedomeinen:
-              summary: "Studiedomeinen URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/elem/studiedomeinen"
             subdomeinen:
               summary: "Subdomeinen URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/subdomeinen"
@@ -167,9 +161,6 @@ paths:
             vakken:
               summary: "Vakken URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/vakken"
-            wetenschapsdomeinen:
-              summary: "Wetenschapsdomeinen URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/elem/wetenschapsdomeinen"
       responses:
         '200':
           description: "The collection details"
@@ -199,9 +190,6 @@ paths:
             type: string
           description: "URI of the concept"
           examples:
-            beroepskwalificatie:
-              summary: "A beroepskwalificatie URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/curr1/s-industrieel-onderhoud-en-ontwerp"
             bouwsteen:
               summary: "A bouwsteen URI"
               value: "http://ilearn.ilabt.imec.be/vocab/curr1/s-bronnenkritiek"
@@ -217,9 +205,6 @@ paths:
             sleutelcompetentie:
               summary: "A sleutelcompetentie URI"
               value: "http://ilearn.ilabt.imec.be/vocab/curr1/c-lichamelijk-geestelijk-en-emotioneel-welzijn"
-            studiedomein:
-              summary: "A studiedomein URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/curr1/d-zorg-en-welzijn"
             subdomein:
               summary: "A subdomein URI"
               value: "http://ilearn.ilabt.imec.be/vocab/curr2/s-maatschappij"
@@ -232,9 +217,6 @@ paths:
             vak:
               summary: "A vak URI"
               value: "http://ilearn.ilabt.imec.be/vocab/vak1/exploratie"
-            wetenschapsdomein:
-              summary: "A wetenschapsdomein URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/curr1/s-filosofie"
       responses:
         '200':
           description: "The concept details"
@@ -248,16 +230,6 @@ paths:
       responses:
         '200':
           description: "The 'sleutelcompetenties' (only top concepts of their scheme) and their hierarchically lower concepts'"
-          content:
-            application/json: {}
-  '/overview/studiedomeinen':
-    get:
-      description: "Get a hierarchical overview of 'studiedomeinen' and their hierarchically lower concepts'"
-      tags:
-        - Specific endpoints
-      responses:
-        '200':
-          description: "The 'studiedomeinen' (only top concepts of their scheme) and their hierarchically lower concepts'"
           content:
             application/json: {}
   '/overview/leergebieden':
@@ -603,118 +575,100 @@ paths:
             The parameter receives the corresponding value, that should be a single string.
           examples:
             collectionId1:
-              summary: "Coll1. ID: URI of one specific collection (beroepskwalificaties)"
-              value: |
-                {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/beroepskwalificaties"
-                }
-            collectionId2:
-              summary: "Coll2. ID: URI of one specific collection (bouwstenen)"
+              summary: "Coll1. ID: URI of one specific collection (bouwstenen)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/bouwstenen"
                 }
-            collectionId3:
-              summary: "Coll3. ID: URI of one specific collection (lager onderwijs)"
+            collectionId2:
+              summary: "Coll2. ID: URI of one specific collection (lager onderwijs)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/lager-onderwijs"
                 }
-            collectionId4:
-              summary: "Coll4. ID: URI of one specific collection (leergebieden)"
+            collectionId3:
+              summary: "Coll3. ID: URI of one specific collection (leergebieden)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/leergebieden"
                 }
-            collectionId5:
-              summary: "Coll5. ID: URI of one specific collection (onderwijsdoelen)"
+            collectionId4:
+              summary: "Coll4. ID: URI of one specific collection (onderwijsdoelen)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/onddoel"
                 }
-            collectionId6:
-              summary: "Coll6. ID: URI of one specific collection (onderwijsstructuur)"
+            collectionId5:
+              summary: "Coll5. ID: URI of one specific collection (onderwijsstructuur)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv"
                 }
-            collectionId6-1:
-              summary: "Coll6-1. ID: URI of one specific collection (onderwijssniveau)"
+            collectionId5-1:
+              summary: "Coll5-1. ID: URI of one specific collection (onderwijssniveau)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-niveau"
                 }
-            collectionId6-2:
-              summary: "Coll6-2. ID: URI of one specific collection (onderwijssubniveau)"
+            collectionId5-2:
+              summary: "Coll5-2. ID: URI of one specific collection (onderwijssubniveau)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-subniveau"
                 }
-            collectionId6-3:
-              summary: "Coll6-3. ID: URI of one specific collection (jaar of graad)"
+            collectionId5-3:
+              summary: "Coll5-3. ID: URI of one specific collection (jaar of graad)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-graad"
                 }
-            collectionId6-4:
-              summary: "Coll6-4. ID: URI of one specific collection (stroom of finaliteit)"
+            collectionId5-4:
+              summary: "Coll5-4. ID: URI of one specific collection (stroom of finaliteit)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-finaliteit"
                 }
-            collectionId6-5:
-              summary: "Coll6-5. ID: URI of one specific collection (onderwijsvorm)"
+            collectionId5-5:
+              summary: "Coll5-5. ID: URI of one specific collection (onderwijsvorm)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-onderwijsvorm"
                 }
-            collectionId7:
-              summary: "Coll7. ID: URI of one specific collection (secundair onderwijs)"
+            collectionId6:
+              summary: "Coll6. ID: URI of one specific collection (secundair onderwijs)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/secundair-onderwijs"
                 }
-            collectionId8:
-              summary: "Coll8. ID: URI of one specific collection (sleutelcompetenties)"
+            collectionId7:
+              summary: "Coll7. ID: URI of one specific collection (sleutelcompetenties)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/sleutelcompetenties"
                 }
-            collectionId9:
-              summary: "Coll9. ID: URI of one specific collection (studiedomeinen)"
-              value: |
-                {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/studiedomeinen"
-                }
-            collectionId10:
-              summary: "Coll10. ID: URI of one specific collection (subdomeinen)"
+            collectionId8:
+              summary: "Coll8. ID: URI of one specific collection (subdomeinen)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/subdomeinen"
                 }
-            collectionId11:
-              summary: "Coll11. ID: URI of one specific collection (thema's)"
+            collectionId9:
+              summary: "Coll9. ID: URI of one specific collection (thema's)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/themas"
                 }
-            collectionId12:
-              summary: "Coll12. ID: URI of one specific collection (trefwoorden)"
+            collectionId10:
+              summary: "Coll10. ID: URI of one specific collection (trefwoorden)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/trefwoorden"
                 }
-            collectionId13:
-              summary: "Coll13. ID: URI of one specific collection (vakken)"
+            collectionId11:
+              summary: "Coll11. ID: URI of one specific collection (vakken)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/elem/vakken"
-                }
-            collectionId14:
-              summary: "Coll14. ID: URI of one specific collection (wetenschapsdomeinen)"
-              value: |
-                {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/wetenschapsdomeinen"
                 }
             twoCollectionIds1:
               summary: "Colls1. ID1, ID2: URIs of two specific collections (leergebieden, subdomeinen)"
@@ -741,24 +695,6 @@ paths:
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/s-communicatie"
-                }
-            conceptIdCurrS3:
-              summary: "CurrS3. ID: URI of one specific 'curriculum' concept (secundair, studiedomein land- en tuinbouw)"
-              value: |
-                {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/d-land-en-tuinbouw"
-                }
-            conceptIdCurrS4:
-              summary: "CurrS4. ID: URI of one specific 'curriculum' concept (secundair, wetenschapsdomein aardwetenschappen)"
-              value: |
-                {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/s-aardwetenschappen"
-                }
-            conceptIdCurrS5:
-              summary: "CurrS5. ID: URI of one specific 'curriculum' concept (secundair, beroepskwalificatie industrieel onderhoud en ontwerp)"
-              value: |
-                {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/s-industrieel-onderhoud-en-ontwerp"
                 }
             conceptIdCurrL1:
               summary: "CurrL1. ID: URI of one specific 'curriculum' concept (lager, leergebied Frans)"
@@ -821,7 +757,7 @@ paths:
                   "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager-lj1"
                 }
             conceptIdDoelS1:
-              summary: "DoelS1. ID: URI of one specific 'onderwijsdoel' concept (secundair, aardwetenschappen, 10.1.1)"
+              summary: "DoelS1. ID: URI of one specific 'onderwijsdoel' concept (secundair, 10.1.1)"
               value: |
                 {
                   "ID": "http://ilearn.ilabt.imec.be/vocab/onddoel/sec-10.1.1-3167029309"
