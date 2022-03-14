@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const {logger} = require("../lib/logger");
 
 // For the demo, these are dummy learning applications that are classified with SKOS terms:
 const allApps = [
@@ -119,7 +120,7 @@ router.get('/', async (req, res, next) => {
                                 }
                             } catch (e) {
                                 // catches unexpected data format; warn and continue without crashing
-                                console.warn(`Unexpected data format received for ${conceptUri}`);
+                                logger.warn(`Unexpected data format received for ${conceptUri}`);
                             }
                         }
                     }

@@ -2,6 +2,7 @@ const config = require('./config');
 const express = require('express');
 const path = require('path');
 const app = express();
+const {logger} = require("./lib/logger");
 const QueryService = require('./services/queryService');
 const YAML = require('yamljs');
 const swaggerUi = require('swagger-ui-express');
@@ -13,6 +14,8 @@ const concepts = require('./routes/concepts');
 const apps = require('./routes/apps');
 const overview = require('./routes/overview');
 const graphqlld = require('./routes/graphql-ld');
+
+logger.level = config.server.loglevel;
 
 // routes can access each property xxx set below as req.app.settings.ourSettings.xxx
 const ourSettings = {
@@ -45,5 +48,5 @@ app.use(`${config.server.base}/v1/overview`, overview);
 app.use(`${config.server.base}/v1/graphqlld`, graphqlld);
 
 app.listen(config.server.port, () => {
-    console.log(`Example app listening at port ${config.server.port}`);
+    logger.info(`Example app listening at port ${config.server.port}`);
 });

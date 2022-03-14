@@ -1,7 +1,9 @@
 const fs = require('fs').promises;
 const path = require('path');
 const axios = require('axios').default;
+const process = require('process');
 const querystring = require('querystring');
+const {logger} = require("../lib/logger");
 
 // GraphQL-LD with Comunica
 // see:
@@ -49,7 +51,6 @@ class QueryService {
             }
         }
         const query = QueryService._fillInParameters(this.queryTemplates[name], parameters);
-        console.log(query);
         let response;
         switch (this.queryExtensions[name]) {
             case ".cgq":
@@ -59,10 +60,6 @@ class QueryService {
                 response = await this.querySparqlEndpointDirectly(query);
                 break;
         }
-        // limited output (truncates arrays, shows deeper arrays as '[Array]':
-        console.log(response);
-        // full output, if you need it...
-        //console.dir(response, {depth: null});
         return response;
     }
 
@@ -121,13 +118,17 @@ class QueryService {
         if (!this.comunicaQueryEngine) {
             this.comunicaQueryEngine = new QueryEngineComunica({
                 sources: this.datasources,
-                log: new LoggerPretty({ level: "debug" })
+                log: new LoggerPretty({ level: "error" }) // set to info to see request details
             });
         }
 
         // query Comunica
         const client = new Client({context: combinedContext, queryEngine: this.comunicaQueryEngine});
+        logger.info(`GraphQL LD query and additional context:\n${graphQlLdQuery}\n${additionalContextString}`);
+        const t1 = process.hrtime.bigint();
         let data = (await client.query({query: graphQlLdQuery})).data;
+        const t2 = process.hrtime.bigint();
+        logger.info(`GraphQL LD query executed in ${(t2-t1)/1000000n} milliseconds.`);
 
         // object containing the JSON-LD answer
         return {"@context": this.comunicaContexts[relativeFilename], "@graph": data};
