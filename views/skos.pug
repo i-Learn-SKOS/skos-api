@@ -1,0 +1,137 @@
+extends layout
+
+block content
+  h1= title
+
+  :markdown-it(linkify langPrefix='highlight-')
+    The metadata we consider is mostly represented using [SKOS](https://www.w3.org/2009/08/skos-reference/skos.html),
+    a popular [RDF](https://www.w3.org/RDF/) vocabulary and [SKOSXL](https://www.w3.org/TR/skos-reference/skos-xl.html), a SKOS extensions for labels.
+
+    ## About SKOS and RDF
+    SKOS and RDF make the data suited for usage in linked data applications.
+
+    An advantage of using RDF in general and SKOS/SKOSXL in particular is that every term is unambiguously defined by a
+    [Uniform Resource Identfier (URI)](https://www.ietf.org/rfc/rfc2396.txt), rather than by some possibly ambiguous textual annotation (label).
+    Linked data applications refer to a term using its URI. Terms are machine readable.
+
+    Below we give a short overview for what's applicable from SKOS/SKOSXL to our metadata.
+    We use the usual prefixes `skos:` for `http://www.w3.org/2004/02/skos/core#`
+    and `skosxl:` for `http://www.w3.org/2008/05/skos-xl#`.
+
+    ## Concepts
+    All terms in our metadata are defined as **skos:Concept**s.
+
+    ## Labels and short labels
+
+    ### Labels
+    Each **skos:Concept** in our metadata has exactly one **skos:prefLabel** in Dutch. It's the primary name assigned to it.
+
+    All **skos:Concept**s have as many **skos:altLabel**s in Dutch as secondary names were assigned to it.
+
+    This GrapQL-LD query fetches the **skos:prefLabel** and optional **skos:altLabel**s for a given concept:
+
+    ```graphql
+    {
+      TYPE(_:Concept)
+      id(_:ID) @single
+      prefLabel @single
+      altLabel @optional
+    }
+    ```
+
+  h3(id="short-labels") Short labels
+
+  :markdown-it(linkify langPrefix='highlight-')
+
+    **Available from v2 onwards**
+
+    In some cases, it is practical to have a label, shorter than the fully qualified skos:prefLabel assigned to a concept.
+    A practical example is the concept `<https://w3id.org/onderwijs-vlaanderen/id/structuur/secundair-2e-graad-doorstroom-aso>`.
+    Its skos:prefLabel is "secundair 2e graad finaliteit doorstroom aso".
+    A practical short label in this case is "aso".
+
+    A short label is added to a concept as a **skosxl:altLabel** property, whose object is a **skosxl:Label**,
+    of type `<http://publications.europa.eu/resource/authority/label-type/SHORTLABEL>`.
+    The short label value is in its **skosxl:literalForm** property.
+
+    Below we use following shorthands to describe this:
+    | shorthand | meaning |
+    | --------- | ------- |
+    | `c` | a skos:Concept that gets a short label |
+    | `l` | a sksxl:Label added for this purpose |
+
+    The skos:Concept links to a skosxl:Label:
+    - `c a skos:Concept`
+    - `c skos:prefLabel "secundair 2e graad finaliteit doorstroom aso"@nl`
+    - `l a skosxl:Label`
+    - `c skosxl:altLabel l`
+
+    The skosxl:Label is of the specific type and has the short label:
+    - `l dct:type <http://publications.europa.eu/resource/authority/label-type/SHORTLABEL>`
+    - `l skosxl:literalForm "aso"@nl`
+
+    The above GrapQL-LD query can be extended to also fetch the optional short label:
+
+    ```graphql
+    {
+      TYPE(_:Concept)
+      id(_:ID) @single
+      prefLabel @single
+      altLabel @optional
+      altLabelXl @single @optional {
+        dctType(_:SHORTLABEL) @single
+        literalForm @single
+      }
+    }
+    ```
+
+    ## Definitions
+    Some (but not all) **skos:Concept**s in our metadata have one **skos:definition** in Dutch. The definition indicates unambiguously what is meant with the given term.
+
+    ## ConceptSchemes and collections
+    A **skos:Concept** belongs to one or more **skos:ConceptScheme**.
+
+    A **skos:Concept** is member of zero, one or more **skos:Collection**s.
+
+    For our metadata, we use **skos:Collection** membership to group **skos:Concept**s and we do not focus on the **skos:ConceptScheme** a **skos:Concept** is in.
+    This allows us to add terms later in new **skos:ConceptScheme**s without breaking the logic in use in the API.
+
+    Collection membership for our metadata is illustrated in [our graphical overview](graphical).
+
+    ## Linking concepts with SKOS relations
+
+    How the links described below are used for our metadata is illustrated in [our graphical overview](graphical).
+
+    Below we use following shorthands for some concepts:
+    | shorthand | meaning |
+    | --------- | ------- |
+    | `h<x>` | a concept located in a hierarchy (*) |
+    | `x`, `y` | any concept |
+    (*) if <x> is a number, it indicates the level in the hierarchy (1 = highest level)
+
+    ### Hierarchical links
+
+    Each concept is linked to the applicable concept(s) *exactly one level higher* in the hierarchy by means of the **skos:broader** relation:
+    - `h2 skos:broader h1`
+    - `h3 skos:broader h2`
+
+    The implied transitive relations are implemented as well:
+    - `h2 skos:broaderTransitive h1`
+    - `h3 skos:broaderTransitive h2`
+    - `h3 skos:broaderTransitive h1`
+
+    All implied inverse relations are implemented as well:
+    - `h1 skos:narrower h2`
+    - `h2 skos:narrower h3`
+    - `h1 skos:narrowerTransitive h2`
+    - `h2 skos:narrowerTransitive h3`
+    - `h1 skos:narrowerTransitive h3`
+
+    ### Non-hierarchical links
+
+    To link concepts in a non-hierarchical way, the **skos:related** relation is used:
+    - `x skos:related y`
+
+    The implied symmetrical realation is implemented as well:
+    - `y skos:related x`
+

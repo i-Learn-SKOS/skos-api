@@ -1,94 +1,10 @@
 openapi: '3.0.3'
 servers:
-  - url: '/skos-api/v1'
+  - url: '/skos-api/v2'
 info:
   title: 'An i-Learn SKOS API.'
-  version: '1.0.0'
+  version: '2.0.0'
 paths:
-  '/apps':
-    get:
-      description: "Get applications"
-      tags:
-        - Example endpoints
-      parameters:
-        - name: 'filter'
-          in: 'query'
-          required: false
-          allowEmptyValue: false
-          schema:
-            type: string
-          description: "If present, restrict output to applications classified with at least one of the concepts specified by their URI in this parameter"
-          examples:
-            absent:
-              summary: "Parameter not used"
-              value: ""
-            single:
-              summary: "Single URI; will yield test_app_1"
-              value: "http://ilearn.ilabt.imec.be/vocab/curr1/c-sociaal-relationele-vorming"
-            multiple:
-              summary: "Multiple URIs; will yield test_app_2 and test_app_3"
-              value: "http://ilearn.ilabt.imec.be/vocab/vak1/merchandising,http://ilearn.ilabt.imec.be/vocab/tref1/bodem"
-            sleutelcompetentie:
-              summary: "A sleutelcompetentie URI; will yield test_app_4 (or more, depending on parameter `connections`)"
-              value: "http://ilearn.ilabt.imec.be/vocab/curr1/c-lichamelijk-geestelijk-en-emotioneel-welzijn"
-            bouwsteen:
-              summary: "A bouwsteen URI; will yield test_app_5 (or more, depending on parameter `connections`)"
-              value: "http://ilearn.ilabt.imec.be/vocab/curr1/s-mentaal-welbevinden"
-            vak:
-              summary: "A vak URI; will yield test_app_6 (or more, depending on parameter `connections`)"
-              value: "http://ilearn.ilabt.imec.be/vocab/vak1/gedragswetenschappen"
-            trefwoord:
-              summary: "A trefwoord URI; will yield test_app_7 (or more, depending on parameter `connections`)"
-              value: "http://ilearn.ilabt.imec.be/vocab/tref1/mediawijsheid"
-            sleutelcompetentieAndVak:
-              summary: "A sleutelcompetentie URI and a vak URI; will yield test_app_4 and test_app_6(or more, depending on parameter `connections`)"
-              value: "http://ilearn.ilabt.imec.be/vocab/curr1/c-lichamelijk-geestelijk-en-emotioneel-welzijn,http://ilearn.ilabt.imec.be/vocab/vak1/gedragswetenschappen"
-            single1:
-              summary: "Single Uri; will yield test_app_8 (or more, depending on parameter `connections`: try 'narrower', 'narrowerTransitive')"
-              value: "http://ilearn.ilabt.imec.be/vocab/curr2/l-wetenschap-en-techniek"
-            single2:
-              summary: "Single Uri; will yield test_app_10 (or more, depending on parameter `connections`: try 'related', 'broader', 'broaderTransitive'))"
-              value: "http://ilearn.ilabt.imec.be/vocab/curr2/t-techniek-en-samenleving"
-        - name: 'connections'
-          in: 'query'
-          required: false
-          allowEmptyValue: false
-          schema:
-            type: string
-          description: >
-            If present, extend concepts given in the `filter` parameter with those connected to them by means of any of the given relations.
-            Possible values for this parameter are any combination of:
-            `related`, `broader`, `broaderTransitive`, `narrower`, `narrowerTransitive`, `any`.
-          examples:
-            absent:
-              summary: "Parameter not used"
-              value: ""
-            related:
-              summary: "related"
-              value: "related"
-            broader:
-              summary: "broader"
-              value: "broader"
-            broaderTransitive:
-              summary: "broaderTransitive"
-              value: "broaderTransitive"
-            narrower:
-              summary: "narrower"
-              value: "narrower"
-            narrowerTransitive:
-              summary: "narrowerTransitive"
-              value: "narrowerTransitive"
-            combination:
-              summary: "broaderTransitive or narrowerTransitive"
-              value: "broaderTransitive, narrowerTransitive"
-            all:
-              summary: "any"
-              value: "any"
-      responses:
-        '200':
-          description: "The applications"
-          content:
-            application/json: {}
   '/collections':
     get:
       description: "Get collections"
@@ -127,22 +43,31 @@ paths:
               value: "http://ilearn.ilabt.imec.be/vocab/elem/onddoel"
             onderwijsstructuur:
               summary: "Onderwijsstructuur URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/collectie/structuur"
             onderwijsniveau:
               summary: "Onderwijsniveau URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-niveau"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/collectie/niveau"
             onderwijssubniveau:
               summary: "Onderwijssubniveau URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-subniveau"
-            jaar-of-graad:
-              summary: "Jaar of graad URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-graad"
-            stroom-of-finaliteit:
-              summary: "Stroom of finaliteit URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-finaliteit"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/collectie/subniveau"
+            jaar:
+              summary: "Jaar URI"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/collectie/leerjaar"
+            graad:
+              summary: "Graad URI"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/collectie/graad"
+            stroom:
+              summary: "Stroom URI"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/collectie/stroom"
+            finaliteit:
+              summary: "Finaliteit URI"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/collectie/finaliteit"
             onderwijsvorm:
               summary: "Onderwijsvorm URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-onderwijsvorm"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/collectie/onderwijsvorm"
+            opleidingsvorm:
+              summary: "Opleidingsvorm URI"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/collectie/opleidingsvorm"
             secundair-onderwijs:
               summary: "Secundair onderwijs URI"
               value: "http://ilearn.ilabt.imec.be/vocab/elem/secundair-onderwijs"
@@ -160,7 +85,7 @@ paths:
               value: "http://ilearn.ilabt.imec.be/vocab/elem/trefwoorden"
             vakken:
               summary: "Vakken URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/elem/vakken"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/collectie/vak"
       responses:
         '200':
           description: "The collection details"
@@ -198,7 +123,7 @@ paths:
               value: "http://ilearn.ilabt.imec.be/vocab/curr2/l-mens-en-maatschappij"
             onderwijsstructuur:
               summary: "A onderwijsstructuur URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager-lj1"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/structuur/lager-1e-leerjaar"
             onderwijsdoel:
               summary: "A onderwijsdoel URI"
               value: "http://ilearn.ilabt.imec.be/vocab/onddoel/basis-lager-1-133507717"
@@ -216,7 +141,7 @@ paths:
               value: "http://ilearn.ilabt.imec.be/vocab/tref1/software"
             vak:
               summary: "A vak URI"
-              value: "http://ilearn.ilabt.imec.be/vocab/vak1/exploratie"
+              value: "https://w3id.org/onderwijs-vlaanderen/id/vak/exploratie"
       responses:
         '200':
           description: "The concept details"
@@ -305,6 +230,18 @@ paths:
                   prefLabel @single
                   altLabel @optional
                   definition @single @optional
+                  inUseBy @optional
+                }
+            collections-in-use-by-myway:
+              summary: '1a. Query for all collections in use by "myway"'
+              value: |
+                {
+                  TYPE(_:Collection)
+                  id @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  inUseBy(_:"myway") @single
                 }
             collection:
               summary: "2. Query for one specific collection (and its members)"
@@ -315,6 +252,7 @@ paths:
                   prefLabel @single
                   altLabel @optional
                   definition @single @optional
+                  inUseBy @optional
                   member @optional {
                     id @single
                     prefLabel @single
@@ -331,6 +269,24 @@ paths:
                   prefLabel @single
                   altLabel @optional
                   definition @single @optional
+                  altLabelXl @single @optional {
+                    dctType(_:SHORTLABEL) @single
+                    literalForm @single
+                  }
+                }
+            concepts-having-shortlabel:
+              summary: "3a. Query for all concepts having a SHORTLABEL"
+              value: |
+                {
+                  TYPE(_:Concept)
+                  id @single
+                  prefLabel @single
+                  altLabel @optional
+                  definition @single @optional
+                  altLabelXl @single {
+                    dctType(_:SHORTLABEL) @single
+                    literalForm @single
+                  }
                 }
             concept:
               summary: "4. Query for one specific concept (and its connections)"
@@ -341,6 +297,10 @@ paths:
                   prefLabel @single
                   altLabel @optional
                   definition @single @optional
+                  altLabelXl @single @optional {
+                    dctType(_:SHORTLABEL) @single
+                    literalForm @single
+                  }
                   memberOf @optional {
                     id @single
                     prefLabel @single
@@ -602,37 +562,55 @@ paths:
               summary: "Coll5. ID: URI of one specific collection (onderwijsstructuur)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/collectie/structuur"
                 }
             collectionId5-1:
               summary: "Coll5-1. ID: URI of one specific collection (onderwijssniveau)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-niveau"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/collectie/niveau"
                 }
             collectionId5-2:
               summary: "Coll5-2. ID: URI of one specific collection (onderwijssubniveau)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-subniveau"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/collectie/subniveau"
                 }
             collectionId5-3:
-              summary: "Coll5-3. ID: URI of one specific collection (jaar of graad)"
+              summary: "Coll5-3. ID: URI of one specific collection (graad)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-graad"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/collectie/graad"
                 }
             collectionId5-4:
-              summary: "Coll5-4. ID: URI of one specific collection (stroom of finaliteit)"
+              summary: "Coll5-4. ID: URI of one specific collection (jaar)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-finaliteit"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/collectie/leerjaar"
                 }
             collectionId5-5:
-              summary: "Coll5-5. ID: URI of one specific collection (onderwijsvorm)"
+              summary: "Coll5-5. ID: URI of one specific collection (stroom)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/ondniv-onderwijsvorm"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/collectie/stroom"
+                }
+            collectionId5-6:
+              summary: "Coll5-6. ID: URI of one specific collection (finaliteit)"
+              value: |
+                {
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/collectie/finaliteit"
+                }
+            collectionId5-7:
+              summary: "Coll5-7. ID: URI of one specific collection (onderwijsvorm)"
+              value: |
+                {
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/collectie/onderwijsvorm"
+                }
+            collectionId5-8:
+              summary: "Coll5-8. ID: URI of one specific collection (opleidingsvorm)"
+              value: |
+                {
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/collectie/opleidingsvorm"
                 }
             collectionId6:
               summary: "Coll6. ID: URI of one specific collection (secundair onderwijs)"
@@ -668,7 +646,7 @@ paths:
               summary: "Coll11. ID: URI of one specific collection (vakken)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/elem/vakken"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/collectie/vak"
                 }
             twoCollectionIds1:
               summary: "Colls1. ID1, ID2: URIs of two specific collections (leergebieden, subdomeinen)"
@@ -730,31 +708,31 @@ paths:
               summary: "VakS1. ID: URI of a 'vak' concept (secundair, exploratie)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/vak1/exploratie"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/vak/exploratie"
                 }
-            conceptIdNivS1:
-              summary: "NivS1. ID: URI of one specific 'onderwijsstructuur' concept (secundair onderwijs > 1e graad)"
+            conceptIdStructS1:
+              summary: "StructS1. ID: URI of one specific 'onderwijsstructuur' concept (secundair onderwijs > 3e graad)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/sec-gr3"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/structuur/secundair-3e-graad"
                 }
-            conceptIdNivS2:
-              summary: "NivS2. ID: URI of one specific 'onderwijsstructuur' concept (secundair onderwijs > 1e graad > a-stroom)"
+            conceptIdStructS2:
+              summary: "StructS2. ID: URI of one specific 'onderwijsstructuur' concept (secundair onderwijs > 3e graad > finaliteit doorstroom)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/sec-gr3-doorstroom"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/structuur/secundair-3e-graad-doorstroom"
                 }
-            conceptIdNivL1:
-              summary: "NivL1. ID: URI of one specific 'onderwijsstructuur' concept (basis onderwijs > lager)"
+            conceptIdStructL1:
+              summary: "StructL1. ID: URI of one specific 'onderwijsstructuur' concept (basis onderwijs > lager)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/structuur/lager-onderwijs"
                 }
-            conceptIdNivL2:
-              summary: "NivL2. ID: URI of one specific 'onderwijsstructuur' concept (basis onderwijs > lager > 1ste leerjaar)"
+            conceptIdStructL2:
+              summary: "StructL2. ID: URI of one specific 'onderwijsstructuur' concept (basis onderwijs > lager > 1ste leerjaar)"
               value: |
                 {
-                  "ID": "http://ilearn.ilabt.imec.be/vocab/ondniv/basis-lager-lj1"
+                  "ID": "https://w3id.org/onderwijs-vlaanderen/id/structuur/lager-1e-leerjaar"
                 }
             conceptIdDoelS1:
               summary: "DoelS1. ID: URI of one specific 'onderwijsdoel' concept (secundair, 10.1.1)"
@@ -807,5 +785,3 @@ tags:
     description: Generic endpoint for querying the SKOS contents with GraphQL-LD queries. The most versatile way for a platform (e.g. the i-Learn platform) to query SKOS contents.
   - name: Specific endpoints
     description: Some specific endpoints for querying the SKOS contents. These endpoints offer less flexibility than the GraphQL-LD endpoint, but can be useful for users with no GraphQL-LD knowledge.
-  - name: Example endpoints
-    description: Endpoints that demonstrate how a platform could use the specific endpoints.

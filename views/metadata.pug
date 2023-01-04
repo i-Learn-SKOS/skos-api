@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h1= title
+
+  :markdown-it(linkify langPrefix='highlight-')
+    In this project, we consider the following "families" of metadata:
+
+    ## Curricula
+    The metadata divides curricula in two major parts: one part is relevant for **lager onderwijs** (*primary school*), another part is relevant for **secundair onderwijs** (*secundary school*).
+
+    In principle, the structure of the curriculum metadata is **hierarchical**.
+    - Terms at a higher level can be 'parents' of zero, one or more terms at a lower level.
+    - Terms at a lower level can be 'children' of zero, one or more terms at a higer level.
+
+    For the curriculum **lager onderwijs**, the hierarchy is as follows:
+    - The first, highest level of the hierarchy consists of **leergebieden** (*learning areas*).
+    - The second level of the hierarchy consists of **subdomeinen** (*subdomains*).
+    - The third level of the hierarchy consists of **thema's** (*themes*).
+
+    For the curriculum **secundair onderwijs**, the hierarchy is as follows:
+    - The first, highest level of the hierarchy consists of **sleutelcompetenties** (*key competences*).
+    - The second level of the hierarchy consists of **bouwstenen** (*building blocks*).
+
+    Terms in a hierarchy can also be linked to other terms in that hierarchy, to express a non-hierarchical connection.
+
+    ## Vakken and trefwoorden
+    The metadata also contains (non-hierarchical) terms. These too can be linked to the curricula mentioned above.
+    - A first group of such terms are the **vakken** (*learning subjects*).
+    - A second group of such terms are the **trefwoorden** (*keywords*).
+
+    ## Onderwijsstructuur
+    - A separate group of (hierachical) terms are the **onderwijsstructuur** (*educational structure*). These too can be linked to the curricula mentioned above.
+
+    ## Onderwijsdoelen
+    - A separate group of (non-hierarchical) terms are the **onderwijsdoelen** (*educational goals*). These too can be linked to the curricula and onderwijsstructuur mentioned above.
+
+    ## Icons
+    - An auxiliary datasets links icons (and their content URL) to some of the terms in the above list.
+

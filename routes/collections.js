@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 router.get('/', async (req, res, next) => {
     try {
-        const body = await req.app.settings.ourSettings.queryService.queryByName('collections');
+        const body = await req.app.settings.ourSettings.queryServices[req.params.apiVersion].queryByName('collections');
         res.send(body);
     } catch(e) {
         next(e);
@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:collection', async (req, res, next) => {
     try {
-        const body = await req.app.settings.ourSettings.queryService.queryByName('collection', {collection: req.params.collection});
+        const body = await req.app.settings.ourSettings.queryServices[req.params.apiVersion].queryByName('collection', {collection: req.params.collection});
         res.send(body);
     } catch(e) {
         next(e);

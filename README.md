@@ -10,7 +10,7 @@ Recommended is the generic GraphQL-LD endpoint, that allows the user to define h
 
 The project's home page documents the structure of the available data.
 
-The project's home page also links to the page `v1/api-docs`: a swagger page, where all endpoints can be tested interactively.
+The project's home page also links to the page `v2/api-docs`: a swagger page, where all endpoints can be tested interactively.
 
 ## Usage
 
@@ -40,7 +40,7 @@ npm run start
 
 The homepage is at <http://localhost:3000>.
 
-The swagger page is at <http://localhost:3000/v1/api-docs>.
+The swagger page is at <http://localhost:3000/v2/api-docs>.
 
 ## Docker
 

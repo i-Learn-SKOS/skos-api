@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+
+  :markdown-it(linkify langPrefix='highlight-')
+
+    ## Version: v1
+
+    The initial version.
+
+    ## Version: v2
+
+    ### Changed
+
+    - Local onderwijsstructuur was replaced by [common onderwijsstructuur](https://github.com/i-Learn-SKOS/common-conceptschemes).
+
+    ### Added
+
+    - [Short labels](skos#short-labels).
+    - [The option to limit query results to what's wanted in an application](no-skos#limiting-query-results).
+
+    ### Deleted
+
+    - [The example endpoints](api-v1#the-example-endpoints).
+

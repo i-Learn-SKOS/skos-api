@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 router.get('/', async (req, res, next) => {
     try {
-        const body = await req.app.settings.ourSettings.queryService.queryByName('concepts');
+        const body = await req.app.settings.ourSettings.queryServices[req.params.apiVersion].queryByName('concepts');
         res.send(body);
     } catch(e) {
         next(e);
@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:concept', async (req, res, next) => {
     try {
-        const body = await req.app.settings.ourSettings.queryService.queryByName('concept', {concept: req.params.concept});
+        const body = await req.app.settings.ourSettings.queryServices[req.params.apiVersion].queryByName('concept', {concept: req.params.concept});
         res.send(body);
     } catch(e) {
         next(e);

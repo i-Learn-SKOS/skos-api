@@ -1,0 +1,81 @@
+extends layout
+
+block content
+  h1= title
+
+  p.
+    The sections that follow can be experienced interactively via #[a(href=`${swaggerRoutes.v2}`) the swagger page for v2].
+    That swagger page is also the reference documentation for the API.
+
+  :markdown-it(linkify langPrefix='highlight-')
+
+    Please be aware that due to the swagger implementation, rendering a lengthy result in your browser may take a very long time (minutes!).
+    When calling the API from an application, keep in mind that all URL-provided parameters have to be URL encoded,
+    as can be seen in the **Request URL** field after execution of an example call.
+
+    ## The GraphQL-LD endpoint
+    The endpoint **/graphqlld** is a versatile endpoint, providing full query access to the SKOS data.
+
+    Users need to understand the basics of the [GraphQL query language](https://graphql.org/learn/)
+    and [how it can be used to query linked data](https://github.com/rubensworks/graphql-ld.js),
+    with [these details on queries you can write](https://github.com/rubensworks/graphql-to-sparql.js).
+    The [Comunica framework](https://comunica.github.io/comunica/) is used in this platform to provide this functionality.
+
+    Knowledge of [JSON-LD](https://www.w3.org/TR/json-ld11/) is helpful, but not explicitly required, because the user
+    does not need to provide a JSON-LD context; we're using a **built-in context**, covering the entire vocabulary used in our SKOS data.
+
+    A first input to this endpoint, **query**, is the *GrapQL-LD query*: a string. This is an example query, requesting information about
+    a specific concept:
+    ```
+    {
+      TYPE(_:Concept)
+      id(_:ID) @single
+      prefLabel @single
+      altLabel @optional
+      definition @single @optional
+    }
+    ```
+
+    In this example, **ID** is a parameter. Its value must be supplied in the second input of this endpoint, **parameters**,
+    a simple [JSON](https://www.json.org/json-en.html) key-value structure. For the example, this JSON would do
+    (we provide one of the available URIs that identify a specific concept):
+    ```
+    {
+      "ID": "http://ilearn.ilabt.imec.be/vocab/curr1/s-industrieel-onderhoud-en-ontwerp"
+    }
+    ```
+
+    The endpoint returns a JSON-LD structure.
+    - The **"@context"** entry expresses general statements, that apply to all corresponding elements in the *@graph* entry below it, and gives
+    the properties their semantic meaning. In fact, this returned context is our **built-in context** described above.
+    - The **"@graph"** entry contains the effective information, as if it were plain JSON:
+    easy to consume by a program and yet human readable and structured as requested in the input's GrapQL-LD query.
+
+    This way, we return information in a popular format, while keeping the semantic information in the payload.
+
+    *Please note that, when trying out this endpoint using the swagger page, the example query and parameters are shown as a single line each,
+    while the actual contents can contain newlines (as shown above). This is a limitation of the swagger presentation.
+    When experimenting, these lines can be copied, formatted, modified and pasted back in those fields (including formatting)*.
+
+    ## The specific endpoints
+    These endpoints are in fact easy to use specialisations of what can be done using the GraphQL-LD endpoint.
+    Possible users, not yet familiar with GraphQL-LD, can use them to quickly retrieve some typical information form the SKOS data.
+
+    The endpoints all return a JSON-LD structure, as described above for the GraphQL-LD endpoint.
+
+    The following endpoints provide resource-alike information.
+    - **/collections**: gives the list of collections (their URIs and labels)
+    - **/collections/{collection}**: detailed information about one collection (labels and members, with URI and labels).
+      Note that {collection} stands for "URL encoded URI of the collection".
+    - **/concepts**: gives the list of concepts (their URIs and labels)
+    - **/concepts/{concept}**: detailed information about one concept
+      (labels, connected concepts, collections the concept is a member of, all with URI and labels).
+      Note that {concept} stands for "URL encoded URI of the concept".
+
+    The following endpoints provide overview-alike information.
+    - **/overview/sleutelcompetenties**: gives the list of **sleutelcompetenties** (if they're top concepts) and their subordinate concepts (all with URI and labels)
+    - **/overview/leergebieden**: gives the list of **leergebieden** (if they're top concepts) and their subordinate concepts (all with URI and labels)
+    - **/overview/onderwijsstructuur**: gives the list of **onderwijsstructuur** (if they're top concepts) and their subordinate concepts (all with URI and labels)
+    - **/overview/trefwoorden**: gives the list of **trefwoorden** and their related concepts (all with URI and labels)
+    - **/overview/vakken**: gives the list of **vakken** and their related concepts (all with URI and labels)
+    - **/overview/onderwijsdoelen**: gives the list of **onderwijsdoelen** and their related concepts(all with URI and labels)

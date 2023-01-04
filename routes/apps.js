@@ -1,6 +1,20 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
+const {check, validationResult} = require('express-validator');
 const {logger} = require("../lib/logger");
+
+const supportedVersion = "v1";
+
+router.all('*',
+  check('apiVersion', `Only supported in ${supportedVersion}`)
+    .equals(supportedVersion),
+  async (req, res, next) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+          return res.status(400).json({errors: errors.array()});
+      }
+      next();
+  });
 
 // For the demo, these are dummy learning applications that are classified with SKOS terms:
 const allApps = [
@@ -86,6 +100,13 @@ const allApps = [
     }
 ];
 
+router.all('*', async (req, res, next) => {
+    if (req.apiVersion != "v1") {
+        return res.status(400).json({error: "Only supported in apiVersion v1"});
+    }
+    next();
+  });
+
 router.get('/', async (req, res, next) => {
     try {
         let body = [];
@@ -104,10 +125,10 @@ router.get('/', async (req, res, next) => {
                 if (connections.size > 0) {
                     // add URIs of connected concepts
                     for (const conceptUri of filterConceptUris) {
-                        // this would be an explicit HTTP call to our own route '/skos-api/v1/concepts/:concept':
-                        //   const data = (await axios.get(`http://localhost:${config.server.port}/skos-api/v1/concepts/${encodeURIComponent(conceptUri)}`)).data;
+                        // this would be an explicit HTTP call to our own route '/skos-api/v2/concepts/:concept':
+                        //   const data = (await axios.get(`http://localhost:${config.server.port}/skos-api/v2/concepts/${encodeURIComponent(conceptUri)}`)).data;
                         // but of course we call the business logic method directly instead:
-                        const data = await req.app.settings.ourSettings.queryService.queryByName('concept', {concept: conceptUri});
+                        const data = await req.app.settings.ourSettings.queryServices["v1"].queryByName('concept', {concept: conceptUri});
                         // add conceptUris of connections to consider only
                         for (const connection of connections) {
                             try {

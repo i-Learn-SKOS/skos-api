@@ -18,7 +18,8 @@ const extensions = [
 ];
 
 class QueryService {
-    constructor(datasources) {
+    constructor(version, datasources) {
+        this.version = version;
         this.datasources = datasources;
         this.queryTemplates = {};
         this.queryExtensions = {};
@@ -28,23 +29,29 @@ class QueryService {
 
     /**
      * Execute a fixed query, selected by means of a query filename
-     * @param name Query filename; file is located in this project's "queries" folder
-     * @param parameters Object containing parameters and their values; ecah parameter found in the query  will be substituted by its value
+     * @param name Query filename; file is located in this project's "queries/<version>" folder or, if not found there, in this project's "queries" folder
+     * @param parameters Object containing parameters and their values; each parameter found in the query  will be substituted by its value
      * @returns Promise
      */
     async queryByName(name, parameters = {}) {
         // cache the template file reading result
         if (!this.queryTemplates[name]) {
-            const filename = path.resolve(__dirname, `../queries/${name}`);
-            for (const ext of extensions) {
-                try {
-                    this.queryTemplates[name] = await fs.readFile(filename + ext, 'utf8');
-                } catch (e) {
-                    // file does not exist, try next extension
-                    continue;
+            for (const filename of [path.resolve(__dirname, `../queries/${this.version}/${name}`), path.resolve(__dirname, `../queries/${name}`)]) {
+                let found = false;
+                for (const ext of extensions) {
+                    try {
+                        this.queryTemplates[name] = await fs.readFile(filename + ext, 'utf8');
+                    } catch (e) {
+                        // file does not exist, try next extension
+                        continue;
+                    }
+                    this.queryExtensions[name] = ext;
+                    found = true;
+                    break;
                 }
-                this.queryExtensions[name] = ext;
-                break;
+                if (found) {
+                    break;
+                }
             }
             if (!this.queryTemplates[name]) {
                 throw new RangeError("no template available for " + name);
@@ -94,7 +101,7 @@ class QueryService {
     async _queryWithComunicaLowLevel(relativeFilename, additionalContextString, graphQlLdQuery) {
         // cache the contexts
         if (!this.comunicaContexts[relativeFilename]) {
-            const filename = path.resolve(__dirname, `../queries/${relativeFilename}`);
+            const filename = path.resolve(__dirname, `../queries/${this.version}/${relativeFilename}`);
             try {
                 const txt = await fs.readFile(filename, "utf8");
                 this.comunicaContexts[relativeFilename] = JSON.parse(txt);

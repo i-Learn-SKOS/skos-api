@@ -1,0 +1,134 @@
+{
+	"globalDefaults": {
+		"graph": {
+			"orientation": "vertical"
+		},
+		"node": {
+			"fontsize": 10,
+			"shape": "rectangle",
+			"strokeWidth": 2,
+			"presets": {
+				"onderwijsstructuur": {
+					"fill": "lightgrey"
+				},
+				"onderwijsdoelen": {
+					"fill": "green"
+				},
+				"mynote": {
+					"width": 80,
+					"height": 80,
+					"fill": "lightyellow",
+					"strokeWidth": 0.2
+				}
+			}
+		},
+		"edge": {
+			"type": "default",
+			"color": "darkgray",
+			"markerEnd": {
+				"type": "arrow"
+			},
+			"presets": {
+				"broader": {
+					"label": "skos:broader"
+				},
+				"related": {
+					"label": "skos:related"
+				}
+			}
+		}
+	},
+	"nodes": [{
+			"shape": "note",
+			"label": "collections",
+			"preset": "mynote",
+			"position": {
+				"x": 465,
+				"y": -165
+			}
+		}, {
+			"id": "c-os",
+			"label": "onderwijsstructuur",
+			"preset": "onderwijsstructuur",
+			"height": 30,
+			"width": 80,
+			"hgroup": "hgroup1",
+			"position": {
+				"x": 0,
+				"y": -130
+			}
+		}, {
+			"id": "c-od",
+			"label": "onderwijsdoelen",
+			"preset": "onderwijsdoelen",
+			"height": 30,
+			"width": 80,
+			"position": {
+				"x": 360,
+				"y": -130
+			}
+		}, {
+			"shape": "note",
+			"label": "concepts",
+			"preset": "mynote",
+			"position": {
+				"x": 465,
+				"y": -15
+			}
+		}, {
+			"id": "os1",
+			"label": "onderwijsstructuurconcept1",
+			"preset": "onderwijsstructuur",
+			"height": 30,
+			"width": 80,
+			"position": {
+				"x": 0,
+				"y": -15
+			}
+		}, {
+			"id": "os2",
+			"label": "onderwijsstructuurconcept2",
+			"preset": "onderwijsstructuur",
+			"height": 30,
+			"width": 80,
+			"position": {
+				"x": 0,
+				"y": -15
+			}
+		}, {
+			"id": "os3",
+			"label": "onderwijsstructuurconcept3",
+			"preset": "onderwijsstructuur",
+			"height": 30,
+			"width": 80,
+			"position": {
+				"x": 0,
+				"y": -15
+			}
+		}, {
+			"id": "od1",
+			"label": "onderwijsdoel",
+			"preset": "onderwijsdoelen",
+			"height": 30,
+			"width": 80,
+			"position": {
+				"x": 0,
+				"y": 210
+			}
+		}
+	],
+	"edges": [{
+			"source": "os2",
+			"target": "os1",
+			"preset": "broader"
+		}, {
+			"source": "os3",
+			"target": "os2",
+			"preset": "broader"
+		}, {
+			"source": "od1",
+			"target": "os2",
+			"preset": "related"
+		}
+	]
+}

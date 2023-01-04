@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const { query, validationResult } = require('express-validator');
 
 router.get('/',
@@ -14,7 +14,7 @@ router.get('/',
       return res.status(400).json({ errors: errors.array() });
     }
     try {
-      const body = await req.app.settings.ourSettings.queryService.queryGraphQlLd(req.query.query, req.query.parameters);
+      const body = await req.app.settings.ourSettings.queryServices[req.params.apiVersion].queryGraphQlLd(req.query.query, req.query.parameters);
       res.send(body);
     } catch(e) {
       let code;

@@ -1,0 +1,252 @@
+extends layout
+
+block content
+  h1= title
+
+  :markdown-it(linkify langPrefix='highlight-')
+
+    ## Introduction
+
+    This is the graphical overview of our metadata.
+
+    Unless specified otherwise, the diagrams apply to all versions of the API.
+
+    In the diagrams and in the accompanying text, we'll use the following prefixes:
+
+    | Prefix   | Expanded                                                     | base URI for                                                                       |
+    | -------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+    | skos:    | http://www.w3.org/2004/02/skos/core#                         | Vocabulary items in the SKOS vocabulary                                            |
+    | skosxl:  | http://www.w3.org/2008/05/skos-xl#                           | Vocabulary items in thes SKOS extension for labels vocabulary                      |
+    | schema:  | http://schema.org/                                           | Vocabulary items in the Schema.org vocabulary                                      |
+    | foaf:    | http://xmlns.com/foaf/0.1/                                   | Vocabulary items in the Friend of a Friend vocabulary                              |
+    | elem:    | http://ilearn.ilabt.imec.be/vocab/elem/                      | Collections in our metadata model                                                  |
+    | curr1:   | http://ilearn.ilabt.imec.be/vocab/curr1/                     | Concepts in the hierarchical structure of our metadata model (secundair onderwijs) |
+    | vak1:    | http://ilearn.ilabt.imec.be/vocab/vak1/                      | Vakken in our metadata model (secundair onderwijs) (version v1 only)               |
+    | ovak:    | https://w3id.org/onderwijs-vlaanderen/id/vak/                | Vakken in our metadata model (secundair onderwijs) (version v2 only)               |
+    | tref1:   | http://ilearn.ilabt.imec.be/vocab/tref1/                     | Trefwoorden in our metadata model (secundair onderwijs)                            |
+    | curr2:   | http://ilearn.ilabt.imec.be/vocab/curr2/                     | Concepts in the hierarchical structure of our metadata model (lager onderwijs)     |
+    | tref2:   | http://ilearn.ilabt.imec.be/vocab/tref2/                     | Trefwoorden in our metadata model (lager onderwijs)                                |
+    | ondniv:  | http://ilearn.ilabt.imec.be/vocab/ondniv/                    | Onderwijsstructuur in our metadata model (version v1 only)                         |
+    | ostr:    | https://w3id.org/onderwijs-vlaanderen/id/structuur/          | Onderwijsstructuur in the common metadata model (version v2 only)                  |
+    | onddoel: | http://ilearn.ilabt.imec.be/vocab/onddoel/                   | Onderwijsdoelen in our metadata model                                              |
+    | ilearn:  | http://semweb.mmlab.be/ns/ilearn#                            | Non-SKOS vocabulary terms applicable to this project                               |
+    | dct:     | http://purl.org/dc/terms/                                    | Vocabulary items in the Dublin Core terms vocabulary                               |
+    | ltype:   | http://publications.europa.eu/resource/authority/label-type/ | Publications Europe label types                                                    |
+
+    Some conventions for the diagrams:
+
+    - The fill color of a concept indicates its collection membership. This indications implies a `skos:member` relation.
+    - Inverse relations (such as `skos:narrower` as the inverse of `skos:broader`) are not shown; the are implemented in the data however.
+    - Transitive relations (such as`skos:broaderTransitive` for one or more `skos:broader`) are not shown; the are implemented in the data however.
+    - Symmetrical relations (such as`skos:related`) are shown in one direction only; the other direction is also implemented in the data however.
+
+  h2 Curricula
+
+  h3 Curriculum lager onderwijs
+
+  img(src="images/curr-lager.jpg" alt="curriculum lager onderwijs" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 1*
+
+    Figure 1: curriculum **lager onderwijs**: all collections, some example concepts and how they are related.
+    - All concepts are member of the collection **lager onderwijs**.
+    - Each concept is member of its corresponding collection.
+    - The hierarchy between **lager onderwijs** concepts is expressed using `skos:broader`.
+    - The **trefwoorden** are not hierarchical.
+    - The relation between **thema1** and **leergebied2** is expressed using `skos:related`.
+    - The relation between **trefwoord1** and **thema1**is expressed using `skos:related`.
+
+  h3 Curriculum secundair onderwijs
+
+  img(src="images/curr-sec.jpg" alt="curriculum secundair onderwijs" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 2*
+
+    Figure 2: curriculum **secundair onderwijs**: all collections, some example concepts and how they are connected.
+    - All concepts are member of the collection **secundair onderwijs**.
+    - Each concept is member of its corresponding collection.
+    - The hierarchy between **secundair onderwijs** concepts is expressed using `skos:broader`.
+    - The **vakken** and the **trefwoorden** are not hierarchical.
+    - The relation between **vak1** and **bouwsteen1** is expressed using `skos:related`.
+    - The relation between **trefwoord1** and **bouwsteen1** is expressed using `skos:related`.
+
+  h2 Onderwijsstructuur
+
+  :markdown-it(linkify langPrefix='highlight-')
+    The **onderwijsstructuur** was modified between versions v1 and v2, because as of v2,
+    the [common onderwijsstructuur](https://github.com/i-Learn-SKOS/common-conceptschemes) is used.
+    We'll handle these versions separately.
+
+    All figures below are **incomplete subsets of the entire dataset**.
+
+  h3 Onderwijsstructuur v1
+
+  :markdown-it(linkify langPrefix='highlight-')
+    - Onderwijsstruur concepts are all member of the collection **onderwijsstructuur**.
+    - The concepts are split up further into the following collections:
+      - **onderwijsniveau**
+      - **onderwijssubniveau**
+      - **jaar of graad**
+      - **stroom of finaliteit**
+    - The hierarchical relationship is expressed with `skos:broader`.
+
+  h4 Onderwijsstructuur v1, gewoon onderwijs
+
+  img(src="images/os-gw-v1.jpg" alt="onderwijsstructuur v1, gewoon onderwijs" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 3*
+
+    Figures 3: Collections and some example concepts for onderwijsstructuur v1, gewoon onderwijs.
+
+    Note that:
+    - The tree under **secundair onderwijs** does not contain **onderwijsubniveau**s.
+
+  h4 Onderwijsstructuur v1, buitengewoon onderwijs
+
+  img(src="images/os-bu-v1.jpg" alt="onderwijsstructuur v1, buitengewoon onderwijs" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 4*
+
+    Figures 4: Collections and some example concepts for onderwijsstructuur v1, buitengewoon onderwijs.
+
+    Note that:
+    - The tree is limited to the **buitengewoon ...** alternatives for **lager onderwijs** and **secundair onderwijs**; no deeper structure available.
+
+  h3 Onderwijsstructuur v2
+
+  :markdown-it(linkify langPrefix='highlight-')
+    - Onderwijsstruur concepts are all member of the collection **onderwijsstructuur**.
+    - The concepts are split up further into the following collections:
+      - **onderwijsniveau**
+      - **onderwijssubniveau**
+      - **opleidingsvorm** (new)
+      - **jaar** (part 1 of replacement for *jaar of graad*)
+      - **graad** (part 2 of replacement for *jaar of graad*)
+      - **stroom** (part 1 of replacement for *stroom of finaliteit*)
+      - **finaliteit** (part 2 of replacement for *stroom of finaliteit*)
+    - The hierarchical relationship is expressed with `skos:broader`.
+
+    **Please note that all onderwijsstructuur URI's are different from these in v1.**.
+
+  h4 Onderwijsstructuur v2, gewoon onderwijs
+
+  img(src="images/os-gw-v2.jpg" alt="onderwijsstructuur v2, gewoon onderwijs" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 5*
+
+    Figures 5: Collections and some example concepts for onderwijsstructuur v2, gewoon onderwijs.
+
+    Note that:
+    - The tree under **secundair onderwijs** does not contain **onderwijsubniveau**s.
+    - The tree does not contain **opleidingsvorm**en.
+    - Concepts narrower than a concept in the **jaar of graad** collection in v1, are now narrower to concepts of the **graad** collection (and not the **jaar** collection as one could expect).
+
+  h4 Onderwijsstructuur v2, buitengewoon onderwijs
+
+  img(src="images/os-bu-v2.jpg" alt="onderwijsstructuur v2, buitengewoon onderwijs" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 6*
+
+    Figures 6: Collections and some example concepts for onderwijsstructuur v2, buitengewoon onderwijs.
+
+    Note that:
+    - There is a separate concept **buitengewoon basisonderwijs** now.
+    - There is an additional concept **buitengewoon kleuteronderwijs** now.
+    - For **buitengewoon secundair onderwijs**, the deeper structure has **opleidingsvorm**en.
+    - For **buitengewoon secundair onderwijs**, **opleidingsvorm 4**, there is a deeper structure containing **graad** concepts (as for gewoon secundair onderwijs, but without the deeper structure).
+
+  h2 Onderwijsdoelen
+
+  :markdown-it(linkify langPrefix='highlight-')
+    - Onderwijsdoelen are all member of the collection **onderwijsdoelen**.
+
+  h3 Onderwijsdoelen vs. curriculum concepts
+
+  :markdown-it(linkify langPrefix='highlight-')
+    - Onderwijsdoelen can be linked to curriculum concepts by means of `skos:related`.
+
+  img(src="images/od-lager.jpg" alt="onderwijsdoelen lager onderwijs" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 7*
+
+    Figure 7: Example of an **onderwijsdoel** and how it can be linked to concepts in the curriculum lager onderwijs.
+
+    - For **lager onderwijs**:
+      - An onderwijsdoel is linked to a **leergebied**
+      - An onderwijsdoel *can be linked* to a hierarchically lower **subdomein**
+      - An onderwijsdoel *can be linked* to a hierarchically lower **thema**
+
+  img(src="images/od-sec.jpg" alt="onderwijsdoelen secundair onderwijs" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 8*
+
+    Figure 8: Example of an **onderwijsdoel** and how it can be linked to concepts in the curriculum secundair onderwijs.
+
+    - For **secundair onderwijs**:
+      - An onderwijsdoel is linked to a **sleutelcompetentie**
+      - An onderwijsdoel *can be linked* to a hierarchically lower **bouwsteen**
+
+  h3 Onderwijsdoelen vs. onderwijsstructuur concepts
+
+  img(src="images/od-os.jpg" alt="onderwijsdoelen vs. onderwijsstructuur" style="width: 100%; border: 1px solid; border-radius: 0 !important")
+
+  :markdown-it(linkify langPrefix='highlight-')
+    *Figure 9*
+
+    Figure 9: Example link from an **onderwijsdoel** to a concept in the **onderwijsstructuur** hierarchy.
+
+    - Onderwijsdoelen can be linked to onderwijsstructuur concepts by means of `skos:related`.
+    - Some concepts in the **onderwijsstructuur** hierarchy are not linked to any **onderwijsdoel** (*onderwijsstructuurconcept1*, *onderwijsstructuurconcept2*)
+    - Some concepts in the **onderwijsstructuur** hierarchy are linked directly to an **onderwijsdoel** (*onderwijsstructuurconcept3*)
+    - Some concepts in the **onderwijsstructuur** hierarchy are linked indirectly to an **onderwijsdoel** via their *broader(Transitive)* parent concepts (*onderwijsstructuurconcept4*, *onderwijsstructuurconcept5*)
+    - The relation between an **onderwijsdoel** and a **onderwijsstructuur** concept is expressed with `skos:related`.
+
+    ### Linking concepts with other vocabularies (non-SKOS)
+
+    #### onderwijsstructuur to curriculum
+
+    Below we use following shorthands for some concepts:
+
+    | shorthand | meaning |
+    | --------- | ------- |
+    | `o<x>` | a SKOS concept, member of **onderwijsstructuur** (*) |
+    | `c` | a SKOS collection |
+    (*) if <x> is a number, it indicates the level in the hierarchy (1 = highest level)
+
+    **Onderwijsstructuur concept**s can be linked directly to **curriculum collection**s, by means of the ilearn:hasCurriculum relation:
+    - `o ilearn:hasCurriculum c`
+
+    - If an *onderwijsstructuur concept* is not linked directly to any *curriculum collection*, it can be linked indirectly, via a **hierarchically higher onderwijsstructuur concept**:
+      - `o3 skos:broaderTransitive o1`
+      - `o1 ilearn:hasCurriculum c`
+
+    **Onderwijsstructuur concept**s can be assigned to a specific **typical age range** (a litteral range, expressed in years):
+    - `o ilearn:typicalAgeRange "16-17"`
+
+    #### Image links
+
+    An additional dataset at http://ilearn.ilabt.imec.be/iconen links terms to icons.
+    They are linked according to following structure:
+
+    - `x foaf:logo y`
+    - `y schema:contentUrl z`
+
+    Using the GraphQL-LD endpoint, one can look up the logos via following query:
+
+    ```graphql
+    {
+    id(_:ID) # The ID of, e.g., the sleutelcompetentie you want the logo from
+    prefLabel @single
+    logo {
+      contentUrl
+    }
+    ```
+

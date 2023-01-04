@@ -1,0 +1,134 @@
+extends layout
+
+block content
+  h1= title
+
+  :markdown-it(linkify langPrefix='highlight-')
+    Some metadata could not be fully described using SKOS.
+    For these cases, we use some other RDF vocabularies, including a local project-specific vocabulary.
+
+    The prefixes we'll use below:
+
+    | Prefix   | Expanded                                   | Comment                                                                            |
+    | -------- | ------------------------------------------ | ---------------------------------------------------------------------------------- |
+    | skos:    | http://www.w3.org/2004/02/skos/core#       | Vocabulary items in the SKOS vocabulary                                            |
+    | schema:  | http://schema.org/                         | Vocabulary items in the Schema dot org vocabulary                                  |
+    | foaf:    | http://xmlns.com/foaf/0.1/                 | Vocabulary items in the Friend of a Friend vocabulary                              |
+    | ilearn:  | http://semweb.mmlab.be/ns/ilearn#          | Vocabulary items in a local project-specific vocabulary                            |
+
+    Below we explain per use case.
+
+    We use following shorthands:
+
+    | shorthand | meaning |
+    | --------- | ------- |
+    | `c[n]` | a SKOS concept |
+    | `l[n]` | a SKOS collection |
+    | `x[n]`, `y[n]` | any RDF resource |
+    Note 1: if n is a number, it indicates the level of that concept in a hierarchy (1 = highest level)
+
+    ## Linking onderwijsstructuur to curriculum
+
+    **Onderwijsstructuur concept**s can be linked directly to **curriculum collection**s, by means of the ilearn:hasCurriculum relation:
+    - `c ilearn:hasCurriculum l`
+
+    - If an *onderwijsstructuur concept* is not linked directly to any *curriculum collection*, it can be linked indirectly, via a **hierarchically higher onderwijsstructuur concept**:
+      - `c3 skos:broaderTransitive c1`
+      - `c1 ilearn:hasCurriculum l`
+
+    **Onderwijsstructuur concept**s can be assigned to a specific **typical age range** (a litteral range, expressed in years):
+    - `c ilearn:typicalAgeRange "16-17"`
+
+    ## Linking images
+
+    An additional dataset at http://ilearn.ilabt.imec.be/iconen links terms to icons.
+    They are linked according to following structure:
+
+    - `x foaf:logo y`
+    - `y schema:contentUrl z`
+
+    Using the GraphQL-LD endpoint, one can look up the logos via following query:
+
+    ```graphql
+    {
+      id(_:ID) # The ID of, e.g., the sleutelcompetentie you want the logo from
+      prefLabel @single
+      logo {
+        contentUrl
+      }
+    }
+    ```
+
+  h2(id="limiting-query-results") Limiting query results to what's wanted in an application
+
+  :markdown-it(linkify langPrefix='highlight-')
+
+    **Available from v2 onwards**
+
+    There may be cases where it is not desirable to have queries return all data from an immutable part of the entire dataset in use.
+    In these cases, we mark the parts of the entire dataset we *do* want to be returned with the property **ilearn:inUseBy**.
+
+    An example where collections are marked:
+    - `l ilearn:inUseBy "myapp"`
+    - `l skos:member c`
+
+    A GraphQL-LD query to find out marked collections:
+
+    ```graphql
+    {
+      TYPE(_:Collection)
+      inUseBy(_:"myapp") @single
+      id @single
+    }
+    ```
+
+    A GraphQL-LD query to find out concepts in marked collections:
+
+    ```graphql
+    {
+      TYPE(_:Concept)
+      memberOf(inUseBy: "myapp")
+      id @single
+    }
+    ```
+
+    A practical example query:
+
+    ```graphql
+    {
+      TYPE(_:Collection)
+      id(_:ONDERWIJSSTRUCTUUR) @single
+      prefLabel @single
+      member {
+        id @single
+        topConceptOf @single
+        prefLabel @single
+        narrower @optional {
+          id @single
+          prefLabel @single
+          memberOf(inUseBy: "myway")
+          narrower @optional {
+            id @single
+            prefLabel @single
+            memberOf(inUseBy: "myway")
+            narrower @optional {
+              id @single
+              prefLabel @single
+              memberOf(inUseBy: "myway")
+              narrower @optional {
+                id @single
+                prefLabel @single
+                memberOf(inUseBy: "myway")
+                narrower @optional {
+                  id @single
+                  prefLabel @single
+                  memberOf(inUseBy: "myway")
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ```
+
