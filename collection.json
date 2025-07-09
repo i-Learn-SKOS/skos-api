@@ -1,0 +1,3638 @@
+{
+  "@context": {
+    "id": "@id",
+    "TYPE": {
+      "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+    },
+    "BOUWSTENEN": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/bouwstenen"
+    },
+    "LAGER_ONDERWIJS": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/lager-onderwijs"
+    },
+    "LEERGEBIEDEN": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/leergebieden"
+    },
+    "ONDERWIJSDOELEN": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/onddoel"
+    },
+    "ONDERWIJSSTRUCTUUR": {
+      "@id": "https://w3id.org/onderwijs-vlaanderen/id/collectie/structuur"
+    },
+    "ONDERWIJSSTRUCTUUR_NIVEAU": {
+      "@id": "https://w3id.org/onderwijs-vlaanderen/id/collectie/niveau"
+    },
+    "ONDERWIJSSTRUCTUUR_SUBNIVEAU": {
+      "@id": "https://w3id.org/onderwijs-vlaanderen/id/collectie/subniveau"
+    },
+    "ONDERWIJSSTRUCTUUR_ONDERWIJSVORM": {
+      "@id": "https://w3id.org/onderwijs-vlaanderen/id/collectie/onderwijsvorm"
+    },
+    "ONDERWIJSSTRUCTUUR_ONDERWIJSVORM_MYWAY": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/onderwijsvorm"
+    },
+    "ONDERWIJSSTRUCTUUR_OPLEIDINGSVORM": {
+      "@id": "https://w3id.org/onderwijs-vlaanderen/id/collectie/opleidingsvorm,"
+    },
+    "ONDERWIJSSTRUCTUUR_GRAAD": {
+      "@id": "https://w3id.org/onderwijs-vlaanderen/id/collectie/graad"
+    },
+    "ONDERWIJSSTRUCTUUR_GRAAD_MYWAY": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/graad"
+    },
+    "ONDERWIJSSTRUCTUUR_LEERJAAR": {
+      "@id": "https://w3id.org/onderwijs-vlaanderen/id/collectie/leerjaar"
+    },
+    "ONDERWIJSSTRUCTUUR_LEERJAAR_MYWAY": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/leerjaar"
+    },
+    "ONDERWIJSSTRUCTUUR_STROOM": {
+      "@id": "https://w3id.org/onderwijs-vlaanderen/id/collectie/stroom"
+    },
+    "ONDERWIJSSTRUCTUUR_STROOM_MYWAY": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/stroom"
+    },
+    "ONDERWIJSSTRUCTUUR_FINALITEIT": {
+      "@id": "https://w3id.org/onderwijs-vlaanderen/id/collectie/finaliteit"
+    },
+    "ONDERWIJSSTRUCTUUR_FINALITEIT_MYWAY": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/finaliteit"
+    },
+    "SECUNDAIR_ONDERWIJS": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/secundair-onderwijs"
+    },
+    "SLEUTELCOMPETENTIES": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/sleutelcompetenties"
+    },
+    "SUBDOMEINEN": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/subdomeinen"
+    },
+    "THEMAS": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/themas"
+    },
+    "TREFWOORDEN": {
+      "@id": "http://ilearn.ilabt.imec.be/vocab/elem/trefwoorden"
+    },
+    "VAKKEN": {
+      "@id": "https://w3id.org/onderwijs-vlaanderen/id/collectie/vak"
+    },
+    "ConceptScheme": {
+      "@id": "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+    },
+    "Collection": {
+      "@id": "http://www.w3.org/2004/02/skos/core#Collection"
+    },
+    "Concept": {
+      "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "prefLabel": {
+      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@language": "nl"
+    },
+    "altLabel": {
+      "@id": "http://www.w3.org/2004/02/skos/core#altLabel",
+      "@language": "nl"
+    },
+    "hiddenLabel": {
+      "@id": "http://www.w3.org/2004/02/skos/core#hiddenLabel",
+      "@language": "nl"
+    },
+    "definition": {
+      "@id": "http://www.w3.org/2004/02/skos/core#definition",
+      "@language": "nl"
+    },
+    "inScheme": {
+      "@id": "http://www.w3.org/2004/02/skos/core#inScheme"
+    },
+    "schemeHas": {
+      "@reverse": "http://www.w3.org/2004/02/skos/core#inScheme"
+    },
+    "topConceptOf": {
+      "@id": "http://www.w3.org/2004/02/skos/core#topConceptOf"
+    },
+    "hasTopConcept": {
+      "@reverse": "http://www.w3.org/2004/02/skos/core#topConceptOf"
+    },
+    "member": {
+      "@id": "http://www.w3.org/2004/02/skos/core#member"
+    },
+    "memberOf": {
+      "@reverse": "http://www.w3.org/2004/02/skos/core#member"
+    },
+    "broader": {
+      "@id": "http://www.w3.org/2004/02/skos/core#broader"
+    },
+    "broaderTransitive": {
+      "@id": "http://www.w3.org/2004/02/skos/core#broaderTransitive"
+    },
+    "narrower": {
+      "@id": "http://www.w3.org/2004/02/skos/core#narrower"
+    },
+    "narrowerTransitive": {
+      "@id": "http://www.w3.org/2004/02/skos/core#narrowerTransitive"
+    },
+    "related": {
+      "@id": "http://www.w3.org/2004/02/skos/core#related"
+    },
+    "altLabelXl": {
+      "@id": "http://www.w3.org/2008/05/skos-xl#altLabel"
+    },
+    "LabelXl": {
+      "@id": "http://www.w3.org/2008/05/skos-xl#Label"
+    },
+    "literalForm": {
+      "@id": "http://www.w3.org/2008/05/skos-xl#literalForm",
+      "@language": "nl"
+    },
+    "hasCurriculum": {
+      "@id": "http://semweb.mmlab.be/ns/ilearn#hasCurriculum"
+    },
+    "isCurriculumOf": {
+      "@reverse": "http://semweb.mmlab.be/ns/ilearn#hasCurriculum"
+    },
+    "typicalAgeRange": {
+      "@id": "http://semweb.mmlab.be/ns/ilearn#typicalAgeRange"
+    },
+    "isTypicalAgeRangeOf": {
+      "@reverse": "http://semweb.mmlab.be/ns/ilearn#typicalAgeRange"
+    },
+    "inUseBy": {
+      "@id": "http://semweb.mmlab.be/ns/ilearn#inUseBy"
+    },
+    "logo": {
+      "@id": "http://xmlns.com/foaf/0.1/logo"
+    },
+    "contentUrl": {
+      "@id": "http://schema.org/contentUrl"
+    },
+    "dctType": {
+      "@id": "http://purl.org/dc/terms/type"
+    },
+    "SHORTLABEL": {
+      "@id": "http://publications.europa.eu/resource/authority/label-type/SHORTLABEL"
+    }
+  },
+  "@graph": [
+    {
+      "prefLabel": "lager onderwijs",
+      "member": [
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-frans",
+          "prefLabel": "Frans"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-levensbeschouwelijke-vakken",
+          "prefLabel": "levensbeschouwelijke vakken"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-lichamelijke-opvoeding",
+          "prefLabel": "lichamelijke opvoeding"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-mens-en-maatschappij",
+          "prefLabel": "mens en maatschappij"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-muzische-vorming",
+          "prefLabel": "muzische vorming"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-nederlands",
+          "prefLabel": "Nederlands"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-wetenschap-en-techniek",
+          "prefLabel": "wetenschap en techniek"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-wiskunde",
+          "prefLabel": "wiskunde"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-beeld",
+          "prefLabel": "beeld"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-beweging",
+          "prefLabel": "beweging"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-brongebruik",
+          "prefLabel": "brongebruik"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-culturele-gerichtheid",
+          "prefLabel": "(inter)culturele gerichtheid"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-drama",
+          "prefLabel": "drama"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-getallen",
+          "prefLabel": "getallen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-godsdienst",
+          "prefLabel": "godsdienst"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-lezen",
+          "prefLabel": "lezen (Nederlands)"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-luisteren",
+          "prefLabel": "luisteren (Nederlands)"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-maatschappij",
+          "prefLabel": "maatschappij"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-media",
+          "prefLabel": "media"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-meetkunde",
+          "prefLabel": "meetkunde"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-mens",
+          "prefLabel": "mens"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-meten",
+          "prefLabel": "meten"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-mondelinge-interactie",
+          "prefLabel": "mondelinge interactie"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-muziek",
+          "prefLabel": "muziek"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-natuur",
+          "prefLabel": "natuur"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-niet-confessionele-zedenleer",
+          "prefLabel": "niet-confessionele zedenleer"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-ruimte",
+          "prefLabel": "ruimte"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-schrijven",
+          "prefLabel": "schrijven (Nederlands)"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-spreken",
+          "prefLabel": "spreken (Nederlands)"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-strategieen",
+          "prefLabel": "strategieën"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-stratprobv",
+          "prefLabel": "strategieën en probleemoplossende vaardigheden"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-taalbeschouwing",
+          "prefLabel": "taalbeschouwing"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-techniek",
+          "prefLabel": "techniek"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-tijd",
+          "prefLabel": "tijd"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-algemene-vaardigheden",
+          "prefLabel": "algemene vaardigheden"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-algemene-vaardigheden-ruimte",
+          "prefLabel": "algemene vaardigheden ruimte"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-algemene-vaardigheden-tijd",
+          "prefLabel": "algemene vaardigheden tijd"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-anglicaanse",
+          "prefLabel": "anglicaanse"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-dagelijkse-tijd",
+          "prefLabel": "dagelijkse tijd"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-gezondheid",
+          "prefLabel": "gezondheid"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-historische-tijd",
+          "prefLabel": "historische tijd"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-ict",
+          "prefLabel": "ICT"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-ik-en-de-ander",
+          "prefLabel": "ik en de ander"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-ik-en-de-anderen-in-groep",
+          "prefLabel": "ik en de anderen in groep"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-ik-en-mezelf",
+          "prefLabel": "ik en mezelf"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-islamitische",
+          "prefLabel": "islamitische"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-israelitische",
+          "prefLabel": "israëlitische"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-kerncomponenten-van-techniek",
+          "prefLabel": "kerncomponenten van techniek"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-leren-leren",
+          "prefLabel": "leren leren"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-levende-en-niet-levende-natuur",
+          "prefLabel": "levende en niet-levende natuur"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-milieu",
+          "prefLabel": "milieu"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-orientatie-en-kaartvaardigheid",
+          "prefLabel": "oriëntatie- en kaartvaardigheid"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-orthodoxe",
+          "prefLabel": "orthodoxe"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-politieke-en-juridische-verschijnselen",
+          "prefLabel": "politieke en juridische verschijnselen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-protestants-evangelische",
+          "prefLabel": "protestants-evangelische"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-rooms-katholieke",
+          "prefLabel": "rooms-katholieke"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-ruimtebeleving",
+          "prefLabel": "ruimtebeleving"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-sociaal-culturele-verschijnselen",
+          "prefLabel": "sociaal-culturele verschijnselen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-sociaal-economische-verschijnselen",
+          "prefLabel": "sociaal-economische verschijnselen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-sociale-vaardigheden",
+          "prefLabel": "sociale vaardigheden"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-techniek-als-menselijke-activiteit",
+          "prefLabel": "techniek als menselijke activiteit"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-techniek-en-samenleving",
+          "prefLabel": "techniek en samenleving"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-verkeer-en-mobiliteit",
+          "prefLabel": "verkeer en mobiliteit"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/aankondiging",
+          "prefLabel": "aankondiging",
+          "altLabel": [
+            "aankondigingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/aanwijzend-voornaamwoord",
+          "prefLabel": "aanwijzend voornaamwoord",
+          "altLabel": [
+            "aanwijzende voornaamwoorden",
+            "pronom démonstratif",
+            "pronoms démonstratifs"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/aanwijzingsbord",
+          "prefLabel": "aanwijzingsbord",
+          "altLabel": [
+            "aanwijzingsborden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/aardbol",
+          "prefLabel": "aardbol",
+          "altLabel": [
+            "aardbollen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/aarde",
+          "prefLabel": "aarde"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/ademhaling",
+          "prefLabel": "ademhaling",
+          "altLabel": [
+            "ademhalingstelsel"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/afgelegde-weg",
+          "prefLabel": "afgelegde weg",
+          "altLabel": [
+            "afgelegde wegen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/afkorting",
+          "prefLabel": "afkorting",
+          "altLabel": [
+            "afkortingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/afleiding",
+          "prefLabel": "afleiding",
+          "altLabel": [
+            "afleidingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/afspraak",
+          "prefLabel": "afspraak",
+          "altLabel": [
+            "afspraken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/afstand",
+          "prefLabel": "afstand",
+          "altLabel": [
+            "afstanden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/aftrekken",
+          "prefLabel": "aftrekken"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/afval",
+          "prefLabel": "afval"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/afval-sorteren",
+          "prefLabel": "afval sorteren"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/afvalmateriaal",
+          "prefLabel": "afvalmateriaal",
+          "altLabel": [
+            "afvalmaterialen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/alfabet",
+          "prefLabel": "alfabet",
+          "altLabel": [
+            "alfabetten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/analoge-klok",
+          "prefLabel": "analoge klok",
+          "altLabel": [
+            "analoge klokken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/app",
+          "prefLabel": "app",
+          "altLabel": [
+            "applicatie",
+            "applicaties",
+            "apps"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/apparaat",
+          "prefLabel": "apparaat",
+          "altLabel": [
+            "apparaten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/armoede",
+          "prefLabel": "armoede",
+          "altLabel": [
+            "armoedes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/artikel",
+          "prefLabel": "artikel",
+          "altLabel": [
+            "artikels"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/assemblage",
+          "prefLabel": "assemblage",
+          "altLabel": [
+            "assemblages"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/associativiteit",
+          "prefLabel": "associativiteit"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/atlas",
+          "prefLabel": "atlas",
+          "altLabel": [
+            "atlassen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/audiovisueel",
+          "prefLabel": "audiovisueel"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/balk",
+          "prefLabel": "balk",
+          "altLabel": [
+            "balken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/beamer",
+          "prefLabel": "beamer",
+          "altLabel": [
+            "beamers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bedreigd-dier",
+          "prefLabel": "bedreigd dier",
+          "altLabel": [
+            "bedreigde dieren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/begrijpend-luisteren",
+          "prefLabel": "begrijpend luisteren"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/begrip-tijd",
+          "prefLabel": "begrip tijd",
+          "altLabel": [
+            "begrippen tijd"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bejaarde",
+          "prefLabel": "bejaarde",
+          "altLabel": [
+            "bejaarden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/belasting",
+          "prefLabel": "belasting",
+          "altLabel": [
+            "belastingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/belgie",
+          "prefLabel": "België"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/berm",
+          "prefLabel": "berm",
+          "altLabel": [
+            "bermen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/beroep",
+          "prefLabel": "beroep",
+          "altLabel": [
+            "beroepen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/besturingsysteem",
+          "prefLabel": "besturingsysteem",
+          "altLabel": [
+            "besturingsystemen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/beweging",
+          "prefLabel": "beweging",
+          "altLabel": [
+            "bewegingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bewegingselement",
+          "prefLabel": "bewegingselement",
+          "altLabel": [
+            "bewegingselementen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bewegingspartituur",
+          "prefLabel": "bewegingspartituur",
+          "altLabel": [
+            "bewegingspartituren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bewegingszin",
+          "prefLabel": "bewegingszin",
+          "altLabel": [
+            "bewegingszinnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bewerkingsschema",
+          "prefLabel": "bewerkingsschema",
+          "altLabel": [
+            "bewerkingsschema's"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bezittelijk-voornaamwoord",
+          "prefLabel": "bezittelijk voornaamwoord",
+          "altLabel": [
+            "bezittelijke voornaamwoorden",
+            "pronom possessif",
+            "pronoms possessifs"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bijvoeglijk-naamwoord",
+          "prefLabel": "bijvoeglijk naamwoord",
+          "altLabel": [
+            "adjectif",
+            "adjectifs",
+            "bijvoeglijke naamwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/biotoop",
+          "prefLabel": "biotoop",
+          "altLabel": [
+            "biotopen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bloedsomploop",
+          "prefLabel": "bloedsomploop"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bloedvatenstelsel",
+          "prefLabel": "bloedvatenstelsel",
+          "altLabel": [
+            "bloedvatenstelsels"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/blokkenconstructie",
+          "prefLabel": "blokkenconstructie",
+          "altLabel": [
+            "blokkenconstructies"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bol",
+          "prefLabel": "bol",
+          "altLabel": [
+            "bollen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/boodschapper",
+          "prefLabel": "boodschapper",
+          "altLabel": [
+            "boodschappers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/brandwonde",
+          "prefLabel": "brandwonde",
+          "altLabel": [
+            "brandwonden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/breuk",
+          "prefLabel": "breuk",
+          "altLabel": [
+            "breuken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/breukschaal",
+          "prefLabel": "breukschaal",
+          "altLabel": [
+            "breukschalen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/brief",
+          "prefLabel": "brief",
+          "altLabel": [
+            "briefkaart",
+            "briefkaarten",
+            "brieven"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/bron",
+          "prefLabel": "bron",
+          "altLabel": [
+            "bronnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/brug",
+          "prefLabel": "brug",
+          "altLabel": [
+            "bruggen",
+            "de brug"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/burgemeester",
+          "prefLabel": "burgemeester",
+          "altLabel": [
+            "burgemeesters"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/camera",
+          "prefLabel": "camera",
+          "altLabel": [
+            "camera's"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/chatten",
+          "prefLabel": "chatten",
+          "altLabel": [
+            "chattenen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/cijferen",
+          "prefLabel": "cijferen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/cirkel",
+          "prefLabel": "cirkel",
+          "altLabel": [
+            "cirkels"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/collage",
+          "prefLabel": "collage",
+          "altLabel": [
+            "collages"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/communicatie",
+          "prefLabel": "communicatie",
+          "altLabel": [
+            "communicaties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/communicatiemodel",
+          "prefLabel": "communicatiemodel",
+          "altLabel": [
+            "communicatiemodellen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/communicatievaardigheid",
+          "prefLabel": "communicatievaardigheid",
+          "altLabel": [
+            "communicatievaardigheden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/commutativiteit",
+          "prefLabel": "commutativiteit"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/compositie",
+          "prefLabel": "compositie",
+          "altLabel": [
+            "composities"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/computer",
+          "prefLabel": "computer",
+          "altLabel": [
+            "computers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/condenseren",
+          "prefLabel": "condenseren"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/conflict",
+          "prefLabel": "conflict",
+          "altLabel": [
+            "conflicten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/constructie",
+          "prefLabel": "constructie",
+          "altLabel": [
+            "constructies"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/coordinatenrooster",
+          "prefLabel": "coördinatenrooster",
+          "altLabel": [
+            "coördinatenroosters"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/culturele-activiteit",
+          "prefLabel": "culturele activiteit",
+          "altLabel": [
+            "culturele activiteiten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/cultuur",
+          "prefLabel": "cultuur",
+          "altLabel": [
+            "culturen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/cyberpesten",
+          "prefLabel": "cyberpesten"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/dag",
+          "prefLabel": "dag",
+          "altLabel": [
+            "dagen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/de-kringloop-van-het-water",
+          "prefLabel": "de kringloop van het water",
+          "altLabel": [
+            "de kringloop van het wateren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/deelbaarheid",
+          "prefLabel": "deelbaarheid"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/delen",
+          "prefLabel": "delen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/deler",
+          "prefLabel": "deler",
+          "altLabel": [
+            "delers",
+            "gemeenschappelijke deler",
+            "gemeenschappelijke delers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/determinatietabel",
+          "prefLabel": "determinatietabel",
+          "altLabel": [
+            "determinatietabellen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/dichtheid",
+          "prefLabel": "dichtheid",
+          "altLabel": [
+            "dichtheden",
+            "soortelijk gewicht",
+            "soortelijke gewichten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/dier",
+          "prefLabel": "dier",
+          "altLabel": [
+            "dieren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/digitaal-profiel",
+          "prefLabel": "digitaal profiel",
+          "altLabel": [
+            "digitale profielen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/digitale-klok",
+          "prefLabel": "digitale klok",
+          "altLabel": [
+            "digitale klokken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/discriminatie",
+          "prefLabel": "discriminatie",
+          "altLabel": [
+            "discriminaties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/distributiviteit",
+          "prefLabel": "distributiviteit"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/dode-hoek",
+          "prefLabel": "dode hoek",
+          "altLabel": [
+            "dode hoeken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/driehoek",
+          "prefLabel": "driehoek",
+          "altLabel": [
+            "driehoeken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/drijven",
+          "prefLabel": "drijven"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/duurzaam",
+          "prefLabel": "duurzaam"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/e-safety",
+          "prefLabel": "e-safety"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/eetgedrag",
+          "prefLabel": "eetgedrag"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/eetgewoonte",
+          "prefLabel": "eetgewoonte",
+          "altLabel": [
+            "eetgewoonten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/eeuw",
+          "prefLabel": "eeuw",
+          "altLabel": [
+            "eeuwen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/eeuwband",
+          "prefLabel": "eeuwband",
+          "altLabel": [
+            "eeuwbanden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/eeuwenband",
+          "prefLabel": "eeuwenband",
+          "altLabel": [
+            "eeuwenbanden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/eigennaam",
+          "prefLabel": "eigennaam",
+          "altLabel": [
+            "eigennamen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/emphatie",
+          "prefLabel": "emphatie",
+          "altLabel": [
+            "emphatieën"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/energie",
+          "prefLabel": "energie",
+          "altLabel": [
+            "energieën"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/energiebron",
+          "prefLabel": "energiebron",
+          "altLabel": [
+            "energiebronnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/energieomzetting",
+          "prefLabel": "energieomzetting",
+          "altLabel": [
+            "energieomzettingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/enkelvoud",
+          "prefLabel": "enkelvoud"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/erfgoed",
+          "prefLabel": "erfgoed"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/europese-unie",
+          "prefLabel": "Europese unie"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/evacatieregel",
+          "prefLabel": "evacatieregel",
+          "altLabel": [
+            "evacatieregels"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/evacuatie",
+          "prefLabel": "evacuatie",
+          "altLabel": [
+            "evacuaties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/evacuatieplan",
+          "prefLabel": "evacuatieplan",
+          "altLabel": [
+            "evacuatieplannen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/evenwijdig",
+          "prefLabel": "evenwijdig"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/familie",
+          "prefLabel": "familie",
+          "altLabel": [
+            "families"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/fictie",
+          "prefLabel": "fictie",
+          "altLabel": [
+            "ficties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/fietser",
+          "prefLabel": "fietser",
+          "altLabel": [
+            "fietsers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/fietsuitrusting",
+          "prefLabel": "fietsuitrusting",
+          "altLabel": [
+            "fietsuitrustingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/figuurlijk",
+          "prefLabel": "figuurlijk"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/formulier",
+          "prefLabel": "formulier",
+          "altLabel": [
+            "formulieren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/fototoestel",
+          "prefLabel": "fototoestel",
+          "altLabel": [
+            "fototoestellen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/fysieke-beperking",
+          "prefLabel": "fysieke beperking",
+          "altLabel": [
+            "fysieke beperkingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gebergte",
+          "prefLabel": "gebergte",
+          "altLabel": [
+            "gebergten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gedrag",
+          "prefLabel": "gedrag"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/geheel-getal",
+          "prefLabel": "geheel getal",
+          "altLabel": [
+            "gehele getallen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/geldwaarde",
+          "prefLabel": "geldwaarde",
+          "altLabel": [
+            "geldwaarden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/geluid",
+          "prefLabel": "geluid",
+          "altLabel": [
+            "geluiden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gemachtigd-opzichter",
+          "prefLabel": "gemachtigd opzichter",
+          "altLabel": [
+            "gemachtigde opzichters"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gemeenschap",
+          "prefLabel": "gemeenschap",
+          "altLabel": [
+            "gemeenschappen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gemeente",
+          "prefLabel": "gemeente",
+          "altLabel": [
+            "gemeenten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gemeentebestuur",
+          "prefLabel": "gemeentebestuur",
+          "altLabel": [
+            "gemeentebesturen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gemeenteraad",
+          "prefLabel": "gemeenteraad",
+          "altLabel": [
+            "gemeenteraden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/geografisch-kenmerk",
+          "prefLabel": "geografisch kenmerk",
+          "altLabel": [
+            "geografische kenmerken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/geschiedenis",
+          "prefLabel": "geschiedenis",
+          "altLabel": [
+            "geschiedenissen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gesprek",
+          "prefLabel": "gesprek",
+          "altLabel": [
+            "gesprekken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/getallijn",
+          "prefLabel": "getallijn",
+          "altLabel": [
+            "getalas",
+            "getalassen",
+            "getallijnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gevoel",
+          "prefLabel": "gevoel",
+          "altLabel": [
+            "gevoelens"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gewest",
+          "prefLabel": "gewest",
+          "altLabel": [
+            "gewesten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gewicht",
+          "prefLabel": "gewicht",
+          "altLabel": [
+            "gewichten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gezichtspunt",
+          "prefLabel": "gezichtspunt",
+          "altLabel": [
+            "gezichtspunten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/gezin",
+          "prefLabel": "gezin",
+          "altLabel": [
+            "gezinnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/globe",
+          "prefLabel": "globe",
+          "altLabel": [
+            "globes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/grondstof",
+          "prefLabel": "grondstof",
+          "altLabel": [
+            "grondstoffen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/haatmail",
+          "prefLabel": "haatmail",
+          "altLabel": [
+            "haatmails"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/handicap",
+          "prefLabel": "handicap",
+          "altLabel": [
+            "handicaps"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/handleiding",
+          "prefLabel": "handleiding",
+          "altLabel": [
+            "handleidingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/handschriftontwikkeling",
+          "prefLabel": "handschriftontwikkeling",
+          "altLabel": [
+            "handschriftontwikkelingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/hart",
+          "prefLabel": "hart",
+          "altLabel": [
+            "harten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/helpfunctie",
+          "prefLabel": "helpfunctie",
+          "altLabel": [
+            "helpfuncties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/hemellichaam",
+          "prefLabel": "hemellichaam",
+          "altLabel": [
+            "hemellichamen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/herinneringseducatie",
+          "prefLabel": "herinneringseducatie",
+          "altLabel": [
+            "herinneringseducaties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/historisch-feit",
+          "prefLabel": "historisch feit",
+          "altLabel": [
+            "historische feiten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/hoek",
+          "prefLabel": "hoek",
+          "altLabel": [
+            "hoeken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/hoofdrekenen",
+          "prefLabel": "hoofdrekenen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/hoorwoord",
+          "prefLabel": "hoorwoord",
+          "altLabel": [
+            "hoorwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/huwelijk",
+          "prefLabel": "huwelijk",
+          "altLabel": [
+            "huwelijken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/identiteit",
+          "prefLabel": "identiteit",
+          "altLabel": [
+            "identiteiten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/industrieel",
+          "prefLabel": "industrieel"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/infinitief",
+          "prefLabel": "infinitief",
+          "altLabel": [
+            "infinitieven"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/informatie",
+          "prefLabel": "informatie",
+          "altLabel": [
+            "informaties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/informatiebron",
+          "prefLabel": "informatiebron",
+          "altLabel": [
+            "informatiebronnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/informatievaardigheid",
+          "prefLabel": "informatievaardigheid",
+          "altLabel": [
+            "informatievaardigheden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/informatieve-tekst",
+          "prefLabel": "informatieve tekst",
+          "altLabel": [
+            "informatieve teksten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/inhoud",
+          "prefLabel": "inhoud",
+          "altLabel": [
+            "inhouden",
+            "inhoudsmaat",
+            "inhoudsmaten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/inloggen",
+          "prefLabel": "inloggen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/instructie",
+          "prefLabel": "instructie",
+          "altLabel": [
+            "instructies"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/integratie",
+          "prefLabel": "integratie",
+          "altLabel": [
+            "integraties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/internet",
+          "prefLabel": "internet"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/interpunctie",
+          "prefLabel": "interpunctie",
+          "altLabel": [
+            "interpuncties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/interview",
+          "prefLabel": "interview",
+          "altLabel": [
+            "interviews"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/intrest",
+          "prefLabel": "intrest",
+          "altLabel": [
+            "intresten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/jaartal",
+          "prefLabel": "jaartal",
+          "altLabel": [
+            "jaartallen",
+            "jaren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kaart",
+          "prefLabel": "kaart",
+          "altLabel": [
+            "kaarten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kaartbegrip",
+          "prefLabel": "kaartbegrip",
+          "altLabel": [
+            "kaartbegrippen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kalender",
+          "prefLabel": "kalender",
+          "altLabel": [
+            "kalenders"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kalenderjaar",
+          "prefLabel": "kalenderjaar",
+          "altLabel": [
+            "kalenderjaren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kinderdans",
+          "prefLabel": "kinderdans",
+          "altLabel": [
+            "kinderdansen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kinderzitje",
+          "prefLabel": "kinderzitje",
+          "altLabel": [
+            "kinderzitjes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/klank",
+          "prefLabel": "klank",
+          "altLabel": [
+            "klanken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/klankduur",
+          "prefLabel": "klankduur"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/klankhoogte",
+          "prefLabel": "klankhoogte",
+          "altLabel": [
+            "klankhoogtes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/klankkleur",
+          "prefLabel": "klankkleur",
+          "altLabel": [
+            "klankkleuren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kleur",
+          "prefLabel": "kleur",
+          "altLabel": [
+            "kleuren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/klimaat",
+          "prefLabel": "klimaat",
+          "altLabel": [
+            "klimaten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/klok-lezen",
+          "prefLabel": "klok lezen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/knutselen",
+          "prefLabel": "knutselen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kommagetal",
+          "prefLabel": "kommagetal",
+          "altLabel": [
+            "kommagetallen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kompas",
+          "prefLabel": "kompas",
+          "altLabel": [
+            "kompassen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/koning",
+          "prefLabel": "koning",
+          "altLabel": [
+            "koningen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/krimpen",
+          "prefLabel": "krimpen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kruispunt",
+          "prefLabel": "kruispunt",
+          "altLabel": [
+            "kruispunten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kubus",
+          "prefLabel": "kubus",
+          "altLabel": [
+            "kubussen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kunst",
+          "prefLabel": "kunst",
+          "altLabel": [
+            "kunsten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kunstenaar",
+          "prefLabel": "kunstenaar",
+          "altLabel": [
+            "kunstenaars"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kust",
+          "prefLabel": "kust",
+          "altLabel": [
+            "kusten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/kwartier",
+          "prefLabel": "kwartier",
+          "altLabel": [
+            "kwartieren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/landelijk",
+          "prefLabel": "landelijk"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/landschap",
+          "prefLabel": "landschap",
+          "altLabel": [
+            "landschappen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/landschapskenmerk",
+          "prefLabel": "landschapskenmerk",
+          "altLabel": [
+            "landschapskenmerken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/lay-out",
+          "prefLabel": "lay-out",
+          "altLabel": [
+            "lay-outs"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/leesteken",
+          "prefLabel": "leesteken",
+          "altLabel": [
+            "leestekens"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/legende",
+          "prefLabel": "legende",
+          "altLabel": [
+            "legendes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/lengte",
+          "prefLabel": "lengte",
+          "altLabel": [
+            "lengtes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/letterlijk",
+          "prefLabel": "letterlijk"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/levencyclus",
+          "prefLabel": "levencyclus",
+          "altLabel": [
+            "levencyclusen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/levenslijn",
+          "prefLabel": "levenslijn",
+          "altLabel": [
+            "levenslijnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/lichaamsdeel",
+          "prefLabel": "lichaamsdeel",
+          "altLabel": [
+            "lichaamsdelen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/lichaamshouding",
+          "prefLabel": "lichaamshouding",
+          "altLabel": [
+            "lichaamshoudingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/lichaamsorientatie",
+          "prefLabel": "lichaamsoriëntatie",
+          "altLabel": [
+            "lichaamsoriëntaties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/lidwoord",
+          "prefLabel": "lidwoord",
+          "altLabel": [
+            "article",
+            "articles",
+            "lidwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/lijnschaal",
+          "prefLabel": "lijnschaal",
+          "altLabel": [
+            "lijnschalen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/lijnstuk",
+          "prefLabel": "lijnstuk",
+          "altLabel": [
+            "lijnstukken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/loodrecht",
+          "prefLabel": "loodrecht"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/luchtfoto",
+          "prefLabel": "luchtfoto",
+          "altLabel": [
+            "luchtfoto's"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/luisterstrategie",
+          "prefLabel": "luisterstrategie",
+          "altLabel": [
+            "luisterstrategieën"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/luistervaardigheden",
+          "prefLabel": "luistervaardigheden"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/maan",
+          "prefLabel": "maan",
+          "altLabel": [
+            "manen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/maand",
+          "prefLabel": "maand",
+          "altLabel": [
+            "maanden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/maateenheid",
+          "prefLabel": "maateenheid",
+          "altLabel": [
+            "maateenheden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/maatgetal",
+          "prefLabel": "maatgetal",
+          "altLabel": [
+            "maatgetallen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/macht",
+          "prefLabel": "macht",
+          "altLabel": [
+            "machten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/maquette",
+          "prefLabel": "maquette",
+          "altLabel": [
+            "maquettes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/massa",
+          "prefLabel": "massa",
+          "altLabel": [
+            "massa's"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/materiaal",
+          "prefLabel": "materiaal",
+          "altLabel": [
+            "materialen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/media",
+          "prefLabel": "media"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mediacontent",
+          "prefLabel": "mediacontent"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mediagebruik",
+          "prefLabel": "mediagebruik",
+          "altLabel": [
+            "mediagebruiken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mediageletterheid",
+          "prefLabel": "mediageletterheid"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mediamiddel",
+          "prefLabel": "mediamiddel",
+          "altLabel": [
+            "mediamiddelen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mediatoepassing",
+          "prefLabel": "mediatoepassing",
+          "altLabel": [
+            "mediatoepassingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mediavaardigheid",
+          "prefLabel": "mediavaardigheid",
+          "altLabel": [
+            "mediavaardigheden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mediawijs",
+          "prefLabel": "mediawijs"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mediawijsheid",
+          "prefLabel": "mediawijsheid"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/medicatie",
+          "prefLabel": "medicatie",
+          "altLabel": [
+            "medicaties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/medium",
+          "prefLabel": "medium",
+          "altLabel": [
+            "mediums"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/meervoud",
+          "prefLabel": "meervoud"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/meetinstrumenten",
+          "prefLabel": "meetinstrumenten",
+          "altLabel": [
+            "meetinstrumentenen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/meetresultaat",
+          "prefLabel": "meetresultaat",
+          "altLabel": [
+            "meetresultaten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mens-met-beperking",
+          "prefLabel": "mens met beperking",
+          "altLabel": [
+            "mensen met beperking"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mentale-beperking",
+          "prefLabel": "mentale beperking",
+          "altLabel": [
+            "mentale beperkingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/menu",
+          "prefLabel": "menu",
+          "altLabel": [
+            "menu's"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/middeleeuw",
+          "prefLabel": "middeleeuw",
+          "altLabel": [
+            "middeleeuwen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/migratie",
+          "prefLabel": "migratie",
+          "altLabel": [
+            "migraties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/milieubewust",
+          "prefLabel": "milieubewust"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/milieuprobleem",
+          "prefLabel": "milieuprobleem",
+          "altLabel": [
+            "milieuproblemen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/minister",
+          "prefLabel": "minister",
+          "altLabel": [
+            "ministers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/minuut",
+          "prefLabel": "minuut",
+          "altLabel": [
+            "minuten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/mobiliteit",
+          "prefLabel": "mobiliteit",
+          "altLabel": [
+            "mobiliteiten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/muziekinstrument",
+          "prefLabel": "muziekinstrument",
+          "altLabel": [
+            "muziekinstrumenten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/muzieknotatie",
+          "prefLabel": "muzieknotatie",
+          "altLabel": [
+            "muzieknotaties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/natuurlijk-getal",
+          "prefLabel": "natuurlijk getal",
+          "altLabel": [
+            "natuurljke getallen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/natuurlijk-verschijnsel",
+          "prefLabel": "natuurlijk verschijnsel",
+          "altLabel": [
+            "natuurlijke verschijnselen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/navigatiesysteem",
+          "prefLabel": "navigatiesysteem",
+          "altLabel": [
+            "navigatiesystemen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/negatief-getal",
+          "prefLabel": "negatief getal",
+          "altLabel": [
+            "negatieve getallen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/nieuwe-tijd",
+          "prefLabel": "nieuwe tijd",
+          "altLabel": [
+            "nieuwe tijden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/nieuws",
+          "prefLabel": "nieuws"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/non-fictie",
+          "prefLabel": "non-fictie",
+          "altLabel": [
+            "non-ficties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/non-verbaal",
+          "prefLabel": "non-verbaal"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/noodsituatie",
+          "prefLabel": "noodsituatie",
+          "altLabel": [
+            "noodsituaties"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/norm",
+          "prefLabel": "norm",
+          "altLabel": [
+            "normen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/omtrek",
+          "prefLabel": "omtrek",
+          "altLabel": [
+            "omtrekken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/onderhoud",
+          "prefLabel": "onderhoud",
+          "altLabel": [
+            "onderhouden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/onderwerp",
+          "prefLabel": "onderwerp",
+          "altLabel": [
+            "onderwerpen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/onderwijs",
+          "prefLabel": "onderwijs"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/onthoudwoord",
+          "prefLabel": "onthoudwoord",
+          "altLabel": [
+            "onthoudwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/ontkenning",
+          "prefLabel": "ontkenning",
+          "altLabel": [
+            "la négation",
+            "les négations",
+            "ontkenningen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/ontvanger",
+          "prefLabel": "ontvanger",
+          "altLabel": [
+            "ontvangers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/ontwerpen",
+          "prefLabel": "ontwerpen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/ontwikkelingsland",
+          "prefLabel": "ontwikkelingsland",
+          "altLabel": [
+            "ontwikkelingslanden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/onze-tijd",
+          "prefLabel": "onze tijd",
+          "altLabel": [
+            "onze tijden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/openbaar-vervoer",
+          "prefLabel": "openbaar vervoer"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/oppervlakte",
+          "prefLabel": "oppervlakte",
+          "altLabel": [
+            "oppervlaktes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/oproep",
+          "prefLabel": "oproep",
+          "altLabel": [
+            "oproepen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/optellen",
+          "prefLabel": "optellen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/opwaartse-kracht",
+          "prefLabel": "opwaartse kracht",
+          "altLabel": [
+            "opwaartse krachten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/opwarming-aarde",
+          "prefLabel": "opwarming aarde"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/ordenen-tijd",
+          "prefLabel": "ordenen tijd"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/oudheid",
+          "prefLabel": "oudheid",
+          "altLabel": [
+            "oudheden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/overbrenging",
+          "prefLabel": "overbrenging",
+          "altLabel": [
+            "overbrengingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/overheid",
+          "prefLabel": "overheid",
+          "altLabel": [
+            "overheden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/parallellogram",
+          "prefLabel": "parallellogram",
+          "altLabel": [
+            "parallellogrammen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/periode",
+          "prefLabel": "periode",
+          "altLabel": [
+            "historische periode",
+            "historische periodes",
+            "periodes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/persoonlijk-voornaamwoord",
+          "prefLabel": "persoonlijk voornaamwoord",
+          "altLabel": [
+            "persoonlijke voornaamwoorden",
+            "pronom personnel",
+            "pronoms personnels"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/persoonsvorm",
+          "prefLabel": "persoonsvorm",
+          "altLabel": [
+            "persoonsvormen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/pictogram",
+          "prefLabel": "pictogram",
+          "altLabel": [
+            "pictogrammen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/piramide",
+          "prefLabel": "piramide",
+          "altLabel": [
+            "piramides"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/plant",
+          "prefLabel": "plant",
+          "altLabel": [
+            "planten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/plattegrond",
+          "prefLabel": "plattegrond",
+          "altLabel": [
+            "plattegronden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/plicht",
+          "prefLabel": "plicht",
+          "altLabel": [
+            "plichten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/pluviometer",
+          "prefLabel": "pluviometer",
+          "altLabel": [
+            "pluviometers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/politieagent",
+          "prefLabel": "politieagent",
+          "altLabel": [
+            "politieagenten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/politiek",
+          "prefLabel": "politiek"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/politieke-partij",
+          "prefLabel": "politieke partij",
+          "altLabel": [
+            "politieke partijen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/pop-up",
+          "prefLabel": "pop-up",
+          "altLabel": [
+            "pop-ups"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/positief-getal",
+          "prefLabel": "positief getal",
+          "altLabel": [
+            "positieve getallen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/prehistorie",
+          "prefLabel": "prehistorie",
+          "altLabel": [
+            "prehistories"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/priemgetal",
+          "prefLabel": "priemgetal",
+          "altLabel": [
+            "priemfactor",
+            "priemfactoren",
+            "priemgetallen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/procent",
+          "prefLabel": "procent",
+          "altLabel": [
+            "procenten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/punt",
+          "prefLabel": "punt",
+          "altLabel": [
+            "punten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/racisme",
+          "prefLabel": "racisme",
+          "altLabel": [
+            "racismen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/rationaal-getal",
+          "prefLabel": "rationaal getal",
+          "altLabel": [
+            "rationale getallen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/realiseren",
+          "prefLabel": "realiseren"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/recht",
+          "prefLabel": "recht",
+          "altLabel": [
+            "rechten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/recht-van-de-mens",
+          "prefLabel": "recht van de mens",
+          "altLabel": [
+            "rechten van de mens"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/recht-van-het-kind",
+          "prefLabel": "recht van het kind",
+          "altLabel": [
+            "rechten van het kind"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/rechte",
+          "prefLabel": "rechte",
+          "altLabel": [
+            "rechten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/rechthoek",
+          "prefLabel": "rechthoek",
+          "altLabel": [
+            "rechthoeken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/reclame",
+          "prefLabel": "reclame",
+          "altLabel": [
+            "reclames"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/recreatief",
+          "prefLabel": "recreatief"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/recycleren",
+          "prefLabel": "recycleren"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/regel",
+          "prefLabel": "regel",
+          "altLabel": [
+            "regels"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/regelwoord",
+          "prefLabel": "regelwoord",
+          "altLabel": [
+            "regelwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/regering",
+          "prefLabel": "regering",
+          "altLabel": [
+            "regeringen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/rekenmachine",
+          "prefLabel": "rekenmachine",
+          "altLabel": [
+            "rekenmachines",
+            "zakrekenmachine",
+            "zakrekenmachines"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/religie",
+          "prefLabel": "religie",
+          "altLabel": [
+            "religies"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/rijmen",
+          "prefLabel": "rijmen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/romeins-cijfer",
+          "prefLabel": "Romeins cijfer",
+          "altLabel": [
+            "Romeinse cijfers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/route",
+          "prefLabel": "route",
+          "altLabel": [
+            "routes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/routeplanner",
+          "prefLabel": "routeplanner",
+          "altLabel": [
+            "routeplanners"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/ruimte",
+          "prefLabel": "ruimte",
+          "altLabel": [
+            "ruimtes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/ruit",
+          "prefLabel": "ruit",
+          "altLabel": [
+            "ruiten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/rust",
+          "prefLabel": "rust"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/samenlevingsvorm",
+          "prefLabel": "samenlevingsvorm",
+          "altLabel": [
+            "samenlevingsvormen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/samenstelling",
+          "prefLabel": "samenstelling",
+          "altLabel": [
+            "samenstellingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/samenwerken",
+          "prefLabel": "samenwerken"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/samenwonen",
+          "prefLabel": "samenwonen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/sattelietbeeld",
+          "prefLabel": "sattelietbeeld",
+          "altLabel": [
+            "sattelietbeelden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/schaal",
+          "prefLabel": "schaal",
+          "altLabel": [
+            "schalen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/schaalbegrip",
+          "prefLabel": "schaalbegrip",
+          "altLabel": [
+            "schaalbegrippen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/schaduw",
+          "prefLabel": "schaduw",
+          "altLabel": [
+            "schaduwen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/schatten",
+          "prefLabel": "schatten"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/scheiding",
+          "prefLabel": "scheiding",
+          "altLabel": [
+            "echtscheiding",
+            "echtscheidingen",
+            "scheidingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/schema",
+          "prefLabel": "schema",
+          "altLabel": [
+            "schema's"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/schepen",
+          "prefLabel": "schepen",
+          "altLabel": [
+            "schepenen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/schooljaar",
+          "prefLabel": "schooljaar",
+          "altLabel": [
+            "schooljaren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/schrikkeljaar",
+          "prefLabel": "schrikkeljaar",
+          "altLabel": [
+            "schrikkeljaren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/seconde",
+          "prefLabel": "seconde",
+          "altLabel": [
+            "seconden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/seizoen",
+          "prefLabel": "seizoen",
+          "altLabel": [
+            "seizoenen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/siezoen",
+          "prefLabel": "siezoen",
+          "altLabel": [
+            "siezoenen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/signaalwoord",
+          "prefLabel": "signaalwoord",
+          "altLabel": [
+            "signaalwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/skelet",
+          "prefLabel": "skelet",
+          "altLabel": [
+            "skeletten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/sleutelwoord",
+          "prefLabel": "sleutelwoord",
+          "altLabel": [
+            "sleutelwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/smartphone",
+          "prefLabel": "smartphone",
+          "altLabel": [
+            "smartphones"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/smelten",
+          "prefLabel": "smelten"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/snelheid",
+          "prefLabel": "snelheid",
+          "altLabel": [
+            "snelheden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/sociaae-netwerk",
+          "prefLabel": "sociaae netwerk",
+          "altLabel": [
+            "sociale netwerken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/software",
+          "prefLabel": "software"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/sorteren",
+          "prefLabel": "sorteren"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/spam",
+          "prefLabel": "spam"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/spelling",
+          "prefLabel": "spelling",
+          "altLabel": [
+            "spellingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/spiegelas",
+          "prefLabel": "spiegelas",
+          "altLabel": [
+            "spiegelassen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/spiegelbeeld",
+          "prefLabel": "spiegelbeeld",
+          "altLabel": [
+            "spiegelbeelden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/spiegeling",
+          "prefLabel": "spiegeling",
+          "altLabel": [
+            "spiegelingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/spier",
+          "prefLabel": "spier",
+          "altLabel": [
+            "spieren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/spijsvertering",
+          "prefLabel": "spijsvertering",
+          "altLabel": [
+            "spijsverteringstelsel"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/splitsen",
+          "prefLabel": "splitsen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/stam",
+          "prefLabel": "stam",
+          "altLabel": [
+            "stammen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/stappenplan",
+          "prefLabel": "stappenplan",
+          "altLabel": [
+            "stappenplannen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/stedelijk",
+          "prefLabel": "stedelijk"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/ster",
+          "prefLabel": "ster",
+          "altLabel": [
+            "sterren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/stoep",
+          "prefLabel": "stoep",
+          "altLabel": [
+            "stoepen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/stollen",
+          "prefLabel": "stollen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/straat",
+          "prefLabel": "straat",
+          "altLabel": [
+            "straten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/studiekeuze",
+          "prefLabel": "studiekeuze",
+          "altLabel": [
+            "studiekeuzes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/symmetrieas",
+          "prefLabel": "symmetrieas",
+          "altLabel": [
+            "symmetrieassen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/synoniem",
+          "prefLabel": "synoniem",
+          "altLabel": [
+            "synoniemen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tabel",
+          "prefLabel": "tabel",
+          "altLabel": [
+            "tabellen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tafel",
+          "prefLabel": "tafel",
+          "altLabel": [
+            "tafels"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/talent",
+          "prefLabel": "talent",
+          "altLabel": [
+            "talenten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/technisch-luisteren",
+          "prefLabel": "technisch luisteren"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/technisch-principe",
+          "prefLabel": "technisch principe",
+          "altLabel": [
+            "technische principes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/technisch-proces",
+          "prefLabel": "technisch proces",
+          "altLabel": [
+            "technische processen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/technisch-systeem",
+          "prefLabel": "technisch systeem",
+          "altLabel": [
+            "technische systeem"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tegenstelling",
+          "prefLabel": "tegenstelling",
+          "altLabel": [
+            "tegenstellingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tegenwoordige-tijd",
+          "prefLabel": "tegenwoordige tijd",
+          "altLabel": [
+            "présent",
+            "tegenwoordige tijden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tekenen",
+          "prefLabel": "tekenen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/telefoongesprek",
+          "prefLabel": "telefoongesprek",
+          "altLabel": [
+            "telefoongesprekken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/telwoord",
+          "prefLabel": "telwoord",
+          "altLabel": [
+            "chiffre",
+            "chiffres",
+            "telwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/temperatuur",
+          "prefLabel": "temperatuur",
+          "altLabel": [
+            "temperaturen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/textuur",
+          "prefLabel": "textuur",
+          "altLabel": [
+            "texturen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/thermometer",
+          "prefLabel": "thermometer",
+          "altLabel": [
+            "thermometers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tijd",
+          "prefLabel": "tijd",
+          "altLabel": [
+            "tijden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tijdband",
+          "prefLabel": "tijdband",
+          "altLabel": [
+            "tijdbanden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tijdlijn",
+          "prefLabel": "tijdlijn",
+          "altLabel": [
+            "tijdlijnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tijdsaanduiding",
+          "prefLabel": "tijdsaanduiding",
+          "altLabel": [
+            "tijdsaanduidingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tijdsduur",
+          "prefLabel": "tijdsduur",
+          "altLabel": [
+            "tijdsduren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tijdsmeting",
+          "prefLabel": "tijdsmeting",
+          "altLabel": [
+            "tijdsmetingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/toeristisch",
+          "prefLabel": "toeristisch"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/topografie",
+          "prefLabel": "topografie",
+          "altLabel": [
+            "topografieën"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/topografische-kaart",
+          "prefLabel": "topografische kaart",
+          "altLabel": [
+            "topografische kaarten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/trap-van-vergelijking",
+          "prefLabel": "trap van vergelijking",
+          "altLabel": [
+            "trappen van vergelijking"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/trapezium",
+          "prefLabel": "trapezium",
+          "altLabel": [
+            "trapeziums"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tussenrichting",
+          "prefLabel": "tussenrichting",
+          "altLabel": [
+            "tussenrichtingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/tv",
+          "prefLabel": "tv",
+          "altLabel": [
+            "tv's"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/uitnodiging",
+          "prefLabel": "uitnodiging",
+          "altLabel": [
+            "uitnodigingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/uitzending",
+          "prefLabel": "uitzending",
+          "altLabel": [
+            "uitzendingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/uitzetten",
+          "prefLabel": "uitzetten"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/uur",
+          "prefLabel": "uur",
+          "altLabel": [
+            "uren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/uurtabel",
+          "prefLabel": "uurtabel",
+          "altLabel": [
+            "uurtabellen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/valhelm",
+          "prefLabel": "valhelm",
+          "altLabel": [
+            "valhelmen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/veelvlak",
+          "prefLabel": "veelvlak",
+          "altLabel": [
+            "veelvlakken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/veelvoud",
+          "prefLabel": "veelvoud",
+          "altLabel": [
+            "veelvouden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/veiligheid",
+          "prefLabel": "veiligheid"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/veiligheidsgordel",
+          "prefLabel": "veiligheidsgordel",
+          "altLabel": [
+            "veiligheidsgordels"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verbaal",
+          "prefLabel": "verbaal"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verbodsbord",
+          "prefLabel": "verbodsbord",
+          "altLabel": [
+            "verbodsborden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verbonden-vat",
+          "prefLabel": "verbonden vat",
+          "altLabel": [
+            "verbonden vaten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verdampen",
+          "prefLabel": "verdampen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verdubbelen",
+          "prefLabel": "verdubbelen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verenkelen",
+          "prefLabel": "verenkelen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verhoogkussen",
+          "prefLabel": "verhoogkussen",
+          "altLabel": [
+            "verhoogkussens"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verhouding",
+          "prefLabel": "verhouding",
+          "altLabel": [
+            "verhoudingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verkeersbord",
+          "prefLabel": "verkeersbord",
+          "altLabel": [
+            "verkeersborden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verkeerslicht",
+          "prefLabel": "verkeerslicht",
+          "altLabel": [
+            "verkeerslichten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verkleinwoord",
+          "prefLabel": "verkleinwoord",
+          "altLabel": [
+            "verkleinwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verleden-tijd",
+          "prefLabel": "verleden tijd",
+          "altLabel": [
+            "verleden tijden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vermenigvuldigen",
+          "prefLabel": "vermenigvuldigen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verslag",
+          "prefLabel": "verslag",
+          "altLabel": [
+            "verslagen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verslag-geven",
+          "prefLabel": "verslag geven"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verslaving",
+          "prefLabel": "verslaving",
+          "altLabel": [
+            "verslavingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vervuiling",
+          "prefLabel": "vervuiling",
+          "altLabel": [
+            "vervuilingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/verwijswoord",
+          "prefLabel": "verwijswoord",
+          "altLabel": [
+            "verwijswoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vierhoek",
+          "prefLabel": "vierhoek",
+          "altLabel": [
+            "vierhoeken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vierkant",
+          "prefLabel": "vierkant",
+          "altLabel": [
+            "vierkanten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vlak",
+          "prefLabel": "vlak",
+          "altLabel": [
+            "vlakken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vlakke-figuur",
+          "prefLabel": "vlakke figuur",
+          "altLabel": [
+            "vlakke figuren"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vlakte",
+          "prefLabel": "vlakte",
+          "altLabel": [
+            "vlakten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vloeistof",
+          "prefLabel": "vloeistof",
+          "altLabel": [
+            "vloeistoffen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vluchteling",
+          "prefLabel": "vluchteling",
+          "altLabel": [
+            "vluchtelingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voeding",
+          "prefLabel": "voeding",
+          "altLabel": [
+            "voedingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voedingsdriehoek",
+          "prefLabel": "voedingsdriehoek"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voedingsgewoonte",
+          "prefLabel": "voedingsgewoonte",
+          "altLabel": [
+            "voedingsgewoonten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voedingsmiddel",
+          "prefLabel": "voedingsmiddel",
+          "altLabel": [
+            "voedingsmiddellen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voedingspiramide",
+          "prefLabel": "voedingspiramide"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voedingsstof",
+          "prefLabel": "voedingsstof",
+          "altLabel": [
+            "voedingsstoffen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voedselketen",
+          "prefLabel": "voedselketen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voetganger",
+          "prefLabel": "voetganger",
+          "altLabel": [
+            "voetgangers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/volksdans",
+          "prefLabel": "volksdans",
+          "altLabel": [
+            "volksdansen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/volksvertegenwoordiger",
+          "prefLabel": "volksvertegenwoordiger",
+          "altLabel": [
+            "volksvertegenwoordigers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voltooid-verleden-tijd",
+          "prefLabel": "voltooid verleden tijd",
+          "altLabel": [
+            "passé composé"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/volume",
+          "prefLabel": "volume",
+          "altLabel": [
+            "volumes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vooroordeel",
+          "prefLabel": "vooroordeel",
+          "altLabel": [
+            "vooroordelen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voorrang",
+          "prefLabel": "voorrang",
+          "altLabel": [
+            "voorrangen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voorrangsbord",
+          "prefLabel": "voorrangsbord",
+          "altLabel": [
+            "voorrangsborden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voortplanting",
+          "prefLabel": "voortplanting"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/voorzetsel",
+          "prefLabel": "voorzetsel",
+          "altLabel": [
+            "voorzetsels"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vormleer",
+          "prefLabel": "vormleer"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/vreemdeling",
+          "prefLabel": "vreemdeling",
+          "altLabel": [
+            "vreemdelingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/waarde",
+          "prefLabel": "waarde",
+          "altLabel": [
+            "waarden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/wachtwoord",
+          "prefLabel": "wachtwoord",
+          "altLabel": [
+            "wachtwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/wagen",
+          "prefLabel": "wagen",
+          "altLabel": [
+            "wagens"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/webcam",
+          "prefLabel": "webcam",
+          "altLabel": [
+            "webcams"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/week",
+          "prefLabel": "week",
+          "altLabel": [
+            "weken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/weer",
+          "prefLabel": "weer",
+          "altLabel": [
+            "het weer"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/weerbaarheid",
+          "prefLabel": "weerbaarheid"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/weerkalender",
+          "prefLabel": "weerkalender",
+          "altLabel": [
+            "weerkalenders"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/weerselement",
+          "prefLabel": "weerselement",
+          "altLabel": [
+            "weerselementen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/weersvoorspelling",
+          "prefLabel": "weersvoorspelling",
+          "altLabel": [
+            "weersvoorspellingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/weg",
+          "prefLabel": "weg",
+          "altLabel": [
+            "wegen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/wegenkaart",
+          "prefLabel": "wegenkaart",
+          "altLabel": [
+            "wegenkaarten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/weggebruiker",
+          "prefLabel": "weggebruiker",
+          "altLabel": [
+            "weggebruikers"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/welvaart",
+          "prefLabel": "welvaart",
+          "altLabel": [
+            "welvaarten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/werktekening",
+          "prefLabel": "werktekening",
+          "altLabel": [
+            "werktekeningen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/werkwoord",
+          "prefLabel": "werkwoord",
+          "altLabel": [
+            "verbe",
+            "verbes",
+            "werkwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/werkwoordvervoeging",
+          "prefLabel": "werkwoordvervoeging",
+          "altLabel": [
+            "conjugaison des verbes",
+            "werkwoordvervoegingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/wet",
+          "prefLabel": "wet",
+          "altLabel": [
+            "wetten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/windrichting",
+          "prefLabel": "windrichting",
+          "altLabel": [
+            "windrichtingen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/windroos",
+          "prefLabel": "windroos",
+          "altLabel": [
+            "windrozen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/windstreek",
+          "prefLabel": "windstreek",
+          "altLabel": [
+            "windstreken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/woestijn",
+          "prefLabel": "woestijn",
+          "altLabel": [
+            "woestijnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/woordenboek",
+          "prefLabel": "woordenboek",
+          "altLabel": [
+            "woordenboeken"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/woordenschat",
+          "prefLabel": "woordenschat",
+          "altLabel": [
+            "vocabulaire",
+            "vocabulaires",
+            "woordenschatten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zebrapad",
+          "prefLabel": "zebrapad",
+          "altLabel": [
+            "zebrapaden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zelfbewustzijn",
+          "prefLabel": "zelfbewustzijn"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zelfstandig-naamwoord",
+          "prefLabel": "zelfstandig naamwoord",
+          "altLabel": [
+            "substantif",
+            "substantifs",
+            "zelfstandige naamwoorden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zelfvertrouwen",
+          "prefLabel": "zelfvertrouwen"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zender",
+          "prefLabel": "zender",
+          "altLabel": [
+            "zenders"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/ziekte",
+          "prefLabel": "ziekte",
+          "altLabel": [
+            "ziektes"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zin",
+          "prefLabel": "zin",
+          "altLabel": [
+            "zinnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zinken",
+          "prefLabel": "zinken"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zinsdeel",
+          "prefLabel": "zinsdeel",
+          "altLabel": [
+            "zinsdelen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zintuig",
+          "prefLabel": "zintuig",
+          "altLabel": [
+            "zintuigen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zoekrobot",
+          "prefLabel": "zoekrobot",
+          "altLabel": [
+            "zoekrobotten"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zon",
+          "prefLabel": "zon",
+          "altLabel": [
+            "zonnen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zonnestand",
+          "prefLabel": "zonnestand",
+          "altLabel": [
+            "zonnestanden"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zorg",
+          "prefLabel": "zorg",
+          "altLabel": [
+            "zorgen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/tref2/zwam",
+          "prefLabel": "zwam",
+          "altLabel": [
+            "zwammen"
+          ]
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-ruimtelijke-ordening",
+          "prefLabel": "ruimtelijke ordening/bepaaldheid"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-ict",
+          "prefLabel": "ICT"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-leren-leren",
+          "prefLabel": "leren leren"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-sociale-vaardigheden",
+          "prefLabel": "sociale vaardigheden"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-ict",
+          "prefLabel": "ICT"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-leren-leren",
+          "prefLabel": "leren leren"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-lichamelijke-opvoeding",
+          "prefLabel": "lichamelijke opvoeding"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-sociale-vaardigheden",
+          "prefLabel": "sociale vaardigheden"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-fr-lezen",
+          "prefLabel": "lezen (Frans)"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-fr-luisteren",
+          "prefLabel": "luisteren (Frans)"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-fr-schrijven",
+          "prefLabel": "schrijven (Frans)"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-fr-spreken",
+          "prefLabel": "spreken (Frans)"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/l-extra-curriculair",
+          "prefLabel": "extracurriculair"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/s-extra-curriculair",
+          "prefLabel": "extracurriculair"
+        },
+        {
+          "id": "http://ilearn.ilabt.imec.be/vocab/curr2/t-extra-curriculair",
+          "prefLabel": "extracurriculair"
+        }
+      ]
+    }
+  ]
+}
